@@ -1,0 +1,25 @@
+.git
+.github
+.VSCodeCounter
+.claude
+.vscode
+
+node_modules
+dist
+logs
+localtest
+package-lock.json
+
+.DS_Store
+.env
+*.log
+scripts/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Runtime-downloaded datasets — never bake them into the image. A clean CI build
+# wouldn't have them anyway; this keeps a local build (which has them on disk from
+# `pnpm dev`) consistent with CI, so the container always downloads fresh data on
+# first boot. Same pattern as .gitignore.
+common/*-db/

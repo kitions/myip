@@ -1,0 +1,334 @@
+<template>
+    <div class="ping-test-section my-4 space-y-4">
+        <!-- Top note -->
+        <div class="text-sm text-muted-foreground space-y-1.5">
+            <p>{{ t('pingtest.Note') }}</p>
+            <p v-if="!isMobile">{{ t('pingtest.Note2') }}</p>
+        </div>
+
+        <!-- Input area -->
+        <div class="space-y-2">
+            <div class="flex items-center justify-between gap-2">
+                <Label :for="manualMode ? 'pingIPManual' : 'pingIP'" class="font-medium">
+                    {{ manualMode ? t('pingtest.EnterIPLabel') : t('pingtest.Note3') }}
+                </Label>
+                <!-- Only when stored IPs exist: switch between the dropdown and
+                     manual entry (on = use a stored IP). -->
+                <div v-if="allIPs.length" class="flex items-center gap-2 shrink-0">
+                    <Switch id="pingUseStored" v-model="useStored" :disabled="pingCheckStatus === 'running'" />
+                    <Label for="pingUseStored" class="font-normal text-muted-foreground cursor-pointer">
+                        {{ t('pingtest.UseStored') }}
+                    </Label>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <Select v-if="!manualMode" v-model="selectedIP" :disabled="pingCheckStatus === 'running'">
+                    <SelectTrigger id="pingIP" aria-label="Select IP to Ping" class="flex-1 min-w-0">
+                        <SelectValue :placeholder="t('pingtest.SelectIP')" class="truncate font-mono" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem v-for="item in allIPs" :key="item.ip" :value="item.ip">
+                            <span class="flex items-center gap-1 min-w-0">
+                                <Icon v-if="item.country" :icon="'circle-flags:' + item.country.toLowerCase()"
+                                    class="size-3.5 md:size-4 shrink-0" />
+                                <span class="font-mono truncate text-xs md:text-sm">{{ item.ip }}</span>
+                            </span>
+                        </SelectItem>
+                    </SelectContent>
+                </Select>
+                <Input v-else id="pingIPManual" v-model="manualIP" class="flex-1 font-mono"
+                    :placeholder="t('pingtest.EnterIPPlaceholder')" :disabled="pingCheckStatus === 'running'"
+                    :aria-invalid="targetState === 'invalid' || targetState === 'unreachable'" autocomplete="off"
+                    autocorrect="off" autocapitalize="off" spellcheck="false" data-1p-ignore data-lpignore="true"
+                    @keyup.enter="startPingCheck" />
+                <Button variant="action" :disabled="!canRun"
+                    :title="overLimit ? t('globalping.GroupFull', { max: GLOBALPING_MAX_COUNTRIES }) : ''"
+                    @click="startPingCheck" class="cursor-pointer">
+                    <Spinner v-if="pingCheckStatus === 'running'" />
+                    <template v-else>
+                        <Play class="size-4 shrink-0" />
+                    </template>
+                </Button>
+            </div>
+            <!-- A well-formed address the probe fleet still can't reach -->
+            <p v-if="targetState === 'unreachable'" class="text-sm text-destructive">
+                {{ t('globalping.UnreachableTarget') }}
+            </p>
+        </div>
+
+        <!-- Error Message -->
+        <div v-if="pingCheckStatus === 'error'"
+            class="flex items-start gap-2 p-3 rounded-md border border-info/30 bg-info/10 text-sm text-info">
+            <Info class="size-4 mt-0.5 shrink-0" />
+            <span class="leading-relaxed">{{ t('pingtest.Error') }}</span>
+        </div>
+
+        <!-- Country picker (left) + results (right) -->
+        <Card>
+            <CardContent class="p-0">
+                <div class="grid grid-cols-1 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x">
+                    <!-- Left: suggested spread + full continent catalog. Before
+                         results exist the column caps its own height; once the
+                         right column has content, an absolutely-positioned inner
+                         wrapper makes the picker exactly as tall as the results
+                         (the row height comes from the right column alone).
+                         The scroll container stays padding-free — sticky top-0
+                         can't cover a scroll container's own padding, so the
+                         px-4 py-3 lives one level further in -->
+                    <div class="col-span-1" :class="pingResults.length > 0 ? 'md:relative md:min-h-96' : ''">
+                        <div class="max-h-72 overflow-y-auto"
+                            :class="pingResults.length > 0 ? 'md:max-h-none md:absolute md:inset-0' : 'md:max-h-128'">
+                            <div class="px-4 py-3">
+                                <GlobalpingCountryPicker v-model="selectedCountries" :sections="pickerSections"
+                                    :max="GLOBALPING_MAX_COUNTRIES" :disabled="pingCheckStatus === 'running'" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: results table + map; hint / spinner before that -->
+                    <div class="col-span-3" :class="pingResults.length > 0 ? '' : 'flex items-center justify-center'">
+                        <template v-if="pingResults.length > 0">
+                            <div>
+                                <div class="overflow-x-auto">
+                                    <table class="w-full text-sm">
+                                        <thead>
+                                            <tr class="border-b">
+                                                <th scope="col" v-for="header in headers" :key="header.key"
+                                                    class="px-3 py-2.5 text-xs font-medium text-muted-foreground uppercase tracking-wide min-w-20 text-nowrap"
+                                                    :class="header.align === 'right' ? 'text-right' : 'text-left'">
+                                                    {{ t('pingtest.' + header.key) }}
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y">
+                                            <tr v-for="result in pingResults" :key="result.country"
+                                                class="hover:bg-muted/50 transition-colors">
+                                                <td class="px-3 py-2.5 whitespace-nowrap">
+                                                    <div class="flex items-center gap-1.5">
+                                                        <Icon :icon="'circle-flags:' + result.country.toLowerCase()"
+                                                            class="shrink-0 size-4" />
+                                                        <span>{{ result.country_name }}</span>
+                                                    </div>
+                                                </td>
+                                                <td class="px-3 py-2.5 text-right font-mono tabular-nums"
+                                                    :class="latencyToneClass(result.stats.min)">
+                                                    {{ result.stats.min.toFixed(1) }}
+                                                </td>
+                                                <td class="px-3 py-2.5 text-right font-mono tabular-nums"
+                                                    :class="latencyToneClass(result.stats.max)">
+                                                    {{ result.stats.max.toFixed(1) }}
+                                                </td>
+                                                <td class="px-3 py-2.5 text-right font-mono tabular-nums"
+                                                    :class="latencyToneClass(result.stats.avg)">
+                                                    {{ result.stats.avg.toFixed(1) }}
+                                                </td>
+                                                <td
+                                                    class="px-3 py-2.5 text-right font-mono tabular-nums text-muted-foreground">
+                                                    {{ result.stats.total }}
+                                                </td>
+                                                <td class="px-3 py-2.5 text-right font-mono tabular-nums"
+                                                    :class="result.stats.loss > 0 ? 'text-warning' : 'text-muted-foreground'">
+                                                    {{ Math.round(result.stats.loss) }}%
+                                                </td>
+                                                <td
+                                                    class="px-3 py-2.5 text-right font-mono tabular-nums text-muted-foreground">
+                                                    {{ result.stats.rcv }}
+                                                </td>
+                                                <td
+                                                    class="px-3 py-2.5 text-right font-mono tabular-nums text-muted-foreground">
+                                                    {{ result.stats.drop }}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- Latency world map (shared choropleth util).
+                                    Aspect ratio tracks the equalEarth projection
+                                    (~2.2:1) so the map fills the full width. -->
+                                <div class="relative m-3 aspect-[2.2/1] overflow-hidden rounded-lg border">
+                                    <canvas ref="mapCanvas"></canvas>
+                                </div>
+                            </div>
+                        </template>
+                        <div v-else-if="pingCheckStatus === 'running'" class="px-4 py-6">
+                            <Spinner class="size-5 text-info" />
+                        </div>
+                        <p v-else class="px-4 py-6 text-sm text-muted-foreground text-center">
+                            {{ t('globalping.ResultsHint') }}
+                        </p>
+                    </div>
+                </div>
+            </CardContent>
+        </Card>
+
+
+    </div>
+</template>
+
+<script setup>
+import { ref, computed, nextTick, onBeforeUnmount } from 'vue';
+import { useMainStore } from '@/store';
+import { useI18n } from 'vue-i18n';
+import { trackEvent } from '@/utils/analytics';
+import { emitAppEvent } from '@/utils/app-events';
+import { useGlobalpingMeasurement, GLOBALPING_SUGGESTED_COUNTRIES, GLOBALPING_MAX_COUNTRIES, selectableIPs, classifyTarget } from '@/composables/use-globalping-measurement';
+import GlobalpingCountryPicker from './GlobalpingCountryPicker.vue';
+import getCountryName from '@/data/country-name.js';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
+import { Card, CardContent } from '@/components/ui/card';
+import { Spinner } from '@/components/ui/spinner';
+import { Icon } from '@iconify/vue';
+import { Info, Play } from '@lucide/vue';
+import { renderWorldMapChart } from '@/utils/features/world-map-chart.js';
+
+const { t } = useI18n();
+
+const store = useMainStore();
+const isMobile = computed(() => store.isMobile);
+const lang = computed(() => store.lang);
+const allIPs = computed(() => selectableIPs(store.allIPs));
+
+const selectedIP = ref('');
+const pingResults = ref([]);
+
+// Country picker: the curated spread as a suggested section (selected by
+// default, parity with the old fixed list); the picker itself appends the
+// full per-continent catalog of probe-having countries. Soft cap of
+// GLOBALPING_MAX_COUNTRIES gates the run button, not the checkboxes.
+const selectedCountries = ref([...GLOBALPING_SUGGESTED_COUNTRIES]);
+const overLimit = computed(() => selectedCountries.value.length > GLOBALPING_MAX_COUNTRIES);
+const pickerSections = computed(() => [
+    { key: 'suggested', label: t('globalping.Suggested'), countries: GLOBALPING_SUGGESTED_COUNTRIES },
+]);
+
+// Manual entry is forced when no IPs are stored (the homepage never ran);
+// otherwise the switch (on by default) picks between dropdown and typing.
+const useStored = ref(true);
+const manualMode = computed(() => allIPs.value.length === 0 || !useStored.value);
+const manualIP = ref('');
+// 'empty' | 'invalid' | 'unreachable' | 'ok' — only 'ok' may run.
+const targetState = computed(() => classifyTarget(manualIP.value));
+const isValidManualIP = computed(() => targetState.value === 'ok');
+// The effective target: a picked IP, or a valid typed one ('' blocks Run).
+const targetIP = computed(() =>
+    manualMode.value ? (isValidManualIP.value ? manualIP.value.trim() : '') : selectedIP.value,
+);
+// status: 'idle' | 'running' | 'finished' | 'error' — driven by the composable
+const { status: pingCheckStatus, start: runMeasurement } = useGlobalpingMeasurement({
+    pollInterval: 1000,
+    maxRetries: 4,
+});
+
+// Header configuration: Region left aligned, all numbers right aligned (tabular-nums aligns decimal points more neatly)
+const headers = [
+    { key: 'Region', align: 'left' },
+    { key: 'MinDelay', align: 'right' },
+    { key: 'MaxDelay', align: 'right' },
+    { key: 'AvgDelay', align: 'right' },
+    { key: 'TotalPackets', align: 'right' },
+    { key: 'PacketLoss', align: 'right' },
+    { key: 'ReceivedPackets', align: 'right' },
+    { key: 'DroppedPackets', align: 'right' },
+];
+
+// Delay coloring: <100ms green (ok-fast), 100-250ms neutral, >250ms yellow warning
+const latencyToneClass = (ms) => {
+    if (ms < 100) return 'text-success';
+    if (ms < 250) return '';
+    return 'text-warning';
+};
+
+// Single source of truth for "may this measurement start", shared by the run
+// button and the Enter-key path so the two can't drift apart.
+const canRun = computed(() => pingCheckStatus.value !== 'running'
+    && !!targetIP.value
+    && selectedCountries.value.length > 0
+    && !overLimit.value);
+
+const startPingCheck = () => {
+    // Enter on the target input reaches this handler directly, so a disabled
+    // run button alone wouldn't stop an over-limit submission.
+    if (!canRun.value) return;
+    trackEvent('Section', 'StartClick', 'GlobalLatency');
+    pingResults.value = [];
+    cleanMap();
+
+    runMeasurement({
+        limit: selectedCountries.value.length,
+        locations: selectedCountries.value.map((cc) => ({ country: cc })),
+        target: targetIP.value,
+        type: 'ping',
+        measurementOptions: { packets: 8 },
+    }, {
+        onResults: (data) => {
+            processpingResults(data);
+            return pingResults.value.length > 0;
+        },
+        onFinish: () => {
+            drawMap();
+            // Domain event: final probe results for the report collector.
+            emitAppEvent('pingtest:finished', {
+                target: targetIP.value,
+                probes: pingResults.value.map((result) => ({
+                    country: result.country,
+                    stats: result.stats,
+                })),
+            });
+        },
+    });
+};
+
+const processpingResults = (data) => {
+    pingResults.value = data.results
+        .filter(item => item.result.status === 'finished')
+        .filter(item => item.result.stats.min !== null)
+        .map(item => ({
+            country: item.probe.country,
+            country_name: getCountryName(item.probe.country, lang.value),
+            stats: item.result.stats,
+        }));
+};
+
+// Latency map via the shared choropleth util: shaded by average delay
+// (green = fast, dark = slow); tooltip lists the per-country stats.
+const mapCanvas = ref(null);
+let mapChart = null;
+
+const drawMap = async () => {
+    await nextTick(); // the results branch (and its canvas) render on status flip
+    const statsByCountry = Object.fromEntries(
+        pingResults.value.map((result) => [result.country.toUpperCase(), result.stats]));
+    mapChart = await renderWorldMapChart({
+        canvas: mapCanvas.value,
+        chart: mapChart,
+        values: Object.fromEntries(
+            Object.entries(statsByCountry).map(([cc, stats]) => [cc, stats.avg])),
+        lang: lang.value,
+        colorFrom: '#22CB80',
+        colorTo: '#FFC870',
+        tooltipOnMissing: false, // untested countries get no hover UI
+        formatValue: (value, alpha2) => {
+            const stats = statsByCountry[alpha2];
+            if (!stats) return '';
+            return [
+                ` ${t('pingtest.AvgDelay')}: ${stats.avg.toFixed(1)} ms`,
+                ` ${t('pingtest.MinDelay')}: ${stats.min.toFixed(1)} ms`,
+                ` ${t('pingtest.MaxDelay')}: ${stats.max.toFixed(1)} ms`,
+                ` ${t('pingtest.PacketLoss')}: ${Math.round(stats.loss)}%`,
+            ];
+        },
+    });
+};
+
+const cleanMap = () => {
+    if (mapChart) {
+        mapChart.destroy();
+        mapChart = null;
+    }
+};
+onBeforeUnmount(cleanMap);
+</script>

@@ -1,0 +1,200 @@
+// /api/asn-connectivity — layered BFS over CAIDA AS-Relationships starting at
+// the origin AS, halting at Tier 1s or MAX_DEPTH. Returns a graph the frontend
+// renders dagre-style: origin (left) → intermediates → Tier 1s (right).
+// Inspired by bgp.tools' /as/<N>#connectivity view.
+//
+// Edges carry a kind: 'transit' (p2c, customer → provider) or 'peering' (p2p
+// with a Tier 1). Peering matters because hypergiants buy no transit — their
+// backbone connectivity is settlement-free peering with the Tier 1 clique,
+// invisible to a p2c-only walk.
+//
+// Data is fully local (server/datasets/as-rel-db.js + server/datasets/as-org-db.js), so the
+// whole BFS is synchronous. We only hit RIPEstat for as-overview as a
+// rare fallback when as2org doesn't have an ASN's org name.
+//
+// Alongside the graph, `neighbours` lists the origin's direct providers,
+// peers and customers from the same snapshot, counted by the walk's own
+// misinference rule (server/as-relationships.js) so the counts never show an
+// upstream the graph drops. List names come from as2org, gaps filled from the
+// graph's resolved names.
+
+import { resolveAsnOrgName } from '../server/ripestat.js';
+import { providersOf, peersOf, customersOf, customerCountOf, isTier1 } from '../server/datasets/as-rel-db.js';
+import { lookupAsOrgName } from '../server/datasets/as-org-db.js';
+import { TIER1_PEERING_TRUSTED, TIER1_ADJACENCY_TRUSTED, countedRelationships } from '../server/as-relationships.js';
+import logger from '../server/logger.js';
+
+// How deep to recurse from the origin. 3 covers regional networks reaching
+// Tier 1s through 1-2 intermediates; deeper just adds noise at the periphery.
+const MAX_DEPTH = 3;
+
+// Per-node cap on non-Tier-1 providers to recurse into, ranked by
+// customerCount as a proxy for "primary transit".
+const MAX_INTERMEDIATE_BRANCH = 3;
+
+// Past either bar (TIER1_PEERING_TRUSTED / TIER1_ADJACENCY_TRUSTED, defined
+// in server/as-relationships.js so the neighbour counts use the same ones), a
+// node's non-Tier-1 "providers" are treated as CAIDA misinference and dropped.
+
+// Two-tier org name resolver lives in server/ripestat.js. No onError hook
+// here — connectivity stays silent on as-overview fallback failures (a node
+// just keeps name=null); asn-history is the one that warns.
+const resolveOrgName = (asn) => resolveAsnOrgName(asn);
+
+// Per-kind cap on the neighbour name lists; counts stay uncapped.
+const NEIGHBOUR_LIST_CAP = 50;
+
+// Default adjacency API for buildTopology / buildNeighbours; tests inject a
+// fixture instead.
+const asRelApi = { providersOf, peersOf, customersOf, isTier1, customerCountOf };
+
+// Pure synchronous topology walk — no org names, no I/O. Exported for tests.
+export const buildTopology = (origin, rel = asRelApi) => {
+    const nodes = new Map();
+    const edges = [];
+    const edgeKeys = new Set();
+
+    const addNode = (asn, type) => {
+        if (!nodes.has(asn)) nodes.set(asn, { asn, type, name: null });
+    };
+    // First kind wins on a duplicate pair; transit is always added first.
+    const addEdge = (from, to, kind) => {
+        const key = `${from}->${to}`;
+        if (edgeKeys.has(key)) return;
+        edgeKeys.add(key);
+        edges.push({ from, to, kind });
+    };
+
+    // A Tier-1 origin's graph is its peering edges into the rest of the clique.
+    addNode(origin, rel.isTier1(origin) ? 'origin-tier1' : 'origin');
+
+    let currentLayer = [origin];
+
+    for (let depth = 0; depth < MAX_DEPTH; depth++) {
+        if (currentLayer.length === 0) break;
+        const nextLayer = [];
+
+        for (const asn of currentLayer) {
+            const providers = rel.providersOf(asn);
+            const tier1Providers = providers.filter(p => rel.isTier1(p));
+            const tier1Peers = rel.peersOf(asn).filter(p => rel.isTier1(p));
+
+            // Tier 1 hits are terminal — record the edge + node, no recursion.
+            for (const p of tier1Providers) {
+                addEdge(asn, p, 'transit');
+                addNode(p, 'tier1');
+            }
+            for (const p of tier1Peers) {
+                addEdge(asn, p, 'peering');
+                addNode(p, 'tier1');
+            }
+
+            // Clique-adjacent node: non-Tier-1 providers are noise.
+            if (tier1Peers.length >= TIER1_PEERING_TRUSTED
+                || tier1Providers.length + tier1Peers.length >= TIER1_ADJACENCY_TRUSTED) continue;
+
+            const intermediates = providers
+                .filter(p => !rel.isTier1(p))
+                .sort((a, b) => rel.customerCountOf(b) - rel.customerCountOf(a))
+                .slice(0, MAX_INTERMEDIATE_BRANCH);
+
+            for (const p of intermediates) {
+                addEdge(asn, p, 'transit');
+                if (!nodes.has(p)) {
+                    addNode(p, 'intermediate');
+                    nextLayer.push(p);
+                }
+            }
+        }
+
+        currentLayer = nextLayer;
+    }
+
+    return pruneLeafIntermediates([...nodes.values()], edges);
+};
+
+async function buildGraph(origin) {
+    const { nodes, edges } = buildTopology(origin);
+
+    // Org lookups run concurrently; a failed one just keeps name=null.
+    await Promise.all(nodes.map(async (node) => {
+        try {
+            const name = await resolveOrgName(node.asn);
+            if (name) node.name = name;
+        } catch {
+            // node keeps name=null
+        }
+    }));
+
+    return { nodes, edges };
+}
+
+// Iteratively drop intermediate nodes with no outgoing edge — visual
+// dead-ends that contribute no info. Iterates to fixed-point because
+// removing one leaf can turn its parent into a leaf. origin / origin-tier1
+// / tier1 are never pruned.
+function pruneLeafIntermediates(nodes, edges) {
+    let currentNodes = nodes;
+    let currentEdges = edges;
+    while (true) {
+        const hasOutgoing = new Set(currentEdges.map(e => e.from));
+        const survivors = currentNodes.filter(n =>
+            n.type !== 'intermediate' || hasOutgoing.has(n.asn)
+        );
+        if (survivors.length === currentNodes.length) {
+            return { nodes: currentNodes, edges: currentEdges };
+        }
+        const survivorAsns = new Set(survivors.map(n => n.asn));
+        currentEdges = currentEdges.filter(e =>
+            survivorAsns.has(e.from) && survivorAsns.has(e.to)
+        );
+        currentNodes = survivors;
+    }
+}
+
+// Direct neighbours of `origin` as countedRelationships reads them (a
+// distrusted non-Tier-1 provider is not an upstream), each kind ranked by
+// customer count (bigger networks first, ASN as tie-break) and capped.
+// Exported for tests.
+export const buildNeighbours = (origin, rel = asRelApi, lookupName = lookupAsOrgName) => {
+    const { providers, peers, customers } = countedRelationships(origin, rel);
+
+    const toList = (asns) => [...asns]
+        .sort((a, b) => rel.customerCountOf(b) - rel.customerCountOf(a) || a - b)
+        .slice(0, NEIGHBOUR_LIST_CAP)
+        .map((asn) => ({ asn, name: lookupName(asn) || null }));
+
+    return {
+        counts: { providers: providers.length, peers: peers.length, customers: customers.length },
+        providers: toList(providers),
+        peers: toList(peers),
+        customers: toList(customers),
+    };
+};
+
+// Fill list names as2org lacks from the graph's resolved names, so an AS
+// carries the same label in the graph and in the lists. Exported for tests.
+export const fillNeighbourNames = (neighbours, nodes) => {
+    const names = new Map(nodes.filter((n) => n.name).map((n) => [n.asn, n.name]));
+    for (const kind of ['providers', 'peers', 'customers']) {
+        for (const item of neighbours[kind]) item.name = item.name || names.get(item.asn) || null;
+    }
+    return neighbours;
+};
+
+// The full response body for one ASN — also composed into /api/asn-profile.
+export const getAsnConnectivity = async (asn) => {
+    const graph = await buildGraph(asn);
+    return { origin: asn, ...graph, neighbours: fillNeighbourNames(buildNeighbours(asn), graph.nodes) };
+};
+
+export default async (req, res) => {
+    // ASN presence + numeric validity guaranteed by requireValidASN middleware.
+    const asn = parseInt(req.query.asn, 10);
+    try {
+        res.json(await getAsnConnectivity(asn));
+    } catch (error) {
+        logger.error({ err: error, asn }, 'asn-connectivity handler failed');
+        res.status(500).json({ error: error.message });
+    }
+};

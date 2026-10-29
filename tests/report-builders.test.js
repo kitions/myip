@@ -1,0 +1,404 @@
+// Exercises the report builders (frontend/utils/report/report-builders.js): every
+// builder's output — wrapped in a report envelope — must pass the shared
+// schema validator, and the shape-based cleaning rules (invalid IPs dropped,
+// geo-less org distrusted, stat whitelists) must hold.
+
+import assert from 'node:assert/strict';
+import { describe, it } from 'node:test';
+
+import { REPORT_EVENT_BUILDERS } from '../frontend/utils/report/report-builders.js';
+import { validateReport, REPORT_VERSION } from '../common/report-schema.js';
+
+const wrap = (sectionId, section) => ({
+    v: REPORT_VERSION,
+    generatedAt: '2026-07-14T08:00:00.000Z',
+    origin: 'ipcheck.ing',
+    locale: 'zh',
+    sections: { [sectionId]: { testedAt: '2026-07-14T08:00:00.000Z', ...section } },
+});
+
+// Realistic payloads mirroring what each component actually emits — including
+// localized placeholder strings in ip slots, which the builders must drop.
+const PAYLOADS = {
+    'ipinfo:finished': {
+        cards: [
+            { source: 'IPCheck.ing IPv4', ip: '1.2.3.4', country_code: 'us', region: 'CA', city: 'SF', asn: 'AS15169', isp: 'Google LLC' },
+            { source: 'IPCheck.ing IPv6', ip: 'IPv6 检测失败' },
+            { source: 'Cloudflare IPv6', ip: '2001:db8::1', country_code: '' },
+        ],
+    },
+    'connectivity:finished': {
+        targets: [
+            { id: 'google', name: 'Google', custom: false, statusCode: 'ok', time: 123, mintime: 98 },
+            { id: 'wechat', name: 'WeChat', custom: false, statusCode: 'unreachable', time: 0, mintime: 0 },
+            { id: 'custom-1', name: 'My server', custom: true, statusCode: undefined, time: 0, mintime: 0 },
+        ],
+    },
+    'webrtc:finished': {
+        servers: [
+            { id: 'google', url: 'stun.l.google.com:19302', ip: '1.2.3.4', natTypeCode: 'srflx', country_code: 'US', org: 'Google' },
+            { id: 'twilio', url: 'global.stun.twilio.com', ip: 'STUN 请求失败', natTypeCode: 'error', country_code: '', org: 'STUN 请求失败' },
+            { id: 'cloudflare', url: 'stun.cloudflare.com', ip: '等待检测', natTypeCode: undefined, country_code: '', org: '等待检测' },
+        ],
+    },
+    'dnsleak:finished': {
+        providers: [
+            { id: 'surfshark', name: 'Surfshark', ip: '8.8.4.4', country_code: 'US', org: 'Google' },
+            { id: 'ipleak', name: 'IPLeak', ip: '检测失败', country_code: '', org: '检测失败' },
+        ],
+    },
+    'speedtest:finished': {
+        downloadSpeed: 500.2, uploadSpeed: 42.1, latency: 12, jitter: '-',
+        downLoadedLatency: 45, upLoadedLatency: '-',
+        scores: { streaming: 90, gaming: 70, rtc: 80 },
+        qualities: { streaming: 'great', gaming: 'good', rtc: 'good' },
+        connection: { ip: '104.16.0.1', colo: 'HKG', loc: 'HK', country: 'Hong Kong', coloCountry: 'Hong Kong', coloCountryCode: 'HK', coloCity: 'Hong Kong' },
+    },
+    'pingtest:finished': {
+        target: '1.2.3.4',
+        probes: [
+            { country: 'US', stats: { min: 1.2, max: 4.5, avg: 2.3, total: 8, loss: 0, rcv: 8, drop: 0, mdev: 0.4 } },
+        ],
+    },
+    'mtrtest:finished': {
+        target: '8.8.8.8',
+        probes: [
+            {
+                country: 'DE', city: 'Falkenstein', network: 'Hetzner Online', asn: 24940,
+                hops: [
+                    { n: 1, asn: null, host: '_gateway', ip: '172.17.0.1', lossPct: 0, drop: 0, rcv: 3, avgMs: 0.3 },
+                    { n: 2, lossPct: 100 },
+                ],
+            },
+            { country: 'US', city: 'Ashburn', network: 'AWS', asn: 14618, hops: [] },
+        ],
+    },
+    'ruletest:finished': {
+        uniqueIPCount: 3, // counts error labels too — builder recomputes
+        workers: [
+            { id: 1, ip: '1.2.3.4', country_code: 'US', org: 'Cloudflare' },
+            { id: 2, ip: '1.2.3.4', country_code: 'US', org: 'Cloudflare' },
+            { id: 3, ip: '检测失败', country_code: '', org: '检测失败' },
+        ],
+    },
+    'adblocktest:finished': {
+        items: [
+            { groupId: 'ads', kind: 'domain', status: 'blocked' },
+            { groupId: 'ads', kind: 'domain', status: 'open' },
+            { groupId: 'ads', kind: 'domain', status: 'blocked' },
+            { groupId: 'social', kind: 'domain', status: 'unknown' },
+            { groupId: 'scripts', kind: 'script', status: 'open' },
+            { groupId: 'scripts', kind: 'script', status: 'pending' },
+            { groupId: 'cosmetic', kind: 'cosmetic', status: 'blocked' },
+        ],
+    },
+    'browserinfo:finished': {
+        userAgent: {
+            ua: 'Mozilla/5.0 …',
+            browser: { name: 'Chrome', version: '138.0.0.0', major: '138' },
+            engine: { name: 'Blink', version: '138.0.0.0' },
+            os: { name: 'macOS', version: '15.5' },
+            device: { vendor: 'Apple', model: 'Macintosh' },
+            cpu: { architecture: 'arm64' },
+        },
+        otherInfos: {
+            cookieEnabled: true, cpucores: 10,
+            languages: ['zh-CN', 'en'],
+            timezone: 'Asia/Hong_Kong',
+            display: { width: 1512, height: 982, colorDepth: 30, pixelRatio: 2 },
+            connection: { effectiveType: '4g', downlink: 10, rtt: 50, saveData: false },
+            touchPoints: 0, doNotTrack: null, pdfViewer: true,
+        },
+    },
+    'invisibility:result': {
+        proxyScore: 12, vpnScore: 88, ip: '1.2.3.4',
+        flags: [{ key: 'timezone', flagged: true }, { key: 'blocklist.vpn', flagged: false }],
+    },
+    'persona:finished': {
+        country: 'JP',
+        grade: 'C',
+        score: 0.7234,
+        counts: {
+            total: 18, scored: 12, match: 9, mismatch: 2,
+            unnatural: 0, leak: 1, unknown: 3, notApplicable: 3,
+        },
+        results: [
+            // Detail objects ride along on the live result and must not reach
+            // the report — the visitor's bank and resolved position are in there.
+            {
+                id: 'payment-region', axis: 'match', visibility: 'risk-engine', verdict: 'mismatch',
+                detail: { expected: 'JP', actual: 'SG', cardIssuer: 'EXAMPLE BANK', cardTier: 'PLATINUM' },
+            },
+            {
+                id: 'gps-location', axis: 'leak', visibility: 'probed', verdict: 'leak',
+                detail: { expected: 'JP', actual: 'IT', accuracyMetres: 30 },
+            },
+            { id: 'nonsense', axis: 'bogus', verdict: 'match' },
+        ],
+    },
+    'enhanceddnsleak:finished': {
+        rawCount: 12, resolverCount: 3,
+        queries: [
+            {
+                ip: '8.8.8.8', queryType: 'A', transport: 'udp', ecs: '1.2.3.0/24', do: true, cd: false,
+                ipInfo: { country_code: 'US', country_name: 'United States', region: 'CA', city: 'MV', asn: 15169, org: 'Google' },
+                ecsInfo: { country_code: 'HK' },
+            },
+            {
+                ip: '9.9.9.9', queryType: 'A', transport: 'tcp', ecs: '', do: false, cd: false,
+                ipInfo: { country_code: 'N/A', asn: null, org: 'Quad9' },
+            },
+        ],
+    },
+};
+
+describe('report builders produce schema-valid sections', () => {
+    for (const [event, { section, build }] of Object.entries(REPORT_EVENT_BUILDERS)) {
+        it(`${event} → sections.${section} passes validateReport`, () => {
+            const built = build(PAYLOADS[event]);
+            assert.notEqual(built, null, `builder for ${event} returned null on a realistic payload`);
+            const result = validateReport(wrap(section, built));
+            assert.deepEqual(result, { ok: true, errors: [] });
+        });
+    }
+
+    it('every builder returns null on an empty payload', () => {
+        for (const [event, { build }] of Object.entries(REPORT_EVENT_BUILDERS)) {
+            assert.equal(build({}), null, `${event} should return null on {}`);
+            assert.equal(build(undefined), null, `${event} should return null on undefined`);
+        }
+    });
+});
+
+describe('cleaning rules', () => {
+    it('adblocktest keeps per-category request counts only', () => {
+        const { build } = REPORT_EVENT_BUILDERS['adblocktest:finished'];
+        // Pending items and cosmetic baits never reach the counts.
+        assert.deepEqual(build(PAYLOADS['adblocktest:finished']), {
+            groups: [
+                { id: 'ads', total: 3, blocked: 2, open: 1, unknown: 0 },
+                { id: 'social', total: 1, blocked: 0, open: 0, unknown: 1 },
+                { id: 'scripts', total: 1, blocked: 0, open: 1, unknown: 0 },
+            ],
+        });
+    });
+
+    it('adblocktest reports nothing when only baits or unanswered items came back', () => {
+        const { build } = REPORT_EVENT_BUILDERS['adblocktest:finished'];
+        assert.equal(build({ items: [
+            { groupId: 'cosmetic', kind: 'cosmetic', status: 'blocked' },
+            { groupId: 'ads', kind: 'domain', status: 'pending' },
+        ] }), null);
+    });
+
+    it('ipinfo drops cards whose ip slot holds a placeholder', () => {
+        const { build } = REPORT_EVENT_BUILDERS['ipinfo:finished'];
+        const section = build(PAYLOADS['ipinfo:finished']);
+        assert.equal(section.cards.length, 2);
+        assert.deepEqual(section.cards.map((c) => c.ip), ['1.2.3.4', '2001:db8::1']);
+        assert.equal(section.cards[0].countryCode, 'US'); // normalized to upper
+    });
+
+    it('ipinfo carries the timezone through, absent when the source had no coordinates', () => {
+        const { build } = REPORT_EVENT_BUILDERS['ipinfo:finished'];
+        const section = build({
+            cards: [
+                { source: 'IP.sb', ip: '1.2.3.4', country_code: 'SG', timezone: 'Asia/Singapore' },
+                // Anycast / unlocatable: the backend sends '' rather than guessing.
+                { source: 'MaxMind', ip: '2001:db8::1', country_code: 'US', timezone: '' },
+            ],
+        });
+        assert.equal(section.cards[0].timezone, 'Asia/Singapore');
+        assert.ok(!('timezone' in section.cards[1]));
+    });
+
+    it('ipinfo keeps IPCheck.ing enrichments and drops gated/unknown values', () => {
+        const { build } = REPORT_EVENT_BUILDERS['ipinfo:finished'];
+        const section = build({
+            cards: [{
+                source: 'IPCheck.ing IPv4', ip: '1.2.3.4', country_code: 'US',
+                anonymityCode: 'vpn', ipTypeCode: 'residential', isNativeIP: true,
+                qualityScore: '85', anonymityProtocol: 'OpenVPN', anonymityProvider: 'ACME VPN',
+            }, {
+                // Signed-out run: locale-free codes stay undefined and raw
+                // 'sign_in_required' strings must never survive the builder.
+                source: 'IPCheck.ing IPv6', ip: '2001:db8::1', country_code: 'US',
+                anonymityCode: undefined, ipTypeCode: undefined,
+                isNativeIP: 'sign_in_required', qualityScore: 'sign_in_required',
+                anonymityProvider: null, anonymityProtocol: null,
+            }, {
+                // An unknown line type carries no signal; no service named.
+                source: 'IPCheck.ing IPv6/4', ip: '9.9.9.9', country_code: 'US',
+                anonymityCode: 'none', ipTypeCode: 'unknown',
+                anonymityProvider: null, anonymityProtocol: '',
+            }],
+        });
+        const [enriched, gated, plain] = section.cards;
+        assert.equal(enriched.anonymity, 'vpn');
+        assert.equal(enriched.anonymityProvider, 'ACME VPN');
+        assert.equal(enriched.anonymityProtocol, 'OpenVPN');
+        assert.equal(enriched.ipType, 'residential');
+        assert.equal(enriched.nativeIP, true);
+        assert.equal(enriched.qualityScore, 85);
+        assert.equal(plain.anonymity, 'none');
+        assert.equal('ipType' in plain, false);
+        assert.equal('anonymityProvider' in plain, false);
+        assert.equal('anonymityProtocol' in plain, false);
+        for (const key of ['anonymity', 'ipType', 'nativeIP', 'qualityScore', 'anonymityProvider', 'anonymityProtocol']) {
+            assert.equal(key in gated, false, `${key} should be absent on the gated card`);
+        }
+        // The old field names are gone from the report.
+        for (const card of section.cards) {
+            for (const key of ['isProxy', 'proxyProvider', 'proxyProtocol']) assert.equal(key in card, false, key);
+        }
+    });
+
+    it('ipinfo keeps every anonymity code and nothing else', () => {
+        const { build } = REPORT_EVENT_BUILDERS['ipinfo:finished'];
+        const codes = [
+            'tor', 'relay', 'residential', 'suspected_residential',
+            'proxy', 'proxy_suspected', 'vpn', 'vpn_suspected', 'none',
+        ];
+        // One card per build: a section holds at most 8 cards.
+        const kept = codes.map((anonymityCode) => build({
+            cards: [{ source: 'IPCheck.ing', ip: '1.2.3.4', country_code: 'US', anonymityCode }],
+        }).cards[0].anonymity);
+        assert.deepEqual(kept, codes);
+        for (const legacy of ['yes', 'maybe', 'no', 'unknown']) {
+            const card = build({ cards: [{ source: 'IPCheck.ing', ip: '1.2.3.4', country_code: 'US', anonymityCode: legacy }] }).cards[0];
+            assert.equal('anonymity' in card, false, legacy);
+        }
+    });
+
+    it('connectivity keeps only settled targets and maps the enum', () => {
+        const { build } = REPORT_EVENT_BUILDERS['connectivity:finished'];
+        const section = build(PAYLOADS['connectivity:finished']);
+        assert.equal(section.targets.length, 2);
+        assert.equal(section.targets[0].status, 'ok');
+        assert.equal(section.targets[1].status, 'unreachable');
+        // custom:false is omitted, not serialized
+        assert.equal('custom' in section.targets[0], false);
+    });
+
+    it('webrtc drops waiting servers, keeps errored ones without ip/org', () => {
+        const { build } = REPORT_EVENT_BUILDERS['webrtc:finished'];
+        const section = build(PAYLOADS['webrtc:finished']);
+        assert.equal(section.servers.length, 2);
+        const errored = section.servers[1];
+        assert.equal(errored.natType, 'error');
+        assert.equal('ip' in errored, false);   // placeholder text is not an IP
+        assert.equal('org' in errored, false);  // no geo lookup → org distrusted
+    });
+
+    it('dnsleak collapses reused probes without dropping distinct providers or resolver IPs', () => {
+        const { build } = REPORT_EVENT_BUILDERS['dnsleak:finished'];
+        const shared = { id: 'spare', name: 'Standby', ip: '192.0.2.53', country_code: 'US', org: 'Example' };
+        const section = build({ providers: [
+            ...Array(9).fill(shared),
+            { ...shared, ip: '192.0.2.54' },
+            { ...shared, id: 'other' },
+            { ...shared, ip: 'Testing…' },
+        ] });
+        assert.deepEqual(section.providers.map(({ id, ip }) => ({ id, ip })), [
+            { id: 'spare', ip: '192.0.2.53' },
+            { id: 'spare', ip: '192.0.2.54' },
+            { id: 'other', ip: '192.0.2.53' },
+        ]);
+        assert.equal(validateReport(wrap('dnsleak', section)).ok, true);
+    });
+
+    it('speedtest turns "-" placeholders into absent keys', () => {
+        const { build } = REPORT_EVENT_BUILDERS['speedtest:finished'];
+        const section = build(PAYLOADS['speedtest:finished']);
+        assert.equal(section.jitterMs, undefined);
+        assert.equal(section.loadedLatencyUpMs, undefined);
+        assert.equal(section.downloadMbps, 500.2);
+        assert.deepEqual(section.connection, { ip: '104.16.0.1', colo: 'HKG', coloCountryCode: 'HK', coloCity: 'Hong Kong' });
+    });
+
+    it('pingtest whitelists stats keys (mdev dropped)', () => {
+        const { build } = REPORT_EVENT_BUILDERS['pingtest:finished'];
+        const section = build(PAYLOADS['pingtest:finished']);
+        assert.equal('mdev' in section.probes[0].stats, false);
+        assert.equal(section.probes[0].stats.avg, 2.3);
+    });
+
+    it('mtrtest drops probes without hops', () => {
+        const { build } = REPORT_EVENT_BUILDERS['mtrtest:finished'];
+        const section = build(PAYLOADS['mtrtest:finished']);
+        assert.equal(section.probes.length, 1);
+        assert.equal(section.probes[0].asn, 24940);
+    });
+
+    it('ruletest recomputes uniqueIPCount from valid IPs only', () => {
+        const { build } = REPORT_EVENT_BUILDERS['ruletest:finished'];
+        const section = build(PAYLOADS['ruletest:finished']);
+        assert.equal(section.workers.length, 2);
+        assert.equal(section.uniqueIPCount, 1); // two workers, same egress IP
+    });
+
+    it('browserinfo picks name/version pairs and drops fingerprint-adjacent noise', () => {
+        const { build } = REPORT_EVENT_BUILDERS['browserinfo:finished'];
+        const section = build(PAYLOADS['browserinfo:finished']);
+        assert.deepEqual(section.browser, { name: 'Chrome', version: '138.0.0.0' });
+        assert.equal('device' in section, false);
+        assert.deepEqual(section.connection, { effectiveType: '4g', downlink: 10, rtt: 50 });
+    });
+
+    it('enhanceddnsleak derives DNSSEC posture and normalizes geo', () => {
+        const { build } = REPORT_EVENT_BUILDERS['enhanceddnsleak:finished'];
+        const section = build(PAYLOADS['enhanceddnsleak:finished']);
+        assert.equal(section.dnssec, 'partial'); // second row lacks DO
+        assert.equal(section.queries[0].asn, '15169');
+        assert.equal(section.queries[1].countryCode, ''); // 'N/A' → ''
+        assert.equal('asn' in section.queries[1], false); // null asn → absent
+
+        const allDo = build({
+            rawCount: 1, resolverCount: 1,
+            queries: [{ ip: '8.8.8.8', do: true, cd: false, ipInfo: {} }],
+        });
+        assert.equal(allDo.dnssec, 'ok');
+    });
+
+    it('persona keeps verdicts only — never the detail behind them', () => {
+        const { build } = REPORT_EVENT_BUILDERS['persona:finished'];
+        const section = build(PAYLOADS['persona:finished']);
+        // Rows with an axis the schema doesn't know are dropped outright.
+        assert.deepEqual(section.results, [
+            { id: 'payment-region', axis: 'match', verdict: 'mismatch' },
+            { id: 'gps-location', axis: 'leak', verdict: 'leak' },
+        ]);
+        // No row carries anything beyond those three keys.
+        for (const row of section.results) {
+            assert.deepEqual(Object.keys(row).sort(), ['axis', 'id', 'verdict']);
+        }
+        // The serialized section mentions neither the bank nor the position.
+        const serialized = JSON.stringify(section);
+        assert.ok(!serialized.includes('EXAMPLE BANK'));
+        assert.ok(!serialized.includes('accuracyMetres'));
+        assert.equal(section.country, 'JP');
+        assert.equal(section.score, 72, 'the 0..1 score is stored the way the tool shows it');
+    });
+
+    it('persona reports an ungraded run with a null score', () => {
+        const { build } = REPORT_EVENT_BUILDERS['persona:finished'];
+        const section = build({
+            ...PAYLOADS['persona:finished'], grade: 'unknown', score: null,
+        });
+        assert.equal(section.grade, 'unknown');
+        assert.equal(section.score, null);
+    });
+
+    it('persona rejects a payload with no usable verdicts', () => {
+        const { build } = REPORT_EVENT_BUILDERS['persona:finished'];
+        assert.equal(build({ grade: 'A', results: [] }), null);
+        assert.equal(build({ grade: 'nope', results: PAYLOADS['persona:finished'].results }), null);
+    });
+
+    it('invisibility requires both scores', () => {
+        const { build } = REPORT_EVENT_BUILDERS['invisibility:result'];
+        assert.equal(build({ proxyScore: 10 }), null);
+        const section = build(PAYLOADS['invisibility:result']);
+        assert.deepEqual(section.scores, { proxy: 12, vpn: 88 });
+    });
+});

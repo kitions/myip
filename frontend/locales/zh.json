@@ -1,0 +1,2217 @@
+{
+  "user": {
+    "SignIn": "登录",
+    "SignInWithGoogle": "使用 Google 登录",
+    "SignInWithGithub": "使用 GitHub 登录",
+    "SignOut": "登出",
+    "SignInToView": "登录后查看",
+    "SignInToUse": "请登录后使用",
+    "InvalidUserToken": "无效的用户 Token",
+    "QuotaExceeded": "本功能本月的免费额度已用完，下个月会自动重置。",
+    "QuotaSponsorCta": "赞助我们",
+    "ViewUsage": "查看用量",
+    "Usage": {
+      "Title": "用量统计",
+      "Note": "高级功能设有每月免费额度，每月（UTC）自动重置。IP 高级数据的重复查询会命中缓存，不消耗额度。",
+      "IpinfoFeature": "IP 高级数据",
+      "PercentUsed": "已用 {percent}%",
+      "SponsorNote": "在 GitHub 赞助本项目可获得更高额度。"
+    },
+    "MyAchievements": "我的成就",
+    "Fields": {
+      "User": "用户",
+      "CreatedAt": "创建于",
+      "LastLogin": "最后登录",
+      "Level": "用户等级",
+      "Fetching": "获取中...",
+      "SignInMethods": "登录方式"
+    },
+    "Level": {
+      "Standard": "标准用户",
+      "Premium": "高级用户",
+      "Owner": "管理员",
+      "Developer": "开发者",
+      "HonoraryMember": "荣誉用户"
+    },
+    "Benefits": {
+      "Title": "权益与用量",
+      "Benefit": "权益",
+      "Note1": "作为一个开源产品，你使用 IPCheck.ing 的过程是免费的。我们维护这个开源产品付出大量的精力和成本。",
+      "Note2": "为了让这个项目可以长期稳定地运行，避免滥用，部分高级功能需要登录才能使用。我们对每个登录用户设置了足够使用的每月额度，如果你觉得额度不够，可以考虑赞助我们，赞助后可以获得更高的额度。",
+      "Current": "当前",
+      "Tiers": {
+        "Visitor": {
+          "Name": "未登录用户",
+          "Item1": "查询 IP 信息，多数据源对比",
+          "Item2": "网络连通性与服务可用性检测",
+          "Item3": "WebRTC / DNS 泄露检测",
+          "Item4": "网速、全球延迟与 MTR 测试",
+          "Item5": "Whois、DNS 解析等更多高级工具",
+          "Item6": "无需注册，开源可自部署"
+        },
+        "SignedIn": {
+          "Name": "登录用户",
+          "Item1": "包含未登录用户的所有权益",
+          "Item2": "可以查看 IP 的质量分、代理判断、类型、原生性等高级信息",
+          "Item3": "可以使用隐身测试",
+          "Item4": "可以使用深度 DNS 泄露测试",
+          "Item5": "可以看到自己获得的成就勋章",
+          "Item6": "可以使用 AI 助手 IPilot 提问",
+          "Item7": "高级功能享有每月免费额度，每月自动重置"
+        },
+        "Sponsor": {
+          "Name": "赞助用户",
+          "Item1": "包含登录用户的所有权益",
+          "Item2": "高级功能获得更高的每月额度",
+          "Item3": "支持这个开源项目的持续开发与运营"
+        }
+      }
+    },
+    "Achievements": {
+      "Title": "成就",
+      "Note": "在使用 IPCheck.ing 的过程中，你可能会触发一些成就，在这里，你可以看到你所有的成就。",
+      "Get": "已获得",
+      "GetCount": "已获得的成就数量",
+      "NotGet": "未获得",
+      "NotGetCount": "未获得的成就数量",
+      "FooterNote": "有时候，可能会有一些限时成就。",
+      "Congrats": "🎉 恭喜",
+      "CongratsMessage": "你获得了一个新成就！",
+      "NewAchievementIs": "新成就是：",
+      "Type": {
+        "IAmHuman": {
+          "Title": "有头有脸",
+          "Meet": "登录后使用 IPCheck.ing"
+        },
+        "BarelyEnough": {
+          "Title": "凑凑合合",
+          "Meet": "下载速度超过 100Mb/s"
+        },
+        "RapidPace": {
+          "Title": "快马加鞭",
+          "Meet": "下载速度超过 500Mb/s"
+        },
+        "TorrentFlow": {
+          "Title": "一泻千里",
+          "Meet": "下载速度超过 1000Mb/s"
+        },
+        "SteadyGoing": {
+          "Title": "普普通通",
+          "Meet": "上传速度超过 50Mb/s"
+        },
+        "TooFastTooSimple": {
+          "Title": "港记难追",
+          "Meet": "上传速度超过 200Mb/s"
+        },
+        "SwiftAscent": {
+          "Title": "日行千里",
+          "Meet": "上传速度超过 1000Mb/s"
+        },
+        "SurfaceCheck": {
+          "Title": "蜻蜓点水",
+          "Meet": "完成一项安全检查清单"
+        },
+        "HalfwayThere": {
+          "Title": "半半拉拉",
+          "Meet": "完成 50% 安全检查清单"
+        },
+        "FullySecured": {
+          "Title": "滴水不漏",
+          "Meet": "完成全部安全检查清单"
+        },
+        "JustInCase": {
+          "Title": "以防万一",
+          "Meet": "完成一次隐身测试"
+        },
+        "HiddenWell": {
+          "Title": "不露声色",
+          "Meet": "隐身测试中代理和 VPN 概率都是 0"
+        },
+        "SlipUp": {
+          "Title": "露出马脚",
+          "Meet": "隐身测试中代理或 VPN 概率大于 50%"
+        },
+        "CleverTrickery": {
+          "Title": "奇技淫巧",
+          "Meet": "查看了所有快捷键"
+        },
+        "EnergySaver": {
+          "Title": "省油的灯",
+          "Meet": "设置程序不自动运行"
+        },
+        "ResourceHog": {
+          "Title": "费油的车",
+          "Meet": "设置多次刷新网络连通性"
+        },
+        "MakingBigNews": {
+          "Title": "搞大新闻",
+          "Meet": "高级功能调用超过 1000 次"
+        },
+        "GenerousDonor": {
+          "Title": "慷慨解囊",
+          "Meet": "给 IPCheck.ing 项目捐赠过"
+        },
+        "ItIsOpen": {
+          "Title": "是开放的",
+          "Meet": "在封锁测试中，查询到了一个被封锁的网站"
+        },
+        "CuriousCat": {
+          "Title": "好奇的猫",
+          "Meet": "在 Whois 查询中，查询了 IPCheck.ing 的信息"
+        },
+        "CrossingTheWall": {
+          "Title": "八仙过墙",
+          "Meet": "在规则测试中，8 个测试的 IP 全部不相同"
+        },
+        "GlobeTrotter": {
+          "Title": "包罗万有",
+          "Meet": "IP 历史记录中的国家或地区达到 10 个"
+        },
+        "HelloWorld": {
+          "Title": "你好世界",
+          "Meet": "在地球在线中发布一条状态"
+        },
+        "AddSweetAdd": {
+          "Title": "我爱我加",
+          "Meet": "在网络连通性中添加一个自定义测试"
+        },
+        "PrettyDirty": {
+          "Title": "你挺脏的",
+          "Meet": "任意一张 IP 卡片的 IP 质量分为 1"
+        },
+        "SqueakyClean": {
+          "Title": "清清白白",
+          "Meet": "任意一张 IP 卡片的 IP 质量分为 100"
+        },
+        "WalkWithPenguins": {
+          "Title": "与鹅同行",
+          "Meet": "任意一张 IP 卡片的归属地是南极洲"
+        }
+      }
+    }
+  },
+  "nav": {
+    "id": "nav",
+    "Navigation": "导航",
+    "Home": "首页",
+    "IPInfo": "IP",
+    "Connectivity": "连通性",
+    "ServiceStatus": "服务可用性",
+    "WebRTC": "WebRTC",
+    "DNSLeakTest": "DNS",
+    "SpeedTest": "网速",
+    "AdvancedTools": "工具",
+    "SearchDocs": "搜索文档…",
+    "DocsToolConfirm": "把当前的检测结果给助手看？",
+    "DocsToolSummary": "已读取页面上的检测结果",
+    "DocsToolRunConfirm": "在你的页面上运行检测？",
+    "DocsToolRunSummary": "已运行你的网络检测",
+    "AskIPilot": "询问 IPilot",
+    "OpenDocs": "打开文档",
+    "DocsGreetingTitle": "有什么可以帮你？",
+    "DocsGreetingSubtitle": "关于 MyIP 的工具、测试结果或自部署，都可以问我。",
+    "DocsQuestions": [
+      "我的 VPN 泄露真实 IP 了吗？",
+      "为什么我的 IP 归属地不对？",
+      "对比我的 WebRTC 测试和 DNS 泄露测试结果并给出建议",
+      "MTR 结果怎么看？",
+      "怎么部署一个自己的 MyIP？",
+      "我想资助 MyIP 项目"
+    ],
+    "pulse": {
+      "title": "地球在线",
+      "tooltip": "来自世界各地的访客",
+      "others": "其它地区",
+      "shareStatus": "分享你的状态",
+      "liveMap": "实时访客热力图",
+      "noVisitors": "暂无访客",
+      "quiet": "此刻还很安静，来当第一个发声的人吧",
+      "loadError": "暂时无法加载最新动态，稍后再试",
+      "share": "访客占比",
+      "latest": "最新动态",
+      "sent": "已发送",
+      "alreadySent": "状态已经发送过了",
+      "rateLimited": "短期内只能发一次状态",
+      "limitedTitle": "限时状态",
+      "outages": {
+        "title": "全球断网事件",
+        "outage": "互联网中断",
+        "anomaly": "流量异常",
+        "ongoing": "故障中",
+        "ended": "已恢复",
+        "started": "{time}发生",
+        "lasted": "持续 {duration}",
+        "quiet": "一切平静——过去 30 天没有断网事件",
+        "loadMore": "加载更多",
+        "cause": {
+          "GOVERNMENT_DIRECTED": "政府主导断网",
+          "POWER_OUTAGE": "电力中断",
+          "CABLE_CUT": "光缆中断",
+          "TECHNICAL_PROBLEM": "技术故障",
+          "MECHANICAL": "机械故障",
+          "UNKNOWN": "原因未知",
+          "WEATHER": "恶劣天气",
+          "FIRE": "火灾",
+          "CYBERATTACK": "网络攻击",
+          "NATURAL_DISASTER": "自然灾害",
+          "MAINTENANCE": "计划维护",
+          "MILITARY_ACTION": "军事行动"
+        },
+        "level": {
+          "NATIONWIDE": "全国范围",
+          "REGIONAL": "区域范围",
+          "NETWORK": "单一网络",
+          "PLATFORM": "单一平台"
+        }
+      },
+      "statuses": {
+        "fast": "网速快得飞起",
+        "ok": "一切正常",
+        "slow": "网速有点慢",
+        "flaky": "网络时断时续",
+        "blocked": "有网站打不开",
+        "good": "今天心情不错",
+        "bad": "今天有点丧",
+        "passing": "路过看看",
+        "lag": "游戏延迟爆炸",
+        "newip": "刚换了新 IP",
+        "vpn": "正挂着 VPN",
+        "night": "熬夜中",
+        "vibing": "正在 Vibe Coding",
+        "fixing": "又在给家里修网",
+        "tuning": "又减少了 10ms",
+        "prgday": "0x100 天快乐！",
+        "internetday": "互联网生日快乐，从 LO 说起",
+        "halloween": "不给糖就 Ping 你",
+        "diwali": "排灯节快乐，光纤也在发光",
+        "christmas": "圣诞老人走的是专线",
+        "newyear": "新的一年，新的 IP",
+        "privacyday": "本状态已端到端加密",
+        "lunar": "恭喜发财，红包一个不丢",
+        "valentine": "想要一段稳定的连接",
+        "jobs": "Stay hungry, stay foolish.",
+        "eid": "开斋节快乐",
+        "aprilfools": "我的 IP 是 127.0.0.1",
+        "earthday": "临时下线，摸草去了",
+        "turing": "本状态由人类发送（大概）",
+        "emojiday": "📶🌍🎉✨",
+        "birthday": "IPCheck.ing 生日快乐"
+      },
+      "festivalDesc": {
+        "prgday": "程序员节 · 一年的第 256 天，十六进制写作 0x100",
+        "internetday": "1969 年 10 月 29 日，ARPANET 想发出 LOGIN，传到 LO 就崩了",
+        "halloween": "万圣节（10 月 31 日）· 最吓人的还是丢包",
+        "diwali": "排灯节 · 愿灯火与光纤同样明亮",
+        "christmas": "圣诞节 · 雪橇专线，零抖动",
+        "newyear": "新年限定 · 烟花已包含，不额外占用带宽",
+        "privacyday": "数据隐私日（1 月 28 日）· 公开广播这句话的反差感，是故意的",
+        "lunar": "农历新年 · 红包（packet）零丢包",
+        "valentine": "情人节 · TCP 和爱情都始于握手",
+        "jobs": "史蒂夫·乔布斯诞辰（1955 年 2 月 24 日）· 出自 2005 年斯坦福演讲",
+        "eid": "开斋节 · 来自地球在线的祝福",
+        "aprilfools": "愚人节 · 金窝银窝不如自己的 localhost",
+        "earthday": "世界地球日（4 月 22 日）· 地球在线也建议你偶尔地球离线",
+        "turing": "艾伦·图灵诞辰（1912 年 6 月 23 日）· 图灵测试之父",
+        "emojiday": "世界 Emoji 日（7 月 17 日）· 文字是上个世纪的事了",
+        "birthday": "IPCheck.ing 生日 · v1.0 发布于 2020 年 11 月 6 日"
+      }
+    },
+    "preferences": {
+      "title": "偏好设置",
+      "preferenceTips": "这些设置会保存在浏览器，方便下次使用。部分选项需要刷新页面方可生效。",
+      "colorScheme": "颜色方案",
+      "systemAuto": "跟随系统",
+      "colorLight": "白天",
+      "colorDark": "黑夜",
+      "ipSourcesToCheck": "IP 检测服务器数量",
+      "ipSourcesToCheckTips": "选择默认从多少个 IP 检测服务器获取 IP 信息。",
+      "appSettings": "程序设置",
+      "autoRun": "自动运行",
+      "autoRunTips": "打开页面时始终会检测 IP 信息。你可以选择其它模块是否在启动时自动运行。",
+      "simpleMode": "简洁模式",
+      "simpleModeTips": "隐藏每个模块的说明文字，适合已经了解本应用的用户。",
+      "connectivity": {
+        "defaultList": "默认列表",
+        "defaultListTips": "打开页面时，连通性测试默认显示的列表。",
+        "multipleTests": "多次刷新",
+        "multipleTestsTips": "每轮检测运行多次，并显示最小延迟值。",
+        "notifications": "气泡提示",
+        "notificationsTips": "首次检测完成后，以气泡形式提示结果。",
+        "titleOpensSite": "点击标题打开网站",
+        "titleOpensSiteTips": "开启后，点击卡片标题会在新窗口打开对应网站；关闭时标题为纯文本。"
+      },
+      "ipHistory": "IP 历史记录",
+      "ipHistoryEnabled": "记录 IP 历史",
+      "ipHistoryDays": "保留天数",
+      "ipHistoryTips": "开启后，被侦测到的 IP 仅记录在当前浏览器本地，并按所选天数保留。关闭后停止记录；已有记录不会被删除，可在 IP 历史记录面板中手动清空。",
+      "ipDB": "IP 解析数据源",
+      "ipDBTips": "你可以选择你默认使用的 IP 地理位置数据源，如果你选定的不可用，系统会依次使用后续的数据源。",
+      "language": "语言设置",
+      "languageTips": "刷新浏览器后生效。正在 Beta 测试中的语言可能会存在翻译不完整的情况。"
+    },
+    "DocsPrompt": "请输入你要询问的问题",
+    "DocsSignInTitle": "请先登录",
+    "DocsSignInMessage": "登录后即可向 IPilot 提问"
+  },
+  "securitychecklist": {
+    "Title": "安全检查清单",
+    "Note": "这是一份非常全面的网络安全检查清单，涵盖密码安全、浏览安全、移动设备安全等方面的内容。在当前环境下，信息泄露可能会导致重大的损失，因此，确保我们在连接互联网的时候，我们尽可能地保护自己的隐私、提高访问的安全性是很有必要的。",
+    "Note2": "这个清单罗列的内容非常多，你不一定要一次性检查完，进度会在浏览器里保存，你可以随时返回继续检查。",
+    "Progress": "检查进度",
+    "Item": "项目",
+    "Items": "个项目",
+    "Priority": "级别",
+    "Ignore": "忽略",
+    "alert-total": "安全检查一共有",
+    "alert-checked": "你已经完成了",
+    "alert-ignored": "被忽略",
+    "alert-unchecked": "个未进行检查。",
+    "Checked": "已检查",
+    "Ignored": "已忽略",
+    "Unchecked": "未检查",
+    "Basic": "基础",
+    "Optional": "可选",
+    "Essential": "必要",
+    "Advanced": "高级",
+    "Reset": "重置",
+    "ShowAll": "显示所有",
+    "ShowUnchecked": "显示未检查",
+    "ShowIgnored": "显示已忽略",
+    "ShowChecked": "显示已检查"
+  },
+  "curl": {
+    "Title": "命令行 API",
+    "Note1": "哟，原来你也喜欢用终端？",
+    "Note2_1": "你可以在终端里，通过",
+    "Note2_2": "命令获取本机的 IP 地址",
+    "Note3": "是可选路径，添加后可获取到 IP 的地理信息",
+    "getIPv4": "获取本机 IPv4 地址",
+    "getIPv6": "获取本机 IPv6 地址",
+    "get6and4": "获取本机优先网络出口的 IP 地址"
+  },
+  "browserinfo": {
+    "Title": "浏览器信息",
+    "Note": "本页面展示两类浏览器信息：浏览器 User Agent 解析出来的基本信息，以及通过多项数据计算出来的浏览器指纹。浏览器指纹就像手掌的掌纹，当浏览器的信息暴露越多，你被网站识别的唯一性越高，也就是说，你越容易被网站跟踪到。有些时候，即使你切换到隐私模式，甚至更换浏览器，指纹可能也不会发生变化。",
+    "Note2": "浏览器指纹的计算的方法是多种多样的，不同的技术方案算法和结果不完全一致，我们在这里采用一种相对简单的方法进行计算。",
+    "browser": {
+      "Infos": "浏览器信息",
+      "browserName": "浏览器名称",
+      "engineName": "引擎",
+      "osName": "系统",
+      "deviceVendor": "制造商",
+      "cpuArchitecture": "CPU 架构",
+      "gpu": "GPU",
+      "cpuCores": "CPU 核心数",
+      "languages": "语言偏好",
+      "timezone": "时区",
+      "display": "显示规格",
+      "connection": "网络连接",
+      "touchPoints": "触控点数",
+      "doNotTrack": "请勿跟踪",
+      "doNotTrackOn": "已开启",
+      "doNotTrackOff": "已关闭",
+      "doNotTrackUnset": "未设置",
+      "pdfViewer": "PDF 阅读器",
+      "pdfViewerYes": "支持",
+      "pdfViewerNo": "不支持",
+      "cookieEnabled": "是否启用 Cookie",
+      "cookieEnabledTrue": "是",
+      "cookieEnabledFalse": "否"
+    },
+    "fingerprint": {
+      "Infos": "指纹信息",
+      "fingerprint": "指纹编码",
+      "changeOption": "你可以尝试变更用于计算浏览器指纹的数据，观察指纹的变化（记得打开隐私模式对照查看）。",
+      "browserTips": "有些浏览器（比如 Safari）为了保护用户不被跟踪，即使勾选相同的数据，每次计算都可能会得到不同的指纹值。"
+    },
+    "options": {
+      "audio": "音频",
+      "canvas": "画布",
+      "fonts": "字体",
+      "hardware": "硬件",
+      "locales": "语言",
+      "permissions": "权限",
+      "plugins": "插件",
+      "screen": "屏幕",
+      "system": "浏览器版本",
+      "webgl": "WebGL",
+      "math": "运算",
+      "intl": "国际化格式",
+      "mediaDevices": "媒体设备",
+      "speech": "语音合成",
+      "mathml": "MathML",
+      "webrtc": "WebRTC"
+    },
+    "components": {
+      "title": "指纹组件明细",
+      "note": "下方每一项都参与了上方哈希的计算。在上方 Fingerprint 区域里关掉对应开关即可将其从指纹中排除。"
+    },
+    "calError": "浏览器信息计算失败，请刷新重试。",
+    "calculating": "计算中..."
+  },
+  "censorshipcheck": {
+    "Title": "封锁测试",
+    "Note": "基于 OONI（开放网络干预观测站）全球志愿者的开放数据，查询一个网站过去 30 天在哪些国家/地区被屏蔽或干扰、以及采用的屏蔽手段。对可疑地区，还可以用 Globalping 全球探针进行实时连通性验证。在一些地区，互联网审查有较为明确的法律条文，有些则相对含糊。",
+    "Note2": "请输入 URL 或域名，开始查询：",
+    "Placeholder": "URL 或域名",
+    "Country": "地区",
+    "Status": "状态",
+    "City": "城市",
+    "Network": "网络",
+    "invalidURL": "无效的 URL 或域名",
+    "fetchError": "无法获取测试结果",
+    "HistoryTitle": "过去 30 天的全球观测",
+    "SummaryFlagged": "过去 30 天，共在 {n} 个国家/地区观测到屏蔽或干扰迹象。",
+    "SummaryClean": "过去 30 天，在 {n} 个国家/地区均未观测到明显屏蔽迹象。",
+    "SummarySparseFlagged": "过去 30 天，仅在 {total} 个国家/地区观测过这个网站，其中 {n} 个出现屏蔽或干扰迹象。",
+    "SummarySparseClean": "过去 30 天，仅在 {total} 个国家/地区观测过这个网站（共 {m} 次测量），数据量较少，不足以判断是否被屏蔽。",
+    "NoData": "在过去 30 天没有关于这个网站的观测数据——这并不代表它没有被屏蔽。你可以在下方勾选「审查严重国家」，进行一次实时测试。",
+    "OoniError": "历史观测数据暂时无法获取，可能是上游接口不稳定。你仍然可以在下方勾选国家，进行实时测试。",
+    "TierConfirmed": "确认屏蔽",
+    "TierLikely": "疑似屏蔽",
+    "TierSigns": "部分干扰",
+    "Measurements": "{n} 次测量",
+    "AnomalyShare": "{pct}% 异常",
+    "MethodDns": "DNS 干扰",
+    "MethodTcpIp": "TCP 阻断",
+    "MethodHttpFailure": "连接失败",
+    "MethodHttpDiff": "内容篡改",
+    "RealtimeTitle": "实时测试",
+    "ResultsHint": "选择探针并点击「开始实时测试」后，结果将显示在这里。",
+    "SectionFlagged": "命中封锁国家",
+    "PresetHighRisk": "审查严重国家",
+    "PresetOpen": "通常开放国家",
+    "RunVerify": "开始实时测试",
+    "RealtimeNote": "你可以选择多个探针进行实时的连通性测试，以综合判断网站的封锁情况。当运行测试时，每个国家将运行 2 个探针进行测试，当 2 个探针的结果相同时，可信性较高。",
+    "RealtimeFooterNote": "实时探针大多位于数据中心网络，结果可能与实际来自居民网络的历史观测不一致，因为有些网站可能会屏蔽数据中心网络的访问。请将实际情况综合判断。"
+  },
+  "invisibilitytest": {
+    "Title": "隐身测试",
+    "Note": "当你挂上代理或 VPN 之后，你访问的网站真的不知道你挂着代理吗？你真的隐身了么？我们会通过多种手段，尝试计算出你伪装后的漏洞，找到你正在使用代理的证据。尽管可能部分测试结果不完全准确，但本测试依然有较高的参考意义。",
+    "Note2": "点击运行后，系统将会运行一个脚本，通常在 10s 内将会完成所有的测试，在这个过程中，你的 IP 信息、浏览器信息等将会被收集并在后台进行分析。",
+    "fetchError": "无法获取测试结果",
+    "scriptLoadError": "测试脚本加载失败，无法继续测试。请检查网络后重试。",
+    "yourIP": "你的主测 IP 是",
+    "proxyScore": "代理概率",
+    "VPNScore": "VPN 概率",
+    "isProxy": "你可能使用了代理。",
+    "notProxy": "未发现你使用了代理。",
+    "isVPN": "你可能使用了 VPN。",
+    "notVPN": "未发现你使用了 VPN。",
+    "itemName": "测试项目",
+    "itemProxyResult": "测试结果",
+    "itemComment": "分析",
+    "agreement": "同意信息收集",
+    "blocklist": {
+      "proxy": {
+        "title": "代理名单",
+        "positive": "你的 IP 在代理名单中。",
+        "negative": "你的 IP 不在代理名单中。"
+      },
+      "vpn": {
+        "title": "VPN 名单",
+        "positive": "你的 IP 在 VPN 名单中。",
+        "negative": "你的 IP 不在 VPN 名单中。"
+      },
+      "vpnExitNode": {
+        "title": "VPN 出口节点",
+        "positive": "你的 IP 在 VPN 出口节点名单中。",
+        "negative": "你的 IP 不在 VPN 出口节点名单中。"
+      }
+    },
+    "tor": {
+      "title": "TOR 出口节点",
+      "positive": "你的 IP 在 TOR 出口节点中。",
+      "negative": "你的 IP 不在 TOR 出口名单中。"
+    },
+    "headers": {
+      "title": "HTTP 头信息",
+      "positive": "你的 HTTP 头信息中包含了代理信息，你可能正在使用代理。",
+      "negative": "你的 HTTP 头信息中没有代理信息。"
+    },
+    "datacenter": {
+      "title": "数据中心 IP",
+      "positive": "你的 IP 是数据中心 IP，普通用户的 IP 通常不会是数据中心。",
+      "negative": "你的 IP 不是数据中心 IP。"
+    },
+    "tcp": {
+      "title": "TCP 指纹",
+      "positive": "你发起连接的系统与你的电脑系统不同，你可能正在使用代理。尽管系统判断不一定准确，但可以肯定两个系统并不相同。",
+      "computer": "你的电脑系统是：",
+      "server": "你发起连接的系统可能是：",
+      "negative": "你发起连接的系统与你的电脑系统相同。"
+    },
+    "timezone": {
+      "title": "时区差异",
+      "positive": "你的时区与你的 IP 地理位置不匹配，你可能正在使用代理。",
+      "computer": "你的时区是：",
+      "server": "你的 IP 地理位置时区是：",
+      "negative": "你的时区与你的 IP 地理位置匹配。"
+    },
+    "net": {
+      "title": "网络行为",
+      "positive": "从客户端网络行为上发现你可能使用了代理或 VPN",
+      "negative": "从客户端网络行为上未发现你使用代理或 VPN 的证据。"
+    },
+    "webrtc": {
+      "title": "WebRTC 检测",
+      "positive": "WebRTC 发现你存在多个不同地区的 IP，你可能使用了代理或 VPN。",
+      "ipsAre": "IP 分别是：",
+      "negative": "WebRTC 检测未发现存在多个不同地区的 IP。"
+    },
+    "flow": {
+      "title": "流量特征",
+      "positive": "TCP/IP 流量特征发现你可能使用了代理或 VPN。",
+      "negative": "TCP/IP 流量特征未发现你使用代理或 VPN 的证据。"
+    },
+    "latencyVSWS": {
+      "title": "TCP vs WebSocket 延迟",
+      "positive": "TCP 延迟与 WebSocket 延迟差值较大，看起来你使用了代理或 VPN。",
+      "fromTCP": "TCP 延迟值：",
+      "fromWS": "WebSocket 延迟值：",
+      "negative": "TCP 延迟与 WebSocket 延迟差值不大，没有明显的使用了代理或 VPN 的证据。"
+    },
+    "latencyVSPing": {
+      "title": "TCP vs Ping 延迟",
+      "positive": "TCP 延迟与 Ping 差值较大，看起来你使用了 VPN。",
+      "fromTCP": "TCP 延迟值：",
+      "fromPing": "Ping 延迟值：",
+      "negative": "TCP 延迟与 Ping 差值不大，没有明显的使用了 VPN 的证据。"
+    },
+    "tlsRtt": {
+      "title": "TCP vs TLS 握手延迟",
+      "positive": "TLS 握手耗时明显长于 TCP 往返延迟，握手像是在更远的地方完成的，看起来你使用了代理或 VPN。",
+      "fromTCP": "TCP 往返延迟：",
+      "fromTLS": "TLS 握手耗时：",
+      "negative": "TLS 握手耗时与 TCP 往返延迟相符，没有明显的使用了代理或 VPN 的证据。"
+    },
+    "highlatency": {
+      "title": "高延迟分析",
+      "positive": "高延迟分析发现你可能使用了代理或 VPN。",
+      "negative": "高延迟分析未发现你使用代理或 VPN 的证据。"
+    },
+    "proxyAi": {
+      "title": "AI 综合判定",
+      "positive": "AI 模型综合各项特征，判断你可能使用了代理。",
+      "score": "AI 模型评分：",
+      "negative": "AI 模型综合各项特征，未发现你使用代理的证据。"
+    }
+  },
+  "personacheck": {
+    "Title": "深度画像检测",
+    "Note": "有一个经典的判断法：如果它长得像鸭子、游起来像鸭子、叫起来也像鸭子，那它多半就是鸭子。网站也是这样看你的——IP 可以声称你在 A 国，但时区、语言、已安装字体、键盘布局等十几个信号各自都在讲述自己的故事，它们合在一起才是网站真正看到的那个「你」。本工具测量这个真实呈现的身份画像，与你希望被看作的那个本地人做对照，并告诉你两者的差距具体在哪里。",
+    "NoteVs": "它和隐身测试（Invisibility Test）回答的是不同的问题：隐身测试判断你的代理本身是否会被识别出来；本工具判断的是——在网站眼里你是一个什么样的人，以及这个画像和你预期呈现的差了多少。",
+    "Note2": "先选择你希望被看作哪个国家的本地人。",
+    "axis": {
+      "match": "与目标匹配",
+      "coherence": "自洽性",
+      "leak": "身份泄露"
+    },
+    "zone": {
+      "expected": "预期身份",
+      "optional": "更精准的定位（可选）",
+      "run": "开始检测"
+    },
+    "selectCountry": "搜索国家",
+    "noCountryMatch": "没有匹配的国家",
+    "noProfile": "该地区没有可用于比较的本地画像。",
+    "languageSingle": "该国只有一种主要语言。",
+    "languageMulti": "该国有多种语言，请选择你想呈现的那一种。",
+    "timezoneMulti": "该国横跨多个时区，请选择你想呈现的那一个。",
+    "hourCycle": {
+      "h11": "12 小时制（0–11 时）",
+      "h12": "12 小时制",
+      "h23": "24 小时制",
+      "h24": "24 小时制（1–24 时）"
+    },
+    "profile": {
+      "timezone": "时区"
+    },
+    "runCompare": "开始检测",
+    "runError": "检测未能完成。",
+    "source": {
+      "ipinfo": "IP 查询",
+      "webrtc": "WebRTC",
+      "dnsleak": "DNS 泄露"
+    },
+    "report": {
+      "grade": {
+        "A": "🎉 你看起来就是一个{country}本地人",
+        "B": "😊 你看起来有点像{country}本地人",
+        "C": "🤔 你看起来不太像{country}本地人",
+        "D": "😅 你看起来不像{country}本地人",
+        "unknown": "🤷 信号不足，无法评级"
+      },
+      "gradeNote": {
+        "A": "所有能读到的特征都与你选择的画像一致。",
+        "B": "画像基本成立，但有少数特征指向别处。",
+        "C": "有几项特征与画像不符，或彼此矛盾——下面的结果会告诉你是哪些。",
+        "D": "多数特征指向的并不是这个画像。",
+        "unknown": "请先运行底层检测——目前可用的信息太少。"
+      },
+      "counts": {
+        "leak": "{n} 项暴露",
+        "warning": "{n} 项不一致",
+        "match": "{n} 项通过",
+        "unknown": "{n} 项未测量",
+        "notApplicable": "{n} 项不适用"
+      },
+      "nothingActionable": "没有需要修复的——所有可测量的特征都符合该画像。",
+      "howToFix": "怎么修",
+      "verdict": {
+        "match": "符合角色设定。",
+        "mismatch": "与角色设定矛盾。",
+        "leak": "暴露了你的真实环境。",
+        "unnatural": "内部自相矛盾——本该一致的两个信号各说各话，比单纯的不一致更引人注目。",
+        "unknown": "当前无法测量。",
+        "not-applicable": "此项无法给出结论。"
+      },
+      "visibility": {
+        "public": "任何网站都看得到",
+        "probed": "会主动探测的网站",
+        "risk-engine": "反欺诈系统"
+      },
+      "profileTitle": "特征详解",
+      "state": {
+        "match": "通过",
+        "mismatch": "不像本地",
+        "unnatural": "自相矛盾",
+        "leak": "已暴露",
+        "unknown": "未测量",
+        "not-applicable": "不适用"
+      }
+    },
+    "detail": {
+      "expected": "预期",
+      "actual": "实际",
+      "disputed": "数据源有分歧",
+      "v4": "IPv4",
+      "v6": "IPv6",
+      "candidateCount": "候选地址数",
+      "matching": "与预期相符",
+      "ipType": "地址类型",
+      "expectedOffset": "预期偏移",
+      "actualOffset": "实际偏移",
+      "sameOffset": "偏移相同",
+      "primary": "首选语言",
+      "primaryExpected": "预期首选",
+      "demoted": "在列表中但非首位",
+      "timeZone": "时区",
+      "reportedOffset": "Date 报告的偏移",
+      "zoneOffset": "时区应有的偏移",
+      "samples": "采样数",
+      "expectedScripts": "预期书写系统",
+      "installedScripts": "已安装书写系统",
+      "expectedLanguages": "预期语言",
+      "voiceLanguages": "语音包语言",
+      "voiceCount": "语音包数量",
+      "expectedLayout": "预期布局",
+      "actualLayout": "实际布局",
+      "headerPrimary": "请求头首选语言",
+      "scriptPrimary": "脚本首选语言",
+      "headerLanguages": "请求头语言列表",
+      "ipZone": "IP 时区",
+      "browserZone": "浏览器时区",
+      "ipOffset": "IP 偏移",
+      "browserOffset": "浏览器偏移",
+      "colo": "Cloudflare 接入点",
+      "gpsTimezone": "你所在位置的时区",
+      "accuracyMetres": "定位精度（米）",
+      "cardIssuer": "发卡行",
+      "cardNetwork": "卡组织",
+      "cardTier": "卡片等级",
+      "cardType": "卡类型"
+    },
+    "checks": {
+      "ip-country": {
+        "title": "IP 归属国家",
+        "fix": "你有部分出口落在目标国家之外——有多个代理出口时，不同卡片显示不同国家是真实情况，而任何一个出口都会被某些网站看到。上面的分数标明了有多少出口相符。把所有流量都走目标国家的节点；如果只是单个数据源对某个 IP 有异议，那可能只是该节点在它的库里被误标，这不是你这边能修的。",
+        "what": "首页各张 IP 检测卡片把你的出口地址判定在哪个国家——每个数据源都会读取，且每个出口都必须落在目标国家。"
+      },
+      "webrtc-leak": {
+        "title": "WebRTC 暴露",
+        "fix": "屏蔽 WebRTC，或者改用只能看到代理地址的方案。代价是实打实的：视频通话和语音会议会失效。用插件过滤 WebRTC 比彻底禁用温和，但插件本身也会留下自己的痕迹。",
+        "what": "WebRTC 是否暴露了与目标国家不符的地址。"
+      },
+      "dns-resolver-country": {
+        "title": "DNS 解析器国家",
+        "fix": "改用目标国家的解析器，或者让代理接管 DNS 解析。注意：1.1.1.1 这类公共解析器不会暴露你的位置，但也不会支撑你的角色——它对每个国家都同样中性。",
+        "what": "为你解析域名的 DNS 服务器位于哪个国家。"
+      },
+      "asn-type": {
+        "title": "地址类型",
+        "fix": "数据中心地址段是一个地址能携带的最响亮的「这是代理」信号。换住宅出口能直接解决，但成本高得多，而且质量参差不齐。",
+        "what": "你的地址属于住宅宽带还是数据中心网段。"
+      },
+      "timezone-vs-persona": {
+        "title": "时区与角色",
+        "fix": "在操作系统层面改时区——这样所有浏览器 API 才会自洽。用插件覆盖时区往往只改了一部分，会制造出「内部一致性」那几项标记的矛盾，比不改更糟。",
+        "what": "你浏览器的时区是不是当地人应有的那个。"
+      },
+      "language-match": {
+        "title": "浏览器语言",
+        "fix": "改系统或浏览器的语言设置，而不是只改写一个 HTTP 头。顺序同样重要：网站读的是整个列表，而当地人很少把外语排在第一位。",
+        "what": "你浏览器排在首位的语言是不是当地人会用的。"
+      },
+      "script-fonts": {
+        "title": "书写系统字体",
+        "fix": "为该地区配置的机器会自带对应书写系统的字体。手动安装字体可行，但通常不值得：它只改了一个信号，系统其余部分仍是原来的语言，往往制造出比解决掉的更多的矛盾。如果真要让这一项站得住，该改的是系统语言本身。",
+        "what": "这台机器有没有安装该国书写系统的字体。"
+      },
+      "speech-voices": {
+        "title": "语音合成语音包",
+        "fix": "语音合成包跟随系统安装时的语言，基本没有任何代理或换区插件会去动它。为目标语言装一个语音包是真正有效的修复，但和字体一样有个前提：在其余部分都没变的系统里只改一个信号，反而显得刻意。",
+        "what": "你系统里的语音合成包覆盖了哪些语言。"
+      },
+      "keyboard-layout": {
+        "title": "键盘布局",
+        "fix": "你的物理键盘布局和目标国家的常见布局不符。只有 Chromium 系浏览器会暴露这一项，所以它的覆盖面比其他项窄——但凡是读得到的地方，不换真实键盘就很难伪造。",
+        "what": "你的机器报告的物理键盘布局是哪一种。"
+      },
+      "edge-geo-consensus": {
+        "title": "边缘地理判定",
+        "fix": "Cloudflare 对你出口地址的判定和目标国家不符。当这一项和 IP 查询互相矛盾时，多半是某个数据库标错了，而不是地址真的换了位置——但所有走 Cloudflare 的网站看到的是这个判定，不是那个。",
+        "what": "Cloudflare 对你出口地址的独立判定，与上面那些数据库彼此无关。"
+      },
+      "accept-language-header": {
+        "title": "语言请求头与脚本",
+        "fix": "你的浏览器在网络请求里发出的 Accept-Language 头，和 navigator.languages 向脚本报告的不一致。除了「插件只改了其中一个」，几乎没有别的原因会造成这种情况。改用浏览器或系统的语言设置——那样两者会一起变。",
+        "what": "网络请求里发出的语言头，和告诉脚本的是否一致。这一项刻意与目标国家无关：通过只说明你的两个语言通道没有互相矛盾，语言本身合不合适由「浏览器语言」那一项判定——只改了一半的语言伪装工具正是在这里露馅。"
+      },
+      "ip-timezone-vs-browser": {
+        "title": "IP 时区与浏览器时区",
+        "fix": "你出口 IP 所在的时区，和浏览器报告的时区是两个地方。这一项和你想扮演哪个国家无关：真实机器总在某一个地方，两者本就该说同一个地方。通常意味着代理换了你的地址，却没换系统时区。",
+        "what": "你 IP 所在的时区和浏览器报告的时区是否一致。"
+      },
+      "gps-location": {
+        "title": "设备定位（GPS）",
+        "fix": "你的设备报告的物理位置和你想扮演的国家不是一个地方。代理完全碰不到这一项：任何向你索取定位的网站拿到的都是真实答案，而伪造定位的浏览器插件通常会留下精度和时序上的破绽。现实的选择只有两个：对索取定位的网站一律拒绝授权，或者接受这一项撑不住。",
+        "what": "你的设备报告自己实际位于哪个国家。"
+      },
+      "payment-region": {
+        "title": "信用卡发卡国",
+        "fix": "你的卡是在另一个国家发行的，和你所呈现的国家不符。商家几乎在了解你的其他一切之前就先看到了发卡国，而支付风控系统会把它和账单地址、IP 放在一起重点比对。这一项没有浏览器侧的解法——它是卡本身的属性。",
+        "what": "你输入的卡号段对应的发卡国是哪里。"
+      },
+      "intl-number-format": {
+        "title": "数字格式",
+        "what": "你的浏览器如何分组数字、如何标记小数点。",
+        "fix": "你的浏览器按自己的区域习惯给数字分组，而不是按目标国家的习惯。这和语言是两回事：一台机器完全可能带着正确的语言标签，区域却仍指向别处。请在系统设置里改**区域**而不只是语言——Windows 在「区域」，macOS 在「语言与地区」。"
+      },
+      "intl-date-format": {
+        "title": "日期格式",
+        "what": "你的浏览器书写日期时用的顺序和分隔符。",
+        "fix": "你的浏览器书写日期的顺序或分隔符与当地人不同。和数字格式一样，它跟随的是系统区域而非语言，改区域才会跟着变。"
+      },
+      "intl-hour-cycle": {
+        "title": "时间制",
+        "what": "你的浏览器呈现 12 小时制还是 24 小时制——网站格式化时间时看到的就是这个惯例。",
+        "fix": "时间制跟随浏览器语言，而不是系统的「24 小时制」开关——多数浏览器完全忽略那个开关（Safari 是主要例外）。想呈现目标国家的习惯，需要把浏览器的语言或区域切换成该国的。"
+      },
+      "timezone-authenticity": {
+        "title": "时区可信度",
+        "what": "浏览器报告的时区是不是这台机器真实的时区。",
+        "fix": "浏览器报告的时区不是机器真正运行的那个：要么 Intl 和 Date 说法不一致，要么历史日期不符合该时区的夏令时规则。这一点之所以重要，是因为它意味着上面那项时区检测是在一个不真实的值上通过的——网站只要直接读时钟就能看穿。请在操作系统里设置时区而不是靠插件，这样当前偏移和历史规则会一起变。"
+      }
+    },
+    "reason": {
+      "no-marker-script": "无特征书写系统",
+      "bin-lookup-failed": "号段查询服务暂时不可用——号码本身可能没有问题，请稍后重试。",
+      "bin-not-recognized": "卡片数据库没有识别出这个号段——最常见的原因是输错了，请核对后重新检测。",
+      "font-probe-unavailable": "Canvas 不可用",
+      "no-voice-packs": "未安装语音包",
+      "keyboard-api-unavailable": "本浏览器不暴露",
+      "no-layout-expectation": "该国无对应布局预期",
+      "no-persona-languages": "角色未设定语言",
+      "geolocation-unsupported": "不支持地理定位",
+      "ip-no-country": "IP 查询没有返回国家",
+      "ip-no-type": "没有来源给出网络类型",
+      "ip-no-timezone": "没有来源给出时区",
+      "webrtc-no-candidates": "WebRTC 没有产生任何候选地址",
+      "dns-no-country": "没有解析器能被定位"
+    },
+    "optional": {
+      "gpsNote": "GPS 位置是检测的维度之一——愿意的话可以共享，让它一并参与对照。",
+      "gpsButton": "共享定位",
+      "gpsGranted": "已获取定位。",
+      "gpsFailed": {
+        "denied": "已拒绝授权——该项将显示为未测量。",
+        "timeout": "定位请求超时。",
+        "unavailable": "你的设备无法确定位置。",
+        "unsupported": "此浏览器不支持地理定位。"
+      },
+      "cardNote": "有时你也希望以该国身份完成支付——填入卡号前 6-8 位，检测会判断这张卡是否会被视为该国发行。",
+      "cardError": "需要 6-8 位数字——至少输入 6 位才能查询发卡行。",
+      "cardReady": "号段已填好——发卡国会在检测时查询。"
+    },
+    "dependencies": {
+      "note": "检测需要以下所有基础测试的结果——开始前请先补跑缺失的：",
+      "runButton": "一键补跑缺失的测试",
+      "runButtonRunning": "补跑中",
+      "measured": "已测量 {n} / {total}",
+      "allReady": "所有测试已运行"
+    },
+    "step": {
+      "country": "目标国家",
+      "language": "主要语言",
+      "location": "定位",
+      "card": "卡号段",
+      "awaitingCountry": "请先选择国家",
+      "otherTests": "基础测试"
+    },
+    "emptyHint": "先选择你希望看起来像哪国本地人，然后开始检测。",
+    "readyHint": "已就绪。开始检测，看看你有多像本地人。",
+    "value": {
+      "yes": "是",
+      "no": "否"
+    }
+  },
+  "ipblocklist": {
+    "Title": "IP 黑名单检查",
+    "Note": "用约 80 个公开黑名单检查一个 IP，分为两类。实时黑名单（DNSBL）由邮件服务器、论坛和各类网络服务在收到连接或邮件时实时查询，用来决定是否接受；威胁情报名单则是公开发布的滥用地址、开放代理、VPN 服务器和 Tor 出口清单，被防火墙和安全服务大量采用。邮件被拒收、注册被拦截、网站反复弹出验证码，常常就是因为 IP 出现在了这些名单上。",
+    "Note2": "每一条命中分为三种性质。「不良记录」表示名单记录过这个地址发送垃圾邮件、发起攻击或设备被入侵；「匿名标记」表示这个地址是已知的代理、VPN、中继或 Tor 出口，如果你正在使用这类服务，被标记是正常的，本身并不算不良记录；「参考」针对的是更大的网络范围，比如动态地址段或整个运营商，而不是这个地址本身。共享、云服务器和 VPN 的地址常常会出现在某些名单上，所以请把命中当作信号而不是定论；如果名单提供移除申请页面，会在命中条目旁给出链接。",
+    "SelectIPLabel": "选择要检查的 IP",
+    "EnterIPLabel": "输入要检查的 IP",
+    "UseStored": "使用检测到的 IP",
+    "SelectIP": "选择一个 IP",
+    "EnterIPPlaceholder": "例如 1.1.1.1",
+    "InvalidIP": "请输入一个公网 IPv4 或 IPv6。",
+    "Checking": "正在检查约 80 个黑名单，最长可能需要 30 秒。",
+    "FetchError": "检查没能完成，请稍后再试。",
+    "CheckedAt": "检查于 {time}",
+    "verdict": {
+      "abuse": "该 IP 在部分黑名单上有不良记录",
+      "anonymity": "没有不良记录，但被标记为代理、VPN、中继或 Tor 出口",
+      "notice": "未被列入黑名单，但部分名单标记了它所在的网络",
+      "clean": "未出现在任何已检查的黑名单上"
+    },
+    "count": {
+      "abuse": "不良记录",
+      "anonymity": "匿名标记",
+      "notice": "参考",
+      "clean": "干净",
+      "error": "失败"
+    },
+    "SomeFailed": "本次有 {n} 个名单查询失败，结果可能不完整。",
+    "part": {
+      "dnsbl": {
+        "title": "实时黑名单（DNSBL）",
+        "desc": "邮件服务器和网络服务实时查询的黑名单"
+      },
+      "static": {
+        "title": "威胁情报名单",
+        "desc": "防火墙和安全服务常用的滥用、代理与 VPN 名单"
+      }
+    },
+    "NoHits": "这里没有命中。",
+    "ShowRest": "查看其余 {n} 个名单",
+    "HideRest": "收起",
+    "CheckFailed": "查询失败",
+    "LastSeen": "最近出现：{date}",
+    "RequestRemoval": "申请移除",
+    "category": {
+      "spam": "垃圾邮件",
+      "abuse": "滥用",
+      "proxy": "代理",
+      "vpn": "VPN",
+      "relay": "中继",
+      "tor": "Tor",
+      "scanner": "扫描",
+      "backscatter": "退信散射",
+      "mixed": "综合"
+    },
+    "reason": {
+      "socksProxy": "SOCKS 代理",
+      "httpProxy": "HTTP 代理",
+      "proxyChain": "代理链",
+      "webProxy": "Web 代理",
+      "wingateProxy": "WinGate 代理",
+      "openProxy": "开放代理",
+      "torExit": "Tor 出口节点",
+      "exploited": "被利用的主机",
+      "compromisedHost": "被入侵的主机",
+      "compromisedRouter": "被入侵的路由器",
+      "botnet": "僵尸网络",
+      "worm": "蠕虫感染",
+      "ircDrone": "IRC 傀儡机",
+      "ddosDrone": "DDoS 傀儡机",
+      "bottler": "Bottler 恶意程序",
+      "spambot": "垃圾邮件机器人",
+      "bruteForce": "暴力破解",
+      "spamSource": "垃圾邮件来源",
+      "spamtrap": "触发垃圾邮件陷阱",
+      "badReputation": "信誉差",
+      "hijackedNetwork": "被劫持的网络",
+      "endUserRange": "终端用户地址段",
+      "dynamicRange": "动态地址段",
+      "noMailRange": "不应发送邮件的地址段",
+      "missingPtr": "缺少反向解析",
+      "poorReputation": "信誉偏低",
+      "mixedReputation": "信誉参半",
+      "rangeListed": "所在网段被列入",
+      "networkListed": "所在网络整体被列入",
+      "unaccountableOperator": "运营者不处理滥用投诉",
+      "noMailService": "没有邮件服务",
+      "unreliableAbuseDesk": "滥用投诉渠道不可靠",
+      "reported1d": "近 1 天内被举报",
+      "reported7d": "近 7 天内被举报",
+      "reported30d": "近 30 天内被举报",
+      "reported90d": "近 90 天内被举报",
+      "feeds": "被至少 {n} 个威胁情报源报告",
+      "testEntry": "测试条目"
+    },
+    "legend": {
+      "abuse": {
+        "label": "不良记录",
+        "desc": "名单记录过这个地址的垃圾邮件、攻击或入侵行为"
+      },
+      "anonymity": {
+        "label": "匿名标记",
+        "desc": "已知的代理、VPN、中继或 Tor 出口，本身不算不良记录"
+      },
+      "notice": {
+        "label": "参考",
+        "desc": "标记的是所在网段或运营商，而不是这个地址"
+      },
+      "clean": {
+        "label": "未列入",
+        "desc": "名单上没有这个 IP"
+      },
+      "error": {
+        "label": "查询失败",
+        "desc": "本次没能查询这个名单，不代表没有列入"
+      }
+    }
+  },
+  "adblocktest": {
+    "Title": "广告与跟踪屏蔽检测",
+    "Note": "适用于正在使用广告或跟踪屏蔽的人：uBlock Origin、隐私獾（Privacy Badger）等浏览器扩展，自带拦截功能的浏览器，或 DNS 服务、VPN、路由器上的过滤功能。测试会让浏览器访问常见的广告、统计、社交平台和设备厂商的服务端点，请求常见的跟踪脚本（只请求不执行），并在页面中放置会被元素隐藏规则命中的诱饵元素，然后展示哪些被放行了。",
+    "Note2": "拦截比例越高不一定越好。并不是所有跟踪都在损害你：错误监控帮助网站修复崩溃，统计分析帮助网站改进，广告支撑着大量免费内容；部分设备厂商的端点也承担着系统更新或消息推送。请把结果当作一份「你的配置放行了什么」的地图，再自行决定哪些值得屏蔽。",
+    "Note3": "没有被拦截的请求会真实到达这些服务，但不会携带 Cookie 或来源页面信息。检测结果只保留在你的浏览器中，不会发送给我们。如果某个端点因为其他原因在你的网络中无法访问，也会显示为已拦截。",
+    "Selected": "已选检测项：",
+    "SelectAll": "全选",
+    "Invert": "反选",
+    "Run": "开始检测",
+    "Rerun": "重新检测",
+    "Hint": "选择要检测的项目开始检测",
+    "Score": "拦截比例",
+    "Progress": "已检测 {done} / {total}",
+    "GroupCount": "已拦截 {blocked} / {total}",
+    "NothingOpen": "没有确认未被拦截的请求。",
+    "NothingBlocked": "没有确认被拦截的请求。",
+    "Version": "检测名单版本：{version}",
+    "Limitation": "这些检测是由本页面直接发出的普通请求，并不是网站真正加载广告或脚本的方式：只针对特定请求类型（例如脚本或图片）的过滤规则，可能放行这里的检测请求，却仍会在真实网站上拦截对应内容。",
+    "count": {
+      "blocked": "已拦截",
+      "open": "未拦截",
+      "unknown": "无响应"
+    },
+    "filter": {
+      "all": "全部",
+      "open": "仅看未拦截",
+      "blocked": "仅看已拦截"
+    },
+    "status": {
+      "blocked": "已拦截",
+      "open": "未拦截",
+      "unknown": "无响应",
+      "pending": "等待中"
+    },
+    "cosmeticStatus": {
+      "blocked": "已隐藏",
+      "open": "可见",
+      "unknown": "无响应",
+      "pending": "等待中"
+    },
+    "cosmetic": {
+      "ad-container": "广告容器",
+      "adsense-slot": "AdSense 广告位"
+    },
+    "group": {
+      "ads": {
+        "title": "广告网络",
+        "desc": "广告服务器与广告交易平台，按域名检测。"
+      },
+      "analytics": {
+        "title": "统计分析与会话录制",
+        "desc": "访客统计、热力图与会话回放服务。"
+      },
+      "social": {
+        "title": "社交平台跟踪",
+        "desc": "社交平台的像素与转化跟踪。"
+      },
+      "errors": {
+        "title": "错误与性能监控",
+        "desc": "崩溃上报与真实用户监控服务。"
+      },
+      "oem": {
+        "title": "设备厂商遥测",
+        "desc": "手机、电视等设备厂商的遥测与广告端点。浏览器本身不会主动访问它们，主要由 DNS、VPN 和路由器的过滤名单收录。"
+      },
+      "scripts": {
+        "title": "跟踪脚本",
+        "desc": "常见统计代码与像素脚本的完整地址，只请求不执行。按路径匹配的规则即使在域名放行时也可能拦住它们。"
+      },
+      "cosmetic": {
+        "title": "元素隐藏",
+        "desc": "外形类似广告位的诱饵元素。只有运行在浏览器内的拦截器才能隐藏它们，DNS、VPN 和路由器的过滤做不到，所以这一部分不计入拦截比例。"
+      }
+    },
+    "layer": {
+      "browser": "诱饵元素被隐藏了：浏览器内有拦截器在工作，可能是扩展，也可能是浏览器自带的功能。",
+      "network": "请求被拦截，但诱饵元素没有被隐藏：拦截很可能发生在页面之外，例如 DNS 服务、VPN、路由器，或浏览器的防跟踪功能。",
+      "none": "没有任何拦截：在这个浏览器和网络中没有发现广告或跟踪屏蔽。"
+    },
+    "report": {
+      "Category": "类别",
+      "Total": "总数"
+    }
+  },
+  "advancedtools": {
+    "Title": "工具",
+    "Note": "对网络质量追求极致的人，往往会使用更多工具来优化自己的网络连接。",
+    "category": {
+      "network": "网络诊断",
+      "lookup": "查询与计算",
+      "deep": "深度检测",
+      "reference": "参考资料"
+    },
+    "PingTestNote": "从世界各地 ping 你的 IP",
+    "MTRTestNote": "从世界各地追踪你的网络路由",
+    "DNSResolverNote": "实时多渠道 DNS 解析",
+    "EnhancedDnsLeakTest": "捕获所有递归解析器，并分析 ECS 与 DNSSEC",
+    "RuleTestNote": "检查代理软件的规则设置",
+    "SplitTunnelNote": "看每个网站实际走哪个出口 IP",
+    "CdnLookupNote": "看是哪个 CDN 边缘节点在应答",
+    "MultiEgressNote": "比较不同目标地址看到的出口 IP",
+    "CensorshipCheck": "检查一个网站在全球哪些国家被封锁",
+    "ServiceStatus": "查看知名互联网产品的实时可用性，确认你遇到的中断是不是对方的故障",
+    "Whois": "对域名、IP 或 AS 号进行 Whois 查询",
+    "AsnProfile": "查看任意 AS 的完整档案",
+    "InvisibilityTest": "猜猜看我是否知道你挂了代理",
+    "MacChecker": "查询物理地址的归属信息",
+    "IpCalculator": "任意 IP、前缀或范围的子网计算、进制转换与 IPv6 解读",
+    "BrowserInfo": "检阅浏览器信息和指纹",
+    "AdblockTest": "检查你的广告拦截器、DNS 过滤或 VPN 实际拦住了什么",
+    "SecurityChecklist": "全面的数字生活安全检查清单",
+    "PersonaCheck": "把网站看到的你，和你想扮成的本地人做对照",
+    "IpBlocklist": "查看 IP 是否出现在垃圾邮件、滥用、代理或 VPN 黑名单上"
+  },
+  "macchecker": {
+    "Title": "MAC 地址查询",
+    "Note": "查询一个物理地址（MAC 地址）所属的制造商、是否单播/多播、是否广域/区域等信息。支持使用完整的 12 位进行查询，也支持前缀查询。当然，你也可以用本查询工具来验证你生成的物理地址是否符合自己的需求。",
+    "Note2": "请输入一个物理地址，开始查询：",
+    "Placeholder": "F0:2F:4B:01:0A:AA",
+    "invalidMAC": "无效的物理地址",
+    "fetchError": "无法获取查询结果",
+    "company": "制造商",
+    "macPrefix": "物理地址前缀",
+    "address": "注册地址",
+    "country": "注册国家/地区",
+    "blockStart": "起始区块",
+    "blockEnd": "结束区块",
+    "blockSize": "区块大小",
+    "blockType": "区块类型",
+    "blockRange": "区块范围",
+    "isRand": "随机地址",
+    "isPrivate": "私有数据",
+    "isMulticast": "多播地址",
+    "isUnicast": "单播地址",
+    "isGlobal": "全球地址",
+    "isLocal": "本地地址",
+    "property": "地址属性",
+    "value": "值",
+    "manufacturer": "制造商信息",
+    "Examples": "查看用例",
+    "exampleFull": "完整地址",
+    "examplePrefix": "厂商前缀",
+    "exampleSubBlock": "小区块",
+    "examplePrivate": "隐私注册",
+    "exampleMulticast": "多播",
+    "exampleRandom": "随机地址"
+  },
+  "ipcalculator": {
+    "Title": "IP 计算器",
+    "Note": "粘贴一个 IPv4 或 IPv6 地址、CIDR 前缀、地址范围、前缀列表、纯数字，或者浏览器仍然认得的那些奇怪写法，计算器会自动识别输入类型，只展示适用的结果。适合这些场景：划分子网时要知道网络地址、广播地址、可用主机数、掩码、反掩码，或者把一个大段拆成小块；拿到一个 IPv6 地址想看懂它的类型、里面嵌的 IPv4、接口标识是否暴露了 MAC；写防火墙或 ACL 时要把一段范围换成最少的 CIDR，或者把一长串前缀合并；日志或可疑链接里出现一串数字，想还原成正常的地址。全部在浏览器本地计算，不会发送到任何地方。",
+    "Note2": "输入 IP、前缀、范围、列表或数字开始计算：",
+    "Placeholder": "2001:db8::1/64",
+    "Calculate": "计算",
+    "Examples": "查看用例",
+    "exampleObfuscated": "混淆写法",
+    "exampleEui64": "EUI-64",
+    "MyIPs": "我的 IP",
+    "copy": "复制",
+    "copyAll": "全部复制",
+    "yes": "是",
+    "no": "否",
+    "kind": {
+      "ipv4": "IPv4",
+      "ipv4Cidr": "IPv4 前缀",
+      "ipv6": "IPv6",
+      "ipv6Cidr": "IPv6 前缀",
+      "integer": "整数",
+      "hex": "十六进制",
+      "range": "地址范围",
+      "cidrList": "前缀列表"
+    },
+    "scope": {
+      "global": "全球可路由",
+      "private": "私有",
+      "shared": "共享（CGNAT）",
+      "loopback": "环回",
+      "linkLocal": "链路本地",
+      "multicast": "组播",
+      "documentation": "文档示例",
+      "reserved": "保留",
+      "unspecified": "未指定",
+      "broadcast": "广播"
+    },
+    "invalid": {
+      "empty": "请输入要计算的内容",
+      "listNoValid": "列表里没有一项是合法的 IP 或前缀",
+      "cidrPrefix": "/ 后面的前缀长度超出了该地址族的范围",
+      "cidrAddress": "/ 前面的部分不是合法的 IP",
+      "ipv6Syntax": "不是合法的 IPv6 地址",
+      "hexTooLarge": "十六进制值超过 128 位",
+      "integerTooLarge": "整数超过 128 位",
+      "badOctal": "以 0 开头的数字按八进制解析，而 8 和 9 不是八进制数字",
+      "range": "范围两端必须是同一地址族的合法 IP",
+      "unrecognized": "无法识别的输入"
+    },
+    "section": {
+      "Network": "网络",
+      "Representations": "表示形式",
+      "Obfuscated": "混淆写法",
+      "AsIPv6": "嵌入 IPv6",
+      "Split": "拆分子网",
+      "Address": "地址",
+      "Type": "类型详情",
+      "InterfaceId": "接口标识符",
+      "Prefix": "前缀",
+      "Range": "范围",
+      "Cidrs": "CIDR 块",
+      "IPv4Blocks": "IPv4 块",
+      "IPv6Blocks": "IPv6 块"
+    },
+    "network": "网络地址",
+    "broadcast": "广播地址",
+    "netmask": "子网掩码",
+    "wildcard": "反掩码",
+    "firstHost": "首个主机",
+    "lastHost": "末个主机",
+    "firstAddress": "首地址",
+    "lastAddress": "末地址",
+    "usable": "可用主机数",
+    "total": "地址总数",
+    "ptr": "PTR 记录",
+    "ptrZone": "反向解析区",
+    "class": "类别",
+    "rfc3021Note": "/31（RFC 3021）和 /32 没有单独的网络地址与广播地址，每个地址都可用。",
+    "networkBits": "网络位",
+    "hostBits": "主机位",
+    "prefixLength": "前缀长度",
+    "decimal": "十进制",
+    "hex": "十六进制",
+    "octal": "八进制",
+    "binary": "二进制",
+    "obfuscatedNote": "浏览器和多数库同样接受这些写法，这也是简单的 IP 过滤容易被绕过的原因。",
+    "dottedHex": "点分十六进制",
+    "dottedOctal": "点分八进制",
+    "shortForm": "缩写（{parts} 段）",
+    "mapped": "IPv4 映射",
+    "mappedHex": "IPv4 映射（十六进制）",
+    "compat": "IPv4 兼容",
+    "nat64": "NAT64",
+    "sixToFour": "6to4 前缀",
+    "splitTo": "拆分为",
+    "showingFirst": "共 {total} 个子网，仅显示前 {shown} 个",
+    "subnetCount": "{count} 个子网",
+    "compressed": "压缩形式",
+    "expanded": "展开形式",
+    "zone": "区域 ID",
+    "embeddedIPv4": "嵌入的 IPv4",
+    "teredoServer": "Teredo 服务器",
+    "teredoClient": "Teredo 客户端",
+    "teredoPort": "Teredo 端口",
+    "teredoCone": "Cone NAT",
+    "locallyAssigned": "本地分配（fd00::/8）",
+    "globalId": "全局 ID",
+    "subnetId": "子网 ID",
+    "mcastScope": "组播范围",
+    "flags": "标志位",
+    "flagT": "T（临时）",
+    "flagP": "P（基于前缀）",
+    "flagR": "R（内嵌 RP）",
+    "noFlags": "无",
+    "solicitedNodeSuffix": "被请求节点后缀",
+    "iid": "接口 ID",
+    "mac": "由 EUI-64 还原的 MAC",
+    "solicitedNode": "被请求节点组播地址",
+    "universalMac": "接口 ID 是由全球唯一 MAC 生成的修改版 EUI-64，设备走到哪里都能被认出来。",
+    "localMac": "接口 ID 是由本地管理的 MAC 生成的修改版 EUI-64。",
+    "privacyIid": "接口 ID 不是 EUI-64 形态：可能是隐私扩展、随机生成或手动指定的标识符。",
+    "subnetRouterAnycast": "接口 ID 全零：这是该前缀的子网路由器任播地址。",
+    "slash64s": "/64 子网数",
+    "start": "起始",
+    "end": "结束",
+    "aggregated": "等价单一块",
+    "aggregationSummary": "输入 {input} 个块，输出 {output} 个，共 {addresses} 个地址",
+    "invalidTokens": "已忽略：{list}"
+  },
+  "whois": {
+    "Title": "Whois 查询",
+    "Note": "Whois 查询是一种用于查询注册信息的服务。通过输入域名、IP 地址或 AS 号（如 AS13335），可以查询到注册信息、注册商、注册日期、过期日期等信息。域名、IP 与 AS 号的 Whois 信息字段不完全一致。同时，部分比较小众的域名（TLD）可能无法查询到相关信息。",
+    "Note2": "请输入域名、IP 或 AS 号（如 AS13335），开始进行查询：",
+    "Note3": "Whois 信息包含多种类型的字段，以下为原始文本信息",
+    "Placeholder": "域名、IP 或 AS 号",
+    "invalidURL": "无效的域名、IP 或 AS 号",
+    "reservedIP": "内网或保留地址没有公开的注册信息，无法查询。",
+    "noData": "该查询没有公开的 Whois / RDAP 数据。部分顶级域名不提供公开查询服务。",
+    "fetchError": "无法获取查询结果或查询结果为空",
+    "Provider": "信息服务商"
+  },
+  "asnprofile": {
+    "Title": "ASN 档案查询",
+    "Note": "自治系统（AS）是由单一机构运营的一张网络——可能是运营商、云服务或托管商、高校，也可能是大型企业——互联网上的其它网络通过 AS 号识别它，并经由 BGP 路由与它互通。输入一个 AS 号，即可看到它由谁注册、规模多大、宣告了哪些地址段以及这些地址段是否有 RPKI 签名、IPv4 地址分布在哪些国家，以及它向谁购买上游、与谁对等互联、又为谁提供转接。数据来自包括 Cloudflare Radar、各地区 RDAP 、PeeringDB 等多个渠道。",
+    "InputLabel": "AS 号",
+    "Placeholder": "例如 AS13335",
+    "Lookup": "查询",
+    "invalidInput": "请输入有效的 AS 号，例如 AS13335 或 13335。",
+    "noData": "未找到 AS{asn} 的任何数据。它可能尚未分配、属于私有保留范围，或未在互联网上宣告。",
+    "loadError": "暂时无法加载该 AS，请稍后再试。",
+    "partial": "部分数据源本次未响应，相关内容已省略：{list}。",
+    "tier1": "Tier 1",
+    "facts": {
+      "rank": "全球排名",
+      "rankSource": "CAIDA AS Rank",
+      "announcedIpv4": "宣告的 IPv4",
+      "ipv4Share": "约占 IPv4 互联网的 {share}%",
+      "prefixes": "前缀 v4 · v6",
+      "users": "估计用户数"
+    },
+    "registration": {
+      "title": "注册信息",
+      "registry": "注册机构",
+      "status": "状态",
+      "registered": "注册时间",
+      "lastChanged": "最近更新",
+      "abuse": "滥用联系方式",
+      "raw": "原始 Whois 记录",
+      "copyRaw": "复制原始记录"
+    },
+    "reputation": {
+      "title": "信誉",
+      "source": "IPCheck.ing 数据",
+      "desc": "该网络宣告的 IPv4 地址被列入滥用与 VPN 名单的密度，以 IPCheck.ing 评分所用全网基线的倍数表示——刻度线为 1×，对数刻度。已被发现的代理数量是其中被发现充当公共代理的地址数。",
+      "abuse": "滥用 IP 密度",
+      "vpn": "VPN 出口密度",
+      "proxy": "已被发现的代理数量",
+      "ratio": "基线的 {ratio} 倍",
+      "belowBaseline": "不高于基线",
+      "drop": "已列入 Spamhaus ASN-DROP",
+      "updated": "数据日期：{date}",
+      "level": {
+        "none": "无明显风险",
+        "low": "低风险",
+        "medium": "中风险",
+        "high": "高风险"
+      }
+    },
+    "traffic": {
+      "title": "流量与连接质量",
+      "desc": "Cloudflare 在过去 7 天内观察到的、来自该网络的 HTTP 流量构成（IP 版本、是否加密、设备类型、真人或机器人），以及该网络用户测速结果的平均值。"
+    },
+    "map": {
+      "title": "全球 IP 分布",
+      "desc": "该网络的 IPv4 地址用在哪里，比例通过地址数量加权。"
+    },
+    "prefixes": {
+      "title": "宣告前缀",
+      "desc": "该 AS 在全球路由表中发起宣告的全部地址段。RPKI 有效表示有已签名的 ROA 授权该 AS 宣告它，无效表示与 ROA 冲突，未知表示没有 ROA。可见度是携带该前缀的路由收集器对等点数量。",
+      "counts": "{v4} 个 IPv4 · {v6} 个 IPv6",
+      "rpki": "RPKI 路由起源验证",
+      "rpkiValid": "{pct}% 有效",
+      "family": "地址族",
+      "all": "全部",
+      "copy": "复制列表中的前缀",
+      "download": "下载 .txt",
+      "prefix": "前缀",
+      "size": "大小",
+      "rpkiColumn": "RPKI",
+      "visibility": "可见度",
+      "shown": "已显示 {shown} / {total}",
+      "showMore": "再显示 {count} 条"
+    },
+    "rpki": {
+      "valid": "有效",
+      "invalid": "无效",
+      "unknown": "未知"
+    },
+    "connectivity": {
+      "title": "互联",
+      "desc": "上游向该 AS 出售转接，对等方与它直接交换流量，客户向它购买转接——数量来自 CAIDA 的 AS 关系数据，与下方拓扑图采用同一套判定。客户锥是经由其客户可以到达的 AS 数量（CAIDA AS Rank）。拓扑图只画出通往 Tier 1 网络的主要路径，因此上游数量可能多于图中的节点。",
+      "cone": "客户锥（AS 数）",
+      "providers": "上游",
+      "peers": "对等",
+      "customers": "客户",
+      "none": "未观察到"
+    },
+    "peering": {
+      "title": "对等与驻点",
+      "desc": "以下信息由该网络的运营者在 PeeringDB 中自行登记。互联网交换中心是它接入的 IX，端口速率按每个 IX 合计；RS 表示与该 IX 的路由服务器建立了会话。机房驻点是它入驻的数据中心。",
+      "policy": "对等策略",
+      "traffic": "流量规模",
+      "ratio": "流量方向",
+      "irr": "IRR as-set",
+      "website": "官网",
+      "scope": "覆盖范围",
+      "exchanges": "互联网交换中心（{count}）",
+      "facilities": "机房驻点（{count}）",
+      "rs": "RS",
+      "rsTitle": "与该交换中心的路由服务器对等",
+      "showAll": "显示全部 {count} 个",
+      "showLess": "收起",
+      "types": {
+        "isp": "有线/DSL/ISP",
+        "nsp": "NSP（网络服务商）",
+        "content": "内容",
+        "enterprise": "企业",
+        "education": "教育/科研",
+        "nonProfit": "非营利",
+        "government": "政府",
+        "routeServer": "路由服务器",
+        "routeCollector": "路由收集器",
+        "networkServices": "网络服务"
+      },
+      "scopes": {
+        "regional": "区域",
+        "northAmerica": "北美",
+        "asiaPacific": "亚太",
+        "europe": "欧洲",
+        "southAmerica": "南美",
+        "africa": "非洲",
+        "australia": "澳大利亚",
+        "middleEast": "中东",
+        "global": "全球"
+      },
+      "ratios": {
+        "balanced": "均衡",
+        "mostlyInbound": "以入站为主",
+        "heavyInbound": "大量入站",
+        "mostlyOutbound": "以出站为主",
+        "heavyOutbound": "大量出站"
+      },
+      "policies": {
+        "open": "开放",
+        "selective": "选择性",
+        "restrictive": "限制性",
+        "no": "不对等"
+      }
+    }
+  },
+  "enhanceddnsleaktest": {
+    "Title": "深度 DNS 泄露测试",
+    "Note": "你已经在首页的 DNS 泄露测试中大致了解了当前是否存在 DNS 泄露，以及 DNS 请求的出口地理归属。在这个深度测试里，我们会从更多维度进行检测：捕获更多 DNS 解析器出口 IP、检查这些解析器是否通过 ECS 把你真实 IP 段的前缀转发给了权威服务器、以及它们是否支持 DNSSEC，从而帮助你对自己的 DNS 链路安全性形成更完整的认识。",
+    "Note2": "点击「开始测试」即可开始，通常几秒内就能得到结果。我们会在后台发起多次 DNS 探测，由我们的权威 DNS 服务器捕获你所使用的递归解析器出口 IP，一次测试通常可以捕获 20–40 条记录。若完全没有捕获到解析器，可能是浏览器的 DNS 缓存吃掉了请求，稍等片刻再试一次即可。",
+    "Note3": "由于这是深度测试，页面里会出现一些较为专业的概念（例如 ECS、DNSSEC 等）。不用担心，运行测试后你可以参考下方的「字段说明」来了解每个字段的具体含义。",
+    "Run": "开始测试",
+    "RunAgain": "再测一次",
+    "RunningProbes": "正在发起 DNS 探测...",
+    "PollingResult": "正在收集结果...",
+    "FetchError": "获取 DNS 泄露测试结果失败，请稍后重试。",
+    "Empty": "本次会话没有捕获到任何 DNS 解析器，可能是浏览器的 DNS 缓存吃掉了请求，请稍后重试。",
+    "TableTitle": "捕获到的 DNS 查询记录",
+    "DedupeToggle": "隐藏重复项",
+    "Flow": {
+      "Probing": "正在发起第 {current} / {total} 次探测...",
+      "Waiting": "等待递归 DNS 访问我们的权威服务器（通常 1–3 秒）。",
+      "Fetching": "正在获取捕获到的 DNS 查询记录...",
+      "Done": "测试已完成。"
+    },
+    "DnssecChip": {
+      "Signed": "已请求 DNSSEC 签名",
+      "Unsigned": "未请求 DNSSEC 签名",
+      "Validated": "DNSSEC 校验正常",
+      "CdSet": "DNSSEC 校验被禁用"
+    },
+    "Summary": {
+      "ResolverCount": "去重后的解析器数量",
+      "RawCount": "原始捕获记录数",
+      "DnssecPosture": "DNSSEC 状态",
+      "DnssecGood": "支持 DNSSEC —— 所有解析器都请求了签名，并且没有跳过校验。",
+      "DnssecNoDo": "较弱 —— 至少有一个解析器没有请求 DNSSEC 签名。",
+      "DnssecCdSet": "可疑 —— 至少有一个解析器要求跳过 DNSSEC 校验。",
+      "DnssecNone": "暂无数据。"
+    },
+    "Fields": {
+      "ResolverIP": "解析器 IP",
+      "Location": "归属地",
+      "ASN": "组织 / ASN",
+      "QueryType": "请求记录类型",
+      "Transport": "请求传输协议",
+      "ECS": "ECS"
+    },
+    "Legend": {
+      "Title": "字段说明",
+      "ResolverIP": "实际与我们权威 DNS 服务器通信的递归解析器出口 IP。如果你使用 VPN，把它的 ASN 与你当前 VPN 出口的 ASN 做对比，就能看出 DNS 请求是否绕过了 VPN 通道（即发生了泄露）。",
+      "QueryType": "解析器向权威服务器请求的记录类型（A、AAAA、HTTPS 等）。浏览器通常会同时发起 A 与 AAAA 查询。",
+      "Transport": "DNS 默认走 UDP；出现 TCP 通常意味着响应过大，而响应过大往往是因为带上了 DNSSEC 相关记录。",
+      "ECS": "EDNS Client Subnet —— 部分递归 DNS 会在向上游转发查询时附带你真实 IP 的一段前缀（通常是 IPv4 的 /24 或 IPv6 的 /48）。这意味着你的 IP 段会被 DNS 链路上的权威服务器获知，可能用于 CDN 的就近调度，也可能在一定程度上削弱匿名性。",
+      "DO": "DNSSEC OK —— 标记为对勾时，表示递归解析器在查询时主动请求了 DNSSEC 签名，代表链路具备密码学校验能力；标记为叉时，表示本次查询未请求签名，响应在链路上被伪造或篡改时可能无法被察觉。",
+      "CD": "Checking Disabled —— 标记为对勾时，表示调用方没有要求跳过 DNSSEC 校验，递归解析器会进行正常的签名验证；标记为叉时，表示调用方显式要求跳过校验，即使签名对不上也会接受结果。正常情况下应该为对勾；如果出现叉，大多是由特定的调试工具或客户端的安全降级造成的，在极少数情况下也可能是链路上存在中间人篡改的征兆。"
+    }
+  },
+  "dnsresolver": {
+    "Title": "DNS 解析",
+    "Note": "同时向全球知名的公共 DNS 服务商解析同一个域名，覆盖传统 DNS 与 DNS over HTTPS 两种方式，并对比各家返回的结果。不同服务商或不同地区的结果出现差异，通常意味着 CDN 在做就近调度、某处的缓存尚未更新，或者这条记录在链路上被过滤或重定向了。使用时先选择记录类型，再填入域名或网址并运行：每一行都会标注该解析服务器所在的国家，表格也可以按地区筛选。",
+    "Note2": "请输入 URL 或域名，开始进行解析：",
+    "Placeholder": "URL 或域名",
+    "invalidURL": "无效的 URL 或域名",
+    "fetchError": "无法获取解析结果",
+    "Provider": "DNS 服务商",
+    "Result": "解析结果",
+    "Record": "记录",
+    "AllRegions": "全部地区"
+  },
+  "ruletest": {
+    "Title": "分流测试",
+    "Name": "检测",
+    "Note": "分流测试用于判断代理软件基于域名的规则设置是否正确。在进行测试之前，你需要先参考下方的卡片，在你的代理软件里对 IPCheck.ing 的 {n} 个不同的 URL 设置不同的域名分流规则。通常，设置规则可能会使用类似于：DOMAIN, ptest-3.ipcheck.ing, POLICY 这样的写法，具体写法不同的代理软件可能会有所不同。",
+    "StatusWait": "待检测",
+    "StatusTesting": "检测中…",
+    "StatusError": "检测出错",
+    "Country": "代理地区",
+    "RefreshAll": "刷新所有"
+  },
+  "splittunnel": {
+    "Title": "网站分流"
+  },
+  "cdnlookup": {
+    "Title": "CDN 节点"
+  },
+  "multiegress": {
+    "Title": "目的地出口"
+  },
+  "egress": {
+    "NoteSplit": "每张卡片都用目标网站自己的域名去请求。代理里的域名规则可以把它们送到不同出口。页面只读取那些会回显你的 IP、并且允许浏览器看到响应的公开地址。",
+    "NoteCdn": "每张卡片询问是哪个 CDN 节点在应答。Cloudflare 会给出 colo 代码。jsDelivr 把 Fastly 或 Cloudflare 的节点写在 x-served-by 头里。",
+    "NoteMulti": "每张卡片访问一个不同的目标地址。按目的 IP 分流的规则可以让这些出口不一样，即使上面的网站都走同一个出口。",
+    "Disclaimer": "这里只用浏览器能读到的一小批公开回显地址，不会去扫测速服务器。",
+    "StatusWait": "待检测",
+    "StatusTesting": "检测中…",
+    "StatusError": "无法访问",
+    "StatusSkip": "没有 IPv6",
+    "RefreshAll": "再测一次",
+    "Edge": "节点",
+    "Country": "地区",
+    "Group": "出口 {n}",
+    "Summary": "{ok} 个可达 · {paths} 个出口 · {edges} 个节点",
+    "SameExit": "能应答的地址都看到同一个出口",
+    "SplitExit": "流量分成了 {paths} 个出口",
+    "EdgeOnly": "有 {edges} 个节点应答，这些响应里没有客户端 IP"
+  },
+  "Tooltips": {
+    "RefreshIPCard": "刷新 IP 信息",
+    "SaveAsImage": "保存为图片",
+    "RefreshConnectivityTests": "刷新连通性测试",
+    "RefreshWebRTC": "刷新 WebRTC 泄露测试",
+    "RefreshDNSLeakTest": "刷新 DNS 泄露测试",
+    "SpeedTestButton": "开始/暂停网速测试",
+    "ShowASNInfo": "显示 AS 详细信息",
+    "ShowASNHistory": "显示 ASN 历史",
+    "ShowASNConnectivity": "显示 ASN 连接图",
+    "CopyIP": "复制 IP 地址",
+    "CopySdpLog": "复制 SDP 日志",
+    "ViewOnMap": "在地图上查看位置",
+    "ShowCountryTraffic": "查看网络活跃时段",
+    "InfoMask": "隐藏信息",
+    "IPHistory": "查看 IP 历史记录",
+    "ShareReport": "生成诊断报告",
+    "QueryIP": "查询 IP 信息",
+    "GithubLink": "查看源代码"
+  },
+  "report": {
+    "Title": "诊断报告",
+    "Note": "把已完成的测试结果打包成一份报告，分享给朋友或 AI 协助诊断网络问题。在你复制、下载或生成链接之前，数据不会离开本机。",
+    "SectionsLabel": "选择要包含的测试",
+    "NotTested": "未测试",
+    "MaskTail": "遮盖 IP 尾段",
+    "TtlLabel": "自动删除",
+    "Ttl1": "1 天",
+    "Ttl3": "3 天",
+    "Ttl7": "7 天",
+    "Preview": "预览分享内容",
+    "CreateLink": "生成分享链接",
+    "CopyAI": "复制给 AI 诊断",
+    "DownloadJson": "下载 JSON",
+    "CopyLink": "复制链接",
+    "NoSelection": "请先选择至少一项测试。",
+    "CreateFailed": "生成分享链接失败，请稍后再试。",
+    "LinkOnce": "链接仅显示这一次，请立即复制。任何拿到链接的人都能在过期前查看这份报告。",
+    "ExpiresAt": "报告将于 {time} 自动删除。",
+    "CopiedTitle": "已复制",
+    "CopiedMessage": "报告已复制，可直接粘贴给任意 AI 助手。",
+    "ai": {
+      "Heading": "MyIP 网络诊断报告",
+      "Intro": "本报告由 MyIP（{origin}）于 {time} 生成，数据来自在用户浏览器中运行的网络测试。字段名为稳定的 schema 标识符；所有延迟数值单位为毫秒。",
+      "Masked": "注意：出于隐私考虑，报告中的 IP 地址已遮盖尾段（IPv4 末段、IPv6 接口位，以 \"x\" 表示）。",
+      "Instruction": "请基于以上数据分析该网络的健康状况，指出异常项（DNS 泄露、WebRTC 暴露、代理/VPN 特征、丢包、高延迟、路由问题等），并给出具体的排查建议。",
+      "Sections": {
+        "ipinfo": "多个独立来源看到的公网 IP（存在代理或分流时不同来源可能不一致）。",
+        "connectivity": "浏览器对知名网站的可达性探测；timeMs 为展示的往返耗时，minTimeMs 为多轮中的最佳值。",
+        "webrtc": "通过 WebRTC STUN 暴露的 IP——若与主公网 IP 不同，真实地址可能绕过代理/VPN 泄露。",
+        "dnsleak": "实际应答浏览器查询的 DNS 解析器出口 IP——解析器不属于用户的 ISP/VPN 供应商即为 DNS 泄露迹象。",
+        "speedtest": "对 Cloudflare 测得的带宽、延迟与负载延迟（bufferbloat）；分数衡量流媒体/游戏/实时通话体验，越高越好。",
+        "pingtest": "全球 Globalping 探针对用户 IP 的 ICMP ping 统计。",
+        "mtrtest": "全球探针到用户 IP 的逐跳 MTR 路由追踪；中间跳的丢包可能只是 ICMP 限速，从某一跳起持续丢包才代表真实问题。",
+        "ruletest": "访问 8 个测试端点时观测到的出口 IP——出现多个不同 IP 说明流量被分流到不同线路（如代理规则）。",
+        "browserinfo": "被测设备的浏览器、操作系统与显示环境。",
+        "adblocktest": "在浏览器中运行的广告与跟踪屏蔽检测：按类别（广告网络、统计分析、社交平台跟踪、错误监控、设备厂商遥测、跟踪脚本）统计发往常见端点的请求中，被拦截、未被拦截和超时（noAnswer）的数量。没有全部拦截可能是用户的主动选择，并不代表故障。",
+        "invisibility": "代理/VPN 检测得分（0-100，越高越可能被识别）及各项命中的检测信号。",
+        "enhanceddnsleak": "解析器级 DNS 捕获：向测试域名发起查询的每个解析器 IP，含传输协议、ECS 暴露与 DNSSEC 标志（do/cd）。",
+        "persona": "浏览器与所选国家本地居民的相符程度：一个总体评级，加上每项检查的结论。只有结论——各项检查依据的具体数值刻意不写入可分享的报告。"
+      }
+    }
+  },
+  "reportPage": {
+    "Loading": "报告加载中…",
+    "NotFound": "报告不存在或已过期",
+    "NotFoundNote": "分享报告到期后会自动删除。",
+    "LoadFailed": "报告加载失败，请稍后重试。",
+    "Unsupported": "此报告由其他版本的网站生成，无法显示。",
+    "GeneratedBy": "由 {origin} 于 {time} 生成的诊断报告",
+    "Stale": "此报告已超过 3 天，网络状况可能已发生变化。",
+    "TestMine": "测一测我自己的网络",
+    "Col": {
+      "Source": "来源",
+      "Name": "名称",
+      "IP": "IP",
+      "Location": "位置",
+      "ISP": "运营商",
+      "Status": "状态",
+      "Server": "服务器",
+      "Provider": "提供商",
+      "Target": "目标",
+      "UniqueIPs": "不同出口 IP 数",
+      "Resolvers": "解析器数量"
+    },
+    "Dnssec": {
+      "ok": "DNSSEC 已启用",
+      "partial": "DNSSEC 部分启用",
+      "none": "DNSSEC 未启用"
+    }
+  },
+  "ipHistory": {
+    "Title": "IP 历史记录",
+    "Notes": "这里记录你使用本站时被侦测到的 IP。数据仅保存在当前浏览器本地，不会同步到账号，也不会离开你的设备。你可以在「偏好设置」中调整记录保留时间。",
+    "Empty": "暂无记录。主页检测到 IP 后会自动记录在这里。",
+    "FilterByType": "按 IP 类型筛选",
+    "FilterByCountry": "按国家或地区筛选",
+    "UnknownCountry": "未知",
+    "NoMatch": "没有符合筛选条件的记录。",
+    "ClearAll": "清空记录",
+    "ClearConfirm": "再次点击确认清空",
+    "ViewMode": "历史记录视图",
+    "ByIP": "按 IP",
+    "ByDate": "按日期",
+    "UniqueIPCounts": "标签数量：全部保留记录中的独立 IP 数。",
+    "DailyRecordCounts": "标签数量：全部保留日期的记录数（同一 IP 每天计一条）。",
+    "LastSeen": "最近：{date}",
+    "FirstSeen": "首次：{date}",
+    "RecordDates": "全部记录日期",
+    "MapTitle": "IP 所属国家 / 地区",
+    "MapUnavailable": "地图暂不可用，仍可使用国家筛选。",
+    "MapSelect": "点击筛选此国家 / 地区",
+    "MapUnselect": "点击取消此国家 / 地区筛选",
+    "ViewMap": "查看地图"
+  },
+  "ipInfos": {
+    "Title": "IP",
+    "Notes": "程序会先从多个不同的探针（包含 IPv4 和 IPv6）检查你的 IP 地址，然后通过你选择的 IP 解析数据源查询对应的地理数据。如果当前 IP 栈只有 1 个，则没有数据的来源会显示为空。",
+    "Source": "IP 探针",
+    "Country": "地区",
+    "Region": "省份",
+    "City": "城市",
+    "TimeZone": "时区",
+    "ISP": "网络",
+    "ASN": "ASN",
+    "Coordinates": "经纬度",
+    "IPv4Error": "获取失败或不存在 IPv4 地址",
+    "IPv6Error": "获取失败或不存在 IPv6 地址",
+    "type": "类型",
+    "anonymity": {
+      "label": "匿名网络",
+      "tor": "Tor 出口",
+      "relay": "iCloud 专用代理",
+      "residential": "住宅代理",
+      "suspectedResidential": "疑似住宅代理",
+      "proxy": "代理",
+      "proxySuspected": "疑似代理",
+      "vpn": "VPN",
+      "vpnSuspected": "疑似 VPN",
+      "none": "未检测到"
+    },
+    "qualityScore": "IP 质量分",
+    "qualityScoreUnknown": "未知分数",
+    "advancedUnlockCta": "为避免滥用，登录后可查看以下信息",
+    "advancedQuotaCta": "本月 IP 高级数据额度已用完",
+    "ASNInfo": {
+      "trafficPercentage": "流量比例：",
+      "note": "此 AS 的相关数据：",
+      "asnName": "AS 名称：",
+      "asnOrgName": "AS 组织名称：",
+      "asnCountryCode": "AS 地区：",
+      "estimatedUsers": "估计用户数：",
+      "connectionQuality": "平均连接质量：",
+      "connectionQualityTooltip": "基于该 ASN 的用户与 Cloudflare 测速的聚合结果",
+      "speedDownload": "下载带宽：",
+      "speedUpload": "上传带宽：",
+      "latency": "延迟：",
+      "jitter": "抖动：",
+      "IPv4_Pct": "IPv4",
+      "IPv6_Pct": "IPv6",
+      "HTTP_Pct": "HTTP",
+      "HTTPS_Pct": "HTTPS",
+      "Desktop_Pct": "桌面设备",
+      "Mobile_Pct": "移动设备",
+      "Bot_Pct": "机器人",
+      "Human_Pct": "人类",
+      "openProfile": "查看完整 ASN 档案"
+    },
+    "ASNHistory": {
+      "announcedPrefixes": "公告前缀：",
+      "note": "该 IP 的历史 ASN 公告：",
+      "empty": "未找到该 IP 的历史路由数据。",
+      "error": "加载 ASN 历史失败。",
+      "seenBy": "RIPE RIS 可见度：{pct}% — 峰值 {peers} 个全表 peer"
+    },
+    "ASNConnectivity": {
+      "note": "该 AS 到全球 Tier 1 骨干网的上游路径：",
+      "empty": "未找到该 AS 的上游连接数据。",
+      "error": "加载 ASN 连接图失败。",
+      "expand": "放大",
+      "dialogTitle": "AS{asn} 的网络连接图",
+      "legendOrigin": "起源",
+      "legendTier1": "Tier 1 骨干",
+      "legendIntermediate": "中间 AS",
+      "legendTransit": "IP 转接",
+      "legendPeering": "对等互联",
+      "zoomIn": "放大",
+      "zoomOut": "缩小",
+      "zoomReset": "重置缩放"
+    },
+    "advancedData": {
+      "type": {
+        "Residential": "住宅线路",
+        "Wireless": "无线网络",
+        "Business": "商业线路",
+        "Hosting": "数据中心",
+        "unknownType": "未知类型"
+      },
+      "Nativeness": "原生性",
+      "NativeIPYes": "原生",
+      "NativeIPNo": "非原生",
+      "nativenessTooltip": "判断 ASN 的注册国家是否与 IP 的归属国家一致"
+    },
+    "scoreDetails": {
+      "toggle": "评分详情",
+      "explainTitle": "评分依据",
+      "explain": {
+        "unknownOperator": "未知运营方",
+        "summary": {
+          "lowRisk": "IP 地址 {ip} 由 {operator} 运营，质量评分为 {score}/100，我们认为风险较低。",
+          "mediumRisk": "IP 地址 {ip} 由 {operator} 运营，质量评分为 {score}/100，我们认为存在一定风险。",
+          "highRisk": "IP 地址 {ip} 由 {operator} 运营，质量评分为 {score}/100，我们认为风险较高。"
+        },
+        "network": {
+          "datacenter": "它属于托管 / 数据中心网络，而不是普通的家庭或移动网络连接。",
+          "mobile": "它位于移动网络，这类网络中一个 IP 往往由许多用户共用。",
+          "satellite": "它位于卫星互联网网络，而不是普通的家庭或企业宽带。",
+          "isp": "它位于运营商接入网络（家庭或企业宽带），而不是托管服务商。"
+        },
+        "anonymity": {
+          "none": "未检测到它被用于 VPN、代理、Tor 或隐私中继。",
+          "tor": "它属于 Tor 匿名网络。",
+          "relay": "它是 iCloud 专用代理的出口，由大量 Apple 用户共用。",
+          "proxySingle": "单一来源将它识别为代理。",
+          "proxyMulti": "多个独立来源将它识别为代理。",
+          "residentialProxy": "它被识别为住宅代理的出口。",
+          "residentialProxySuspected": "该 IP 曾在 {date} 被观察到疑似作为住宅代理（家庭代理）的出口。",
+          "residentialProxySuspectedUndated": "该 IP 曾被观察到疑似作为住宅代理（家庭代理）的出口。",
+          "vpnSingle": "单一来源将它识别为 VPN 或匿名服务。",
+          "vpnMulti": "多个独立来源将它识别为 VPN 或匿名服务。"
+        },
+        "anonymityLastSeen": "最近一次观测到是在 {date}。",
+        "reputation": {
+          "none": "未发现明显的滥用举报或黑名单记录。",
+          "low": "它有少量滥用证据（举报或黑名单记录）。",
+          "lowDated": "它有少量滥用证据，最近一次滥用举报在 {date}。",
+          "medium": "它有较明显的滥用证据（举报或黑名单记录）。",
+          "mediumDated": "它有较明显的滥用证据，最近一次滥用举报在 {date}。",
+          "high": "它有严重的滥用证据（举报或黑名单记录）。",
+          "highDated": "它有严重的滥用证据，最近一次滥用举报在 {date}。"
+        },
+        "asn": {
+          "none": "它所在网络（ASN）的滥用与 VPN 活动不高于互联网的一般水平。",
+          "low": "它所在网络（ASN）的滥用或 VPN 活动略高于一般水平。",
+          "medium": "它所在网络（ASN）的滥用或 VPN 活动明显高于一般水平。",
+          "high": "它所在网络（ASN）的滥用或 VPN 活动远高于一般水平。"
+        }
+      },
+      "tagsTitle": "全部属性",
+      "blocklistHint": "评分反映的是这个 IP 的综合画像。想知道它此刻有没有上黑名单？",
+      "blocklistLink": "实时检查黑名单",
+      "tagState": {
+        "yes": "是",
+        "no": "否",
+        "suspected": "疑似"
+      },
+      "tags": {
+        "isDatacenter": "数据中心",
+        "isResidential": "住宅线路",
+        "isMobile": "移动网络",
+        "isSatellite": "卫星网络",
+        "isProxy": "代理",
+        "isVPN": "VPN",
+        "isResidentialProxy": "住宅代理",
+        "isRelay": "iCloud 专用代理",
+        "isTor": "Tor",
+        "isAbuser": "滥用记录",
+        "isCrawler": "爬虫",
+        "isNative": "原生性"
+      }
+    },
+    "abuseLevel": {
+      "label": "滥用行为",
+      "none": "未检测到",
+      "low": "较少",
+      "medium": "中等",
+      "high": "较多"
+    },
+    "scenarioFriction": {
+      "label": "场景摩擦",
+      "toggle": "场景摩擦详情",
+      "breakdown": "{smooth} 项顺畅 · {checks} 项需额外验证 · {restricted} 项可能被限制",
+      "introTitle": "场景摩擦解析",
+      "intro": "你可能会用这个 IP 进行各种浏览或工作，不同场景下，它与平台之间的摩擦程度可能不同。我们综合这个 IP 的网络类型、匿名性、滥用记录和所在地，估算各类平台可能会如何对待它。",
+      "listTitle": "各场景",
+      "scenarios": {
+        "signup": "账号注册与登录",
+        "payments": "购物与支付",
+        "finance": "银行与金融",
+        "streaming": "流媒体与区域内容",
+        "availability": "国际服务可用性",
+        "browsing": "日常浏览",
+        "posting": "发帖与评论",
+        "localSocial": "以本地身份运营社交媒体",
+        "localSocialIn": "以{country}本地身份运营社交媒体",
+        "automation": "自动化与爬虫",
+        "email": "自建邮件发信服务"
+      },
+      "verdict": {
+        "default": {
+          "low": "顺畅",
+          "medium": "需额外验证",
+          "high": "可能被限制"
+        },
+        "availability": {
+          "low": "可用",
+          "medium": "受限",
+          "high": "可能被封锁"
+        }
+      },
+      "personaHint": "除了 IP，平台还会参考多个因素来判断触发何种限制。想知道你当前综合画像和你预期的是否一致？",
+      "personaLink": "运行深度画像检测"
+    },
+    "countryTraffic": {
+      "subtitle": "该国家/地区的每周网络活跃分布—— 你可以选择仅看人类所产生的流量或全部流量（包含机器人/自动化流量）。",
+      "human": "仅人类流量",
+      "loading": "加载中...",
+      "error": "加载网络活跃数据失败。"
+    }
+  },
+  "serviceStatus": {
+    "Title": "服务可用性",
+    "Note": "当你打不开某些服务的时候，问题可能并不在你这边，而是服务本身出了故障。本板块展示知名互联网产品（从 AI 助手到开发者平台）的实时可用状态；展开卡片可查看各子服务的状态与最近的事故。",
+    "Refresh": "刷新服务状态",
+    "LastChecked": "最后检查",
+    "AllOperational": "所有系统正常",
+    "ComponentsTitle": "服务项",
+    "IncidentsTitle": "最近事故",
+    "NoComponents": "暂无服务详情。",
+    "NoRecentIncidents": "近期无事故。",
+    "Loading": "加载中…",
+    "Checking": "查询中…",
+    "IncidentsError": "无法加载事故信息。",
+    "ComponentsError": "无法加载服务项。",
+    "indicator": {
+      "minor": "部分异常",
+      "major": "重大故障",
+      "critical": "严重故障",
+      "maintenance": "维护中",
+      "unknown": "状态获取失败"
+    },
+    "component": {
+      "operational": "正常",
+      "degraded_performance": "性能下降",
+      "partial_outage": "部分中断",
+      "major_outage": "重大中断",
+      "under_maintenance": "维护中"
+    },
+    "incidentStatus": {
+      "investigating": "调查中",
+      "identified": "已定位",
+      "monitoring": "监控中",
+      "resolved": "已解决",
+      "postmortem": "复盘",
+      "scheduled": "已计划",
+      "in_progress": "进行中",
+      "verifying": "验证中",
+      "completed": "已完成"
+    }
+  },
+  "connectivity": {
+    "Title": "连通性",
+    "Note": "测试你与网站的连通性，延迟数字越大，意味着你与该网站的连接速度越慢。你可以导入/添加其它你常用的网站到测试列表中，方便快速测试。",
+    "StatusWait": "待检测",
+    "StatusTesting": "检测中…",
+    "StatusAvailable": "可用",
+    "StatusUnavailable": "不可用",
+    "StatusTimeout": "超时或不可用",
+    "checking": "检查中...",
+    "minTestTime": "最小测试时间：",
+    "RefreshThisTest": "刷新此测试",
+    "OpenSite": "打开网站",
+    "RoundCount": "第 {n} 次：",
+    "addCustom": {
+      "AddCard": "添加测试",
+      "Title": "添加自定义测试",
+      "Hint": "通过 HTTPS 加载站点 favicon 进行测试，部分站点可能无法以这种方式测试。自定义测试会保存在浏览器本地。",
+      "ProbeBlockedNote": "部分站点的安全策略会拦截跨域探测——即使网站能正常打开，也可能显示为不可用。",
+      "NameLabel": "名称",
+      "NamePlaceholder": "例如：维基百科",
+      "UrlLabel": "URL",
+      "UrlPlaceholder": "例如：wikipedia.org",
+      "Add": "添加",
+      "Remove": "移除测试",
+      "NameRequired": "请输入名称",
+      "UrlRequired": "请输入 URL",
+      "InvalidUrl": "这看起来不是一个有效的 URL",
+      "LimitReached": "测试数量已达到 60 个上限",
+      "LastTargetTitle": "无法删除",
+      "LastTargetMessage": "至少需要保留一个测试网站。"
+    },
+    "importDialog": {
+      "Title": "添加 / 导入测试",
+      "CustomOption": "添加自定义",
+      "ImportOption": "导入列表",
+      "SiteCount": "{n} 个网站",
+      "Import": "导入",
+      "NotEnoughCapacity": "容量不足——该列表需要 {need} 个空位，仅剩 {free} 个",
+      "Destination": "添加到",
+      "ImportAsNew": "导入为新列表",
+      "MissingCountry": "没有你所在国家的列表？{link}",
+      "MissingCountryLink": "来添加一个"
+    },
+    "lists": {
+      "Tab": "列表",
+      "Mine": "我的",
+      "Manage": "管理列表",
+      "NewListPlaceholder": "新列表名称",
+      "Create": "创建",
+      "LimitReached": "最多可创建 {limit} 个列表",
+      "Rename": "重命名",
+      "Delete": "删除",
+      "MoveUp": "上移",
+      "MoveDown": "下移",
+      "DeleteNotEmpty": "删除列表前，请先移除其中的所有网站",
+      "MineUndeletable": "「我的」列表不可删除",
+      "Save": "保存",
+      "Cancel": "取消",
+      "Hint": "列表需要清空后才能删除；「我的」列表始终保留。"
+    },
+    "importLists": {
+      "defaults": "系统预设",
+      "iran": "伊朗常用",
+      "russia": "俄罗斯常用",
+      "china": "中国常用",
+      "brazil": "巴西常用",
+      "india": "印度常用",
+      "nigeria": "尼日利亚常用",
+      "germany": "德国常用",
+      "albania": "阿尔巴尼亚常用",
+      "kosovo": "科索沃常用",
+      "thailand": "泰国常用",
+      "mexico": "墨西哥常用",
+      "ai": "AI 服务",
+      "social": "社交通讯",
+      "productivity": "工作与生产力",
+      "education": "在线教育",
+      "streaming": "流媒体",
+      "music": "音乐与音频",
+      "sports": "体育",
+      "travel": "旅行与预订",
+      "gaming": "游戏平台",
+      "developer": "开发者",
+      "cloud": "云与 CDN",
+      "finance": "金融与支付",
+      "crypto": "加密交易所",
+      "ecommerce": "国际电商平台",
+      "news": "新闻与百科"
+    }
+  },
+  "webrtc": {
+    "id": "webrtc",
+    "Title": "WebRTC",
+    "Name": "WebRTC 连接",
+    "Note": "浏览器通过 WebRTC 获取网络地址时有可能绕过 VPN 或代理，从而向网站暴露你的真实 IP。本测试检查你通过 WebRTC 连接的时候暴露出来的 IP，如果返回的 IP 地址、地区与你预期的不一致，则可能存在 WebRTC 泄露风险，你可能需要调整你的代理软件设置。除了检测你连接 WebRTC 时所使用的 IP，我们还会检测你的 NAT 类型。",
+    "StatusWait": "待检测",
+    "StatusTesting": "检测中…",
+    "StatusError": "连接错误",
+    "StatusUnavailable": "WebRTC 不可用",
+    "SdpLog": "SDP 日志",
+    "NATType": {
+      "srflx": "端口限制型或对称型",
+      "prflx": "端口限制型",
+      "relay": "对称型",
+      "host": "全锥型",
+      "unknown": "未知类型"
+    }
+  },
+  "dnsleaktest": {
+    "Name": "DNS 出口检测",
+    "Title": "DNS",
+    "Note": "当你在使用 VPN 或代理时，DNS 查询仍可能通过本地网络发送，从而暴露你正在访问的网站域名。链路中的运营商、防火墙、公共 Wi-Fi 提供者等都可能直接截获并得知你访问的网站域名。本测试通过访问新生成的域名，检测你是通过哪个地区的 DNS 进行查询，如果返回的出口区域和你正在使用的 VPN/代理的地区归属地不同，则可能存在 DNS 泄露风险。",
+    "EndpointCountry": "出口地区",
+    "StatusWait": "待检测",
+    "StatusTesting": "检测中…",
+    "StatusError": "测试出错"
+  },
+  "speedtest": {
+    "Title": "网速",
+    "Note": "将从 Cloudflare 使用边缘网络进行速度测试。你可以根据需要，选择测速时下载和上传的数据包大小。测速过程中，会进行 4 次数据包上传与下载，请注意流量消耗。考虑到 Cloudflare 并非在全球每一个国家都部署边缘节点，测速结果仅供参考，实际速度可能更快。",
+    "Download": "下载",
+    "Upload": "上传",
+    "Latency": "延迟",
+    "Jitter": "抖动",
+    "loadedLatency": "满载延迟：",
+    "videoStreaming": "在线视频",
+    "gaming": " 在线游戏",
+    "rtc": " 视频会议",
+    "score": "根据网速测试，得出以下质量分数：",
+    "connectionFrom": "已完成从你的机器，IP：",
+    "connectionTo": "与测速服务器：",
+    "connectionEnd": " 的测试。",
+    "testFailed": "无法连接测速服务器，请检查网络后重试。",
+    "phases": {
+      "probe": "预探测",
+      "latency": "延迟测试",
+      "download": "下载测试",
+      "upload": "上传测试"
+    },
+    "phasePaused": "{phase}（已暂停）",
+    "phaseFinished": "测试完成",
+    "phaseFailed": "测试失败",
+    "quality": {
+      "bad": "差",
+      "poor": "较差",
+      "average": "一般",
+      "good": "良好",
+      "great": "优秀"
+    },
+    "ToolHint": "带宽只说明了一半：用 {ping} 和 {mtr} 看看你的网络连到世界各地的表现。"
+  },
+  "globalping": {
+    "Selected": "已选地区：",
+    "Suggested": "推荐地区",
+    "NoProbe": "该国家/地区暂无可用探针",
+    "GroupFull": "最多 {max} 个国家/地区，请先取消部分勾选",
+    "UnreachableTarget": "探针运行在公网上，内网及保留地址在任何国家/地区都无法抵达。",
+    "ResultsHint": "选择探针并运行测试后，结果将显示在这里。",
+    "Asia": "亚洲",
+    "Europe": "欧洲",
+    "Africa": "非洲",
+    "Americas": "美洲",
+    "Oceania": "大洋洲"
+  },
+  "pingtest": {
+    "EnterIPLabel": "输入要测试的 IP",
+    "EnterIPPlaceholder": "例如 1.1.1.1",
+    "UseStored": "使用已知 IP",
+    "id": "pingtest",
+    "Title": "全球延迟测试",
+    "Note": "Ping 测试是一种网络工具，用于测量数据包从两个目标（服务器）之间的往返时间。是评估网络性能的关键指标。",
+    "Note2": "在下面的测试过程中，IPCheck.ing 会利用 Globalping 全球探针从世界各地的服务器发送小数据包到你的 IP 地址，然后测量这些数据包从服务器发送到你的设备，再返回服务器所需的时间。通过这些不同地理位置的 Ping 测试，你可以获得一个全面的视图，了解你的设备与全球网络连接的速度和稳定性。",
+    "Note3": "请选取你的 IP 地址进行测试：",
+    "SelectIP": "选择一个 IP 地址",
+    "Region": "地区",
+    "MinDelay": "最小延迟（ms）",
+    "MaxDelay": "最大延迟（ms）",
+    "AvgDelay": "平均延迟（ms）",
+    "TotalPackets": "总包数",
+    "PacketLoss": "丢包率",
+    "ReceivedPackets": "收到",
+    "DroppedPackets": "丢失",
+    "Error": "测试失败，看起来你的 IP 不允许进行 Ping 测试。"
+  },
+  "mtrtest": {
+    "EnterIPLabel": "输入要测试的 IP",
+    "EnterIPPlaceholder": "例如 1.1.1.1",
+    "UseStored": "使用已知 IP",
+    "Title": "MTR 测试",
+    "Note": "MTR (My Traceroute) 测试会利用 Globalping 全球探针从遍布全球不同大洲和地区的服务器出发，对你的 IP 地址进行详细的路由跟踪。MTR 结合了传统 traceroute 和 ping 命令的功能，能够实时地诊断网络连接的质量和性能。",
+    "Note2": "这个过程涵盖了从各个地理位置到你的网络环境的完整路径，提供关于每一跳的延迟和数据包丢失信息。无论是路由路径的拥堵、某个特定节点的延迟问题，还是数据包在传输过程中的丢失，MTR 测试都能提供关键的诊断信息。",
+    "Note3": "请选取你的 IP 地址进行测试：",
+    "SelectIP": "选择一个 IP 地址",
+    "Region": "地区",
+    "Error": "测试失败，看起来你的 IP 不允许进行 MTR 测试。",
+    "ColHost": "主机",
+    "ColIP": "IP",
+    "ColASN": "ASN",
+    "ColLoss": "丢包",
+    "ColSent": "发送",
+    "ColDrop": "丢弃",
+    "ColRecv": "接收",
+    "ColLast": "最近",
+    "ColAvg": "平均",
+    "ColBest": "最佳",
+    "ColWorst": "最差",
+    "ColStDev": "标准差",
+    "ColJitter": "抖动",
+    "NoReply": "无响应"
+  },
+  "ipcheck": {
+    "Title": "IP 查询",
+    "Placeholder": "例如 1.1.1.1",
+    "Error": "请输入有效的 IPv4 或 IPv6 地址。",
+    "reservedIP": "内网、回环等保留地址没有地理位置信息，无法查询。",
+    "NoData": "无法查询到该 IP 的信息。可能是不可路由地址（如 0.0.0.0、私有地址）或数据源没有该 IP 的记录。"
+  },
+  "alert": {
+    "refreshEverythingMessage": "正在刷新所有数据，请等待...",
+    "refreshEverythingTitle": "正在刷新",
+    "OhNo": "糟糕！",
+    "Congrats": "恭喜呀！",
+    "OhNo_Message": "连通性检测没有通过，部分网站无法访问。",
+    "Congrats_Message": "所有的连通性检测均通过，你可以访问所有网站。",
+    "maskedInfoTitle": "IP 信息已隐藏",
+    "maskedInfoMessage": "分享截图不会泄露你的 IP 信息。",
+    "unmaskedInfoTitle": "IP 信息已显示",
+    "unmaskedInfoMessage": "分享截图时请注意隐私。",
+    "SignInFailed": "登录失败",
+    "SignInFailedReason": "原因",
+    "IpGeoSourceFallbackTitle": "IP 解析数据源已切换",
+    "IpGeoSourceFallbackMessage": "解析源 {from} 暂时不可用，本次结果临时改由 {to} 提供。",
+    "SignInEmailTakenTitle": "该邮箱已被使用",
+    "SignInEmailTakenMessage": "该邮箱已经注册过账号，请改用 {other} 登录。"
+  },
+  "shortcutKeys": {
+    "GoToTop": "回到顶部",
+    "GoToBottom": "回到底部",
+    "ToggleDarkMode": "切换深色模式",
+    "RefreshEverything": "刷新所有数据",
+    "RefreshIPCard": "刷新某张 IP 卡片",
+    "RefreshConnectivityTests": "刷新连通性测试",
+    "RefreshWebRTC": "刷新 WebRTC 泄露测试",
+    "RefreshDNSLeakTest": "刷新 DNS 泄露测试",
+    "SpeedTestButton": "开始/暂停网速测试",
+    "PingTest": "打开全球延迟测试面板",
+    "MTRTest": "打开 MTR 测试面板",
+    "RuleTest": "打开规则测试面板",
+    "DNSResolver": "打开 DNS 解析器面板",
+    "IPCheck": "IP 查询",
+    "ToggleInfoMask": "切换信息隐藏",
+    "IPHistory": "打开 IP 历史记录面板",
+    "ShareReport": "打开分享报告面板",
+    "Help": "显示快捷键",
+    "HelpNote": "使用快捷键的人，是喜欢效率的人，你真棒！",
+    "GoNext": "下一张卡片",
+    "GoPrevious": "上一张卡片",
+    "OpenHighlightedTool": "打开选中的卡片（工具或网站）",
+    "RefreshRuleTests": "刷新规则测试",
+    "CensorshipCheck": "打开封锁测试面板",
+    "Pulse": "打开地球在线面板",
+    "Whois": "打开 Whois 查询面板",
+    "ServiceStatus": "打开服务可用性面板",
+    "InvisibilityTest": "打开隐身测试面板",
+    "EnhancedDnsLeakTest": "打开深度 DNS 泄露测试面板",
+    "MacChecker": "打开物理地址查询面板",
+    "IpCalculator": "打开 IP 计算器面板",
+    "BrowserInfo": "打开浏览器信息面板",
+    "AdblockTest": "打开广告与跟踪屏蔽检测面板",
+    "SecurityChecklist": "打开安全检查清单",
+    "PersonaCheck": "打开深度画像检测面板",
+    "IpBlocklist": "打开 IP 黑名单检查面板",
+    "AsnProfile": "打开 ASN 档案查询面板"
+  },
+  "page": {
+    "brand": "我的 IP",
+    "title": "我的 IP",
+    "description": "好用和开源的全能 IP 工具箱。轻松查看你的 IP 地址和信息、检查 IP 泄露、DNS 与 WebRTC 泄露检查、查看 IP 质量分数、浏览器指纹检查。还有网速测试、全球延迟测试、MTR 测试、Whois 查询等。",
+    "keywords": "我的IP,IP工具,IP查询,IP泄露检测,DNS泄露检测,IP质量检测,WebRTC泄露检测,浏览器指纹检测,网速测试,全球延迟测试,MTR测试,DNS查询,Whois搜索",
+    "footerLink": "https://github.com/jason5ng32/MyIP",
+    "copyRightName": "Originally from ",
+    "copyRightLink": "https://ipcheck.ing",
+    "copyRightLinkName": "IPCheck.ing"
+  },
+  "helpModal": {
+    "Title": "快捷键"
+  },
+  "footer": {
+    "Tagline": "查看出口 IP",
+    "Project": "项目",
+    "Support": "文档与支持",
+    "DeveloperDocs": "开发者文档",
+    "SelfHosting": "自托管指南",
+    "ReportIssue": "报告问题",
+    "FeatureRequest": "功能请求",
+    "License": "AGPL-3.0 许可证",
+    "Contribute": "贡献代码",
+    "Clients": "客户端",
+    "Raycast": "Raycast 扩展",
+    "Lite": "Lite 版"
+  },
+  "about": {
+    "Title": "关于",
+    "project": [
+      "IPCheck.ing 是一个免费的多合一 IP 工具箱，可以帮助你查看自己的 IP 信息，检测网站的可用性，查看 DNS 出口信息，进行网速测试，全球延迟测试，MTR 测试等。",
+      "这是一个开源项目，你可以点击页面底部的 GitHub 图标查看源代码。",
+      "如果你对于产品中功能使用不理解，可以通过底部的「帮助中心」获取帮助，我们已经写了非常详细的帮助文档，除了功能介绍，也能帮助你理解各种网络概念和如何排查网络问题。",
+      "如果你有兴趣参与到开源项目中，可以点击页面底部的「开发者文档」，查看如何贡献代码。"
+    ],
+    "founderTitle": "关于项目发起人",
+    "founder": [
+      "最早的时候，这是阿禅（Jason Ng）的一个用来学习 Vue.js 和学习如何使用 AI 写代码的练手项目，后来在 GitHub 上获得的星星数量越来越多，于是他进行了大量的重构和添加了许多非常有用的功能，希望你会喜欢。",
+      "他并不是一个专业的程序员，在大多数时候，他是一名产品经理、一名博客作者、一个摩托车骑士以及一名极客。但他喜欢编程、喜欢开源，喜欢分享。",
+      "你可以在下面的链接里找到他更详细的介绍："
+    ],
+    "contactTitle": "联系我们",
+    "contact": [
+      "如果你在使用 IPCheck.ing 或者部署 MyIP 项目的时候，遇到问题，可以先前往「帮助中心」寻找答案。如果找不到答案，而你无法解决，可以在 Github 上给我们提 issue 或通过邮件和我们联系。",
+      "当然了，如果你遇到了一个 bug，而你又喜欢编程（或者使用 AI 编程），非常欢迎你将你的优化方案直接提交 PR 给我们。",
+      "我们的邮箱： i[AT]ipcheck.ing。"
+    ],
+    "personal": "个人网站",
+    "blog": "可能吧博客",
+    "linkedIn": "LinkedIn",
+    "twitter": "Twitter",
+    "Sponsor": "赞助我们",
+    "Privacy": "隐私政策",
+    "HelpCenter": "帮助中心",
+    "Close": "关闭"
+  },
+  "acknowledgement": {
+    "Title": "致谢",
+    "Note1": "这个项目之所以能够完成，少不了一些热心的人和组织的支持和帮助，以及给予灵感或开放的代码人们。非常感谢他们："
+  },
+  "changelog": {
+    "Title": "更新日志",
+    "add": "新增",
+    "improve": "优化",
+    "fix": "修复"
+  },
+  "pwa": {
+    "appDescription": "一站式 IP 工具箱",
+    "installDescription": "这已经是你第 {count} 次使用 IPCheck.ing 了，把它安装为应用，可以获得更好的使用体验，打开也更方便。"
+  }
+}

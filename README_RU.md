@@ -1,0 +1,213 @@
+# 🧰 MyIP — удобный набор инструментов для работы с IP
+
+> [!NOTE]
+> Это перевод, поддерживаемый сообществом; английская версия README является основной, и данная версия может отставать от неё.
+
+<div align="center">
+
+![IPCheck.ing Banner](https://raw.githubusercontent.com/jason5ng32/MyIP/main/public/github/gh_banner.png)
+
+<a href="https://trendshift.io/repositories/5332" target="_blank"><img src="https://trendshift.io/api/badge/repositories/5332" alt="jason5ng32%2FMyIP | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+
+[![Mentioned in Awesome Self Hosted](https://awesome.re/mentioned-badge.svg)](https://github.com/awesome-selfhosted/awesome-selfhosted)
+
+![GitHub Repo stars](https://img.shields.io/github/stars/jason5ng32/MyIP)
+![GitHub forks](https://img.shields.io/github/forks/jason5ng32/myip)
+![Docker Pulls](https://img.shields.io/docker/pulls/jason5ng32/myip)
+
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fipcheck.ing&up_message=online&label=IPCheck.ing 'IPCheck.ing')](https://ipcheck.ing)
+![PWA](https://img.shields.io/badge/PWA-Supported-blue)
+
+![CodeQL](https://github.com/jason5ng32/MyIP/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)
+![Docker Build and Push](https://github.com/jason5ng32/MyIP/actions/workflows/docker-image.yml/badge.svg?branch=main)
+[![CI](https://github.com/jason5ng32/MyIP/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/jason5ng32/MyIP/actions/workflows/ci.yml)
+
+[English](README.md) | [简体中文](README_ZH.md) | [繁體中文](README_ZH-TW.md) | [Русский](README_RU.md) | [Français](README_FR.md) | [Português (BR)](README_PT-BR.md) | [Shqip](README_SQ.md) | [ไทย](README_TH.md) | [हिन्दी](README_HI.md)
+
+Универсальный набор IP-инструментов с открытым исходным кодом: определение IP по нескольким источникам, проверка доступности сайтов, обнаружение утечек WebRTC и DNS, тест скорости, MTR, проверка цензуры, Whois и многое другое — разворачивается на своём сервере одной командой Docker.
+
+👉 Демо: [https://ipcheck.ing](https://ipcheck.ing)
+
+Добавьте демо в закладки или разверните собственный экземпляр.
+
+[![Deploy with Docker](https://raw.githubusercontent.com/jason5ng32/MyIP/main/public/github/Docker.svg)](https://hub.docker.com/r/jason5ng32/myip)
+
+</div>
+
+## 👀 Возможности
+
+### 🪪 Ваш IP и идентичность
+
+* 🛜 **Карточки IP**: определяют ваши IPv4 и IPv6 по нескольким независимым источникам одновременно — страна, регион, город, ASN, организация и местный часовой пояс IP-адреса.
+* 🔍 **Проверка IP**: показывает те же подробные сведения о любом интересующем вас IP-адресе.
+* 🧾 **История IP**: ведёт локальный журнал IP-адресов, с которых вас видели в сети, с фильтрами по типу и стране — данные хранятся только в вашем браузере.
+* 🖥️ **Цифровой отпечаток браузера**: рассчитывает отпечаток браузера несколькими способами и показывает, что именно делает вас узнаваемым.
+
+### 🕵️ Утечки и приватность
+
+* 🚥 **Обнаружение WebRTC**: показывает IP-адрес, раскрываемый при подключениях WebRTC, — в том числе включена ли в вашем браузере усиленная защита приватности.
+* 🛑 **Тест утечки DNS**: показывает, какие конечные точки DNS обрабатывают ваши запросы, чтобы оценить риск утечки DNS при использовании VPN или прокси.
+* 🛡️ **Проверка блокировки рекламы и трекеров**: показывает, что на самом деле блокирует ваш блокировщик рекламы, браузер, DNS-фильтр, VPN или роутер, — рекламные сети, аналитику, трекеры соцсетей, мониторинг ошибок, телеметрию производителей устройств, скрипты отслеживания и скрытие элементов.
+* 📋 **Контрольный список безопасности**: 258 рекомендаций по личной кибербезопасности в 12 разделах; прогресс сохраняется в браузере.
+
+### 📡 Сетевые тесты
+
+* 🚦 **Проверка доступности**: проверяет доступность до 60 сайтов на ваш выбор, показывая минимальную задержку по итогам нескольких раундов, а готовые списки для импорта охватывают подборки по странам, ИИ-сервисы, соцсети, стриминг, игры, инструменты разработчика и многое другое. По результатам инструмент показывает, доступен ли вам сейчас глобальный интернет.
+* 🚀 **Тест скорости**: измеряет скорость загрузки, отдачи и задержку через периферийные сети.
+* ⏱️ **Глобальный тест задержки**: пингует вашу цель с зондов по всему миру — выбирайте страны из всех доступных зондов Globalping, сгруппированных по континентам.
+* 🚉 **Тест MTR**: запускает MTR с распределённых по миру зондов, чтобы увидеть, каким маршрутом на самом деле идут пакеты.
+* 🚧 **Проверка цензуры**: показывает, где в мире сайт заблокирован и какими методами.
+* 🚏 **Проверка правил прокси**: проверяет, что правила в вашей прокси-программе работают именно так, как вы задумали.
+
+### 🔦 Поиск и инфраструктура
+
+* 📟 **Разрешение DNS**: разрешает домен сразу через несколько резолверов, сгруппированных по странам, — простой способ заметить перехват или загрязнение DNS.
+* 📓 **Поиск Whois**: выполняет Whois-запросы для доменных имён, IP-адресов и номеров AS.
+* 🗄️ **Поиск MAC-адреса**: определяет производителя и другие сведения по физическому адресу.
+* 🧮 **IP-калькулятор**: расчёт подсетей, преобразование записей и сведения об интерфейсе IPv6 для любого IP, префикса, диапазона или списка — всё локально.
+* 🛰️ **Сведения об ASN и топология вышестоящих сетей**: прямо в каждой карточке IP — данные автономной системы, история анонсов префикса этого IP и пути от её ASN к магистральным сетям Tier 1.
+* 🛂 **Профиль ASN**: полная картина любой AS — регистрационные данные с исходной записью Whois, место в мировом рейтинге и масштаб, состав трафика и качество соединения, страны, где используются её IPv4-адреса, все анонсируемые префиксы со статусом RPKI, вышестоящие сети, пиры и клиенты, а также точки обмена трафиком и дата-центры, где она присутствует.
+* 📶 **Состояние сервисов**: актуальная доступность известных сервисов — Claude, OpenAI, GitHub, Cloudflare и других — по данным их официальных страниц состояния, включая недавние инциденты.
+
+### ✨ Платформа
+
+* 📤 **Диагностические отчёты**: превращают результаты тестов в отчёт, которым можно поделиться, — ссылка только для чтения с автоматическим истечением срока, Markdown для ИИ или JSON.
+* ⌨️ **Curl API**: узнайте свой IP прямо из терминала одной командой `curl`.
+* 🌍 **Земля онлайн**: панель, транслирующая глобальные сбои интернета в момент их возникновения.
+* 🌗 **Тёмная тема**: автоматически следует настройкам системы, с ручным переключателем.
+* 📲 **PWA**: устанавливается как приложение на телефон и как приложение Chrome на компьютер.
+* ⚡ **Сочетания клавиш**: есть у каждой функции — нажмите `?`, чтобы увидеть список.
+* 🔤 **Несколько языков**: интерфейс доступен на 6 языках, а чтобы добавить свой, достаточно одного языкового пакета.
+
+## 📕 Использование
+
+### Использование Docker
+
+Одна команда — и всё готово:
+
+```bash
+docker run -d -p 18966:18966 --name myip --restart always jason5ng32/myip:latest
+```
+
+Или нажмите кнопку «Deploy with Docker» в верхней части этой страницы.
+
+### Развёртывание в среде Node
+
+Убедитесь, что Node.js установлен, затем клонируйте репозиторий:
+
+```bash
+git clone https://github.com/jason5ng32/MyIP.git
+```
+
+Установите зависимости и соберите проект. Проект использует pnpm — если он ещё не установлен, сначала установите его (npm входит в состав Node, поэтому эта команда всегда доступна):
+
+```bash
+npm install -g pnpm
+pnpm install && pnpm run build
+```
+
+Запустите:
+
+```bash
+pnpm start
+```
+
+Приложение будет работать на порту 18966.
+
+## ⚙️ Конфигурация
+
+> [!IMPORTANT]
+> **Учётные данные MaxMind GeoLite2 обязательны.** Они обеспечивают геолокацию IP и запросы ASN — без них источник MaxMind возвращает 503. Они бесплатны: → [MaxMind Setup](https://docs.ipcheck.ing/developer/getting-started/maxmind-setup)
+
+> [!WARNING]
+> **`ALLOWED_DOMAINS` обязателен на реальном домене.** Это список разрешённых хостов для backend API — без него любой запрос с домена, отличного от localhost, получает 403. → [Reverse Proxy & Domains](https://docs.ipcheck.ing/developer/getting-started/reverse-proxy-and-domains)
+
+```bash
+docker run -d -p 18966:18966 \
+  -e MAXMIND_ACCOUNT_ID="YOUR_ACCOUNT_ID" \
+  -e MAXMIND_LICENSE_KEY="YOUR_LICENSE_KEY" \
+  -e DATASET_AUTO_UPDATE="true" \
+  -e ALLOWED_DOMAINS="your-domain.com" \
+  --name myip --restart always \
+  jason5ng32/myip:latest
+```
+
+Всё остальное — необязательные ключи API, безопасность и ограничение частоты запросов, логирование, Sentry, домены curl API — описано в [справочнике переменных окружения](https://docs.ipcheck.ing/developer/reference/environment-variables).
+
+## 📖 Документация
+
+Полные руководства — в центре документации MyIP: **[docs.ipcheck.ing](https://docs.ipcheck.ing)**
+
+* [Руководство разработчика](https://docs.ipcheck.ing/developer) — развёртывание, настройка, архитектура и участие в разработке
+* [База знаний](https://docs.ipcheck.ing/knowledge-base) — как пользоваться каждым инструментом, пошаговая диагностика сети и сетевые концепции
+
+## 🤝 Участие в проекте
+
+Мы рады вашему участию! У нас есть подборка задач для новичков — с точными путями к файлам, критериями приёмки и тестами, которые ведут вас к зелёной сборке:
+
+* 🏷️ [Good first issues](https://github.com/jason5ng32/MyIP/labels/good%20first%20issue) — добавьте DNS-резолвер своей страны, расширьте подборки сайтов, переведите README на свой язык, улучшите переводы и не только
+* 🌐 [TRANSLATING.md](TRANSLATING.md) — переведите интерфейс на свой язык: языковой пакет плюс одна строка в реестре, причём **частичный перевод — отличный первый PR**
+* 📄 [CONTRIBUTING.md](CONTRIBUTING.md) — настройка окружения, соглашения и процесс работы с PR (направляйте их в ветку `dev`)
+
+## 👩🏻‍💻 Расширенное использование
+
+<details>
+<summary>Правила прокси для одновременной проверки реального IP и IP через прокси</summary>
+
+Если вы выходите в интернет через прокси, добавьте это правило в конфигурацию прокси (адаптировав его под свой клиент). Такая настройка позволяет проверять и ваш реальный IP, и IP при использовании прокси:
+
+```ini
+# IP Testing
+IP-CIDR,1.0.0.2/32,Proxy,no-resolve
+IP-CIDR6,2606:4700:4700::1111/128,Proxy,no-resolve
+DOMAIN,4.ipcheck.ing,DIRECT
+DOMAIN,6.ipcheck.ing,DIRECT
+# Rule Testing
+DOMAIN,ptest-1.ipcheck.ing,Proxy1
+DOMAIN,ptest-2.ipcheck.ing,Proxy2
+DOMAIN,ptest-3.ipcheck.ing,Proxy3
+DOMAIN,ptest-4.ipcheck.ing,Proxy4
+DOMAIN,ptest-5.ipcheck.ing,Proxy5
+DOMAIN,ptest-6.ipcheck.ing,Proxy6
+DOMAIN,ptest-7.ipcheck.ing,Proxy7
+DOMAIN,ptest-8.ipcheck.ing,Proxy8
+DOMAIN,ptest-9.ipcheck.ing,Proxy9
+DOMAIN,ptest-10.ipcheck.ing,Proxy10
+DOMAIN,ptest-11.ipcheck.ing,Proxy11
+DOMAIN,ptest-12.ipcheck.ing,Proxy12
+```
+
+</details>
+
+## 💖 Спонсоры и поддержка
+
+Как автор проекта с открытым исходным кодом, я очень благодарен следующим спонсорам за поддержку:
+
+**Спонсоры**
+
+<a href="https://www.swiftproxy.net/?ref=myip"><img src="https://res.ipcheck.ing/img/swiftproxy_logo.png" alt="SwiftProxy" height="48" /></a><br />
+<sub>↳ **<a href="https://www.swiftproxy.net/?ref=myip">SwiftProxy</a>** — High-quality rotating and static residential proxies, with 90M+ residential IPs across 220+ locations worldwide. It supports HTTP(S), SOCKS5, rotating and sticky sessions, with residential proxy plans starting at just $0.7/GB. Use code `PROXY90` for an additional 10% off.
+</sub>
+
+<a href="https://proxy-seller.com/?partner=4FEC1644D12240F4"><img src="https://res.ipcheck.ing/img/proxyseller_logo.png" alt="Proxy-Seller" height="48" /></a><br />
+<sub>↳ **<a href="https://proxy-seller.com/?partner=4FEC1644D12240F4">Proxy-Seller</a>** — приватные резидентские, мобильные (4G/5G/LTE), ISP и датацентр IPv4/IPv6 прокси с поддержкой HTTP(S) и SOCKS5. Более 47 млн резидентских IP в 220+ локациях, точный таргетинг по стране, городу и провайдеру, аптайм 99,7% и поддержка 24/7. Пользователям MyIP — промокод `CHECKINGIP15` со скидкой 15%.
+</sub>
+
+<a href="https://v.ps/?utm_source=ipcheck.ing&utm_medium=referral&utm_campaign=github_readme&utm_content=ru"><img src="https://res.ipcheck.ing/img/vps_logo.png" alt="V.PS" height="48" /></a><br />
+<sub>↳ **<a href="https://v.ps/?utm_source=ipcheck.ing&utm_medium=referral&utm_campaign=github_readme&utm_content=ru">V.PS</a>** — High-performance KVM VPS with global locations, fast connectivity, and IPv4 & IPv6 included.</sub>
+
+----
+
+**Поддержка**
+
+<p><a href="https://www.cloudflare.com/lp/project-alexandria/"><img src="https://res.ipcheck.ing/img/cloudflare_logo.png" alt="Cloudflare Project Alexandria" height="32" /></a></p>
+<p><a href="https://www.1password.com"><img src="https://res.ipcheck.ing/img/1password_logo.png" alt="1Password" height="32" /></a></p>
+<p><a href="https://www.greptile.com/"><img src="https://res.ipcheck.ing/img/greptile_logo.png" alt="Greptile" height="32" /></a></p>
+<p><a href="https://www.sentry.io"><img src="https://res.ipcheck.ing/img/sentry_logo.png" alt="Sentry" height="32" /></a></p>
+<p><a href="https://www.gitbook.com"><img src="https://res.ipcheck.ing/img/gitbook_logo.png" alt="GitBook" height="32" /></a></p>
+
+Хотите поддержать MyIP? [Стать спонсором](https://github.com/sponsors/jason5ng32)
+
+## 📄 Лицензия
+
+[AGPL-3.0](LICENSE) © Jason Ng

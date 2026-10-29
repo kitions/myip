@@ -1,0 +1,315 @@
+// Keyboard shortcut registration
+//
+// Input:
+//   - refs: UI chrome the shortcut keys drive (see below for destructuring) —
+//     test sections aren't here, they're reached via the command bus
+//   - store: main store
+//   - t: i18n translation function
+//   - configs: computed(() => store.configs)
+//   - userPreferences: computed(() => store.userPreferences)
+//
+// Output:
+//   - loadShortcuts(): should be called onMounted; registers all mappings
+//     immediately and passes keyMap to helpModalRef (for help modal).
+//     Config-gated keys fill in reactively when /api/configs lands
+//
+// Note:
+//   - section keys scroll with scrollToElement; tool keys open the tool's page
+//     through advancedToolsRef.openTool(slug);
+//     test-running keys dispatch commands on utils/app-commands.js
+//   - `h` key infoMask switch only executes when isInfosLoaded is true
+//   - every entry here is a home-page action. Overlays (Dialog / Sheet /
+//     Drawer) suspend the whole map while they are open — see
+//     utils/shortcut.js — so nothing needs a per-key "is something covering
+//     the page?" check.
+
+import { getCurrentScope, onScopeDispose, watch } from 'vue';
+import { trackEvent } from '../utils/analytics.js';
+import { emitAppEvent } from '../utils/app-events.js';
+import { dispatchAppCommand } from '../utils/app-commands.js';
+import { registerShortcuts, keyMap, navigateCards } from '../utils/shortcut.js';
+import { scrollToElement, SECTION_SCROLL_OFFSET } from '../utils/scroll-to.js';
+import { useRouteActive } from './use-route-active.js';
+import { hasPulseBackend } from '../utils/features/pulse-beacon.js';
+
+// A shortcut only kicks the run off — completion is the owner's business —
+// so a failed dispatch just logs.
+const runCommand = (name, payload) => {
+    dispatchAppCommand(name, payload).catch((error) => {
+        console.warn(`[shortcuts] ${name} failed:`, error);
+    });
+};
+
+const buildShortcutConfig = ({ refs, store, t, configs, userPreferences }) => {
+    const {
+        queryIPRef,
+        helpModalRef,
+        shareReportRef,
+        advancedToolsRef,
+        isInfosLoaded,
+        toggleInfoMask,
+    } = refs;
+
+    // openTool tracks the NavClick itself.
+    const goToAdvancedTool = (slug) => advancedToolsRef.value.openTool(slug);
+
+    const config = [
+        {
+            keys: 'g',
+            action: () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                trackEvent('ShortCut', 'ShortCut', 'GoToTop');
+            },
+            description: t('shortcutKeys.GoToTop'),
+        },
+        {
+            keys: 'j',
+            action: () => { navigateCards('down'); trackEvent('ShortCut', 'ShortCut', 'GoNext'); },
+            description: t('shortcutKeys.GoNext'),
+        },
+        {
+            keys: 'k',
+            action: () => { navigateCards('up'); trackEvent('ShortCut', 'ShortCut', 'GoPrevious'); },
+            description: t('shortcutKeys.GoPrevious'),
+        },
+        {
+            // Open the currently J/K-highlighted card: an Advanced Tool card
+            // (data-adv-slug) opens its tool; a Connectivity card opens its
+            // website via the card's own <a data-card-open> — which only
+            // exists with the open-website App Setting on, so target/rel and
+            // the preference gate all ride the real link. No-op for any
+            // other card type — IP cards, WebRTC, etc. have their own
+            // refresh shortcuts rather than an "open" concept.
+            keys: 'o',
+            action: () => {
+                const highlighted = document.querySelector(
+                    '.keyboard-shortcut-card[data-keyboard-hover="true"]'
+                );
+                const slug = highlighted?.getAttribute('data-adv-slug');
+                if (slug) {
+                    advancedToolsRef.value.openTool(slug);
+                    trackEvent('ShortCut', 'ShortCut', 'OpenHighlightedTool');
+                    return;
+                }
+                const link = highlighted?.querySelector('a[data-card-open][href]');
+                if (!link) return;
+                link.click();
+                trackEvent('ShortCut', 'ShortCut', 'OpenHighlightedSite');
+            },
+            description: t('shortcutKeys.OpenHighlightedTool'),
+        },
+        {
+            keys: 'G',
+            action: () => {
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                trackEvent('ShortCut', 'ShortCut', 'GoToBottom');
+            },
+            description: t('shortcutKeys.GoToBottom'),
+        },
+        {
+            keys: 'R',
+            action: () => {
+                store.setRefreshEveryThing(true);
+                trackEvent('ShortCut', 'ShortCut', 'RefreshEverything');
+            },
+            description: t('shortcutKeys.RefreshEverything'),
+        },
+        {
+            keys: '([1-6])',
+            type: 'regex',
+            action: (num) => {
+                if (num > userPreferences.value.ipCardsToShow) return;
+                scrollToElement('IPInfoCard-' + num, SECTION_SCROLL_OFFSET);
+                runCommand('ipinfo:refresh', { index: num - 1 });
+                trackEvent('ShortCut', 'ShortCut', 'IPCheck');
+            },
+            description: t('shortcutKeys.RefreshIPCard'),
+        },
+        {
+            keys: 'c',
+            action: () => {
+                scrollToElement('Connectivity', SECTION_SCROLL_OFFSET);
+                runCommand('connectivity:run', { trigger: 'manual' });
+                trackEvent('ShortCut', 'ShortCut', 'Connectivity');
+            },
+            description: t('shortcutKeys.RefreshConnectivityTests'),
+        },
+        {
+            keys: 'w',
+            action: () => {
+                scrollToElement('WebRTC', SECTION_SCROLL_OFFSET);
+                runCommand('webrtc:run', { isRefresh: false });
+                trackEvent('ShortCut', 'ShortCut', 'WebRTC');
+            },
+            description: t('shortcutKeys.RefreshWebRTC'),
+        },
+        {
+            keys: 'd',
+            action: () => {
+                scrollToElement('DNSLeakTest', SECTION_SCROLL_OFFSET);
+                runCommand('dnsleak:run', { isRefresh: true });
+                trackEvent('ShortCut', 'ShortCut', 'DNSLeakTest');
+            },
+            description: t('shortcutKeys.RefreshDNSLeakTest'),
+        },
+        {
+            keys: 's',
+            action: () => {
+                scrollToElement('SpeedTest', SECTION_SCROLL_OFFSET);
+                runCommand('speedtest:toggle');
+                trackEvent('ShortCut', 'ShortCut', 'SpeedTest');
+            },
+            description: t('shortcutKeys.SpeedTestButton'),
+        },
+        { keys: 'l', action: () => goToAdvancedTool('pingtest'), description: t('shortcutKeys.PingTest') },
+        { keys: 'a', action: () => goToAdvancedTool('ipcalculator'), description: t('shortcutKeys.IpCalculator') },
+        { keys: 't', action: () => goToAdvancedTool('mtrtest'), description: t('shortcutKeys.MTRTest') },
+        { keys: 'n', action: () => goToAdvancedTool('dnsresolver'), description: t('shortcutKeys.DNSResolver') },
+        { keys: 'W', action: () => goToAdvancedTool('whois'), description: t('shortcutKeys.Whois') },
+        {
+            keys: 'q',
+            // Async components (see Home.vue): ref is null until the chunk
+            // lands, so these actions optional-chain instead of throwing.
+            action: () => { queryIPRef.value?.openModal(); trackEvent('ShortCut', 'ShortCut', 'QueryIP'); },
+            description: t('shortcutKeys.IPCheck'),
+        },
+        {
+            keys: 'h',
+            action: () => {
+                if (isInfosLoaded.value) toggleInfoMask();
+                trackEvent('ShortCut', 'ShortCut', 'ToggleInfoMask');
+            },
+            description: t('shortcutKeys.ToggleInfoMask'),
+        },
+        {
+            keys: 'H',
+            action: () => {
+                if (userPreferences.value.ipHistoryEnabled === false) return;
+                store.toggleSheet('ipHistory');
+                trackEvent('ShortCut', 'ShortCut', 'IPHistory');
+            },
+            description: t('shortcutKeys.IPHistory'),
+        },
+        {
+            keys: 'e',
+            action: () => { shareReportRef.value?.openDialog(); trackEvent('ShortCut', 'ShortCut', 'ShareReport'); },
+            description: t('shortcutKeys.ShareReport'),
+        },
+        {
+            keys: '?',
+            action: () => {
+                helpModalRef.value?.openModal();
+                trackEvent('ShortCut', 'ShortCut', 'Help');
+                // Achievement rule (CleverTrickery) lives in data/achievement-rules.js.
+                emitAppEvent('shortcut:help-opened');
+            },
+            description: t('shortcutKeys.Help'),
+        },
+    ];
+
+    if (configs.value.originalSite) {
+        config.push({
+            keys: 'i',
+            action: () => goToAdvancedTool('invisibilitytest'),
+            description: t('shortcutKeys.InvisibilityTest'),
+        });
+        // Uppercase D mirrors lowercase `d` (refresh homepage DNS leak test) —
+        // `D` opens the in-depth version of the same feature. Gated on
+        // originalSite since the advanced card itself is gated the same way.
+        config.push({
+            keys: 'D',
+            action: () => goToAdvancedTool('enhanceddnsleaktest'),
+            description: t('shortcutKeys.EnhancedDnsLeakTest'),
+        });
+        // Uppercase B: lowercase `b` belongs to Browser Info.
+        config.push({
+            keys: 'B',
+            action: () => goToAdvancedTool('blocklist'),
+            description: t('shortcutKeys.IpBlocklist'),
+        });
+        // Uppercase P: lowercase `p` belongs to Earth Online.
+        config.push({
+            keys: 'P',
+            action: () => goToAdvancedTool('personacheck'),
+            description: t('shortcutKeys.PersonaCheck'),
+        });
+    }
+
+    // Uppercase A: lowercase `a` belongs to the IP calculator. Gated like the
+    // ASN Profile card itself (data/tools.js `requiresConfig`).
+    if (configs.value.cloudFlare) {
+        config.push({
+            keys: 'A',
+            action: () => goToAdvancedTool('asn'),
+            description: t('shortcutKeys.AsnProfile'),
+        });
+    }
+
+    // Mirrors the Earth Online entry's visibility (widgets/Pulse.vue).
+    if (hasPulseBackend || configs.value.cloudFlare) {
+        config.push({
+            keys: 'p',
+            action: () => {
+                store.toggleSheet('pulse');
+                trackEvent('ShortCut', 'ShortCut', 'Pulse');
+            },
+            description: t('shortcutKeys.Pulse'),
+        });
+    }
+
+    return config;
+};
+
+export const useShortcuts = ({ refs, store, t, configs, userPreferences }) => {
+    // Suspending the map behind an overlay is the primitives' job
+    // (composables/use-overlay-shortcuts.js), so nothing is wired here.
+    //
+    // Home is the only route that registers shortcuts; the map is cleared
+    // when it is left (cached away or unmounted) and rebuilt on its return.
+    let disposed = false;
+    let loaded = false;
+    const active = useRouteActive();
+    if (getCurrentScope()) {
+        onScopeDispose(() => {
+            disposed = true;
+            registerShortcuts([]);
+        });
+    }
+
+    const registerShortcutKeys = () => {
+        registerShortcuts(buildShortcutConfig({ refs, store, t, configs, userPreferences }));
+    };
+
+    watch(active, (isActive) => {
+        if (!loaded || disposed) return;
+        if (isActive) registerShortcutKeys();
+        else registerShortcuts([]);
+    });
+
+    const loadShortcuts = () => {
+        // Register immediately so the base keys work from the first paint;
+        // config-gated keys (originalSite's i/D/P, pulse's p) fill in when
+        // /api/configs lands (`{}` → data, once per page load) and the watcher
+        // rebuilds the map. keyMap is mutated in place (utils/shortcut.js),
+        // so the help modal's reference stays current across rebuilds.
+        loaded = true;
+        if (active.value) registerShortcutKeys();
+        watch(configs, () => {
+            if (!disposed && active.value) registerShortcutKeys();
+        });
+        // Help is an async component (Home.vue): on slow networks its chunk
+        // may land later, so wait for the ref instead of silently skipping
+        // the keyMap hand-off.
+        if (refs.helpModalRef.value) {
+            refs.helpModalRef.value.keyMap = keyMap;
+        } else {
+            const stop = watch(refs.helpModalRef, (help) => {
+                if (!help) return;
+                help.keyMap = keyMap;
+                stop();
+            });
+        }
+    };
+
+    return { loadShortcuts };
+};

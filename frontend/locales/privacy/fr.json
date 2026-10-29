@@ -1,0 +1,111 @@
+{
+  "privacy": {
+    "Title": "Politique de confidentialité",
+    "UpdatedLabel": "Dernière mise à jour",
+    "Intro": "IPCheck.ing est une boîte à outils IP gratuite et open source. Nous l'avons conçue pour vous aider à voir ce que votre réseau et votre navigateur révèlent sur vous ; à ce titre, le respect de votre vie privée nous tient à cœur. Cette page explique ce qu'il advient de vos données lorsque vous utilisez le site.",
+    "sections": {
+      "tools": {
+        "title": "Comment fonctionnent les outils",
+        "paragraphs": [
+          "La plupart de ce que les outils vous affichent — détails de votre IP, empreinte du navigateur, DNS, connectivité et résultats de test de débit — est calculé dans votre navigateur ou interrogé en direct et affiché à vous seul. Nous ne conservons pas ces résultats sur nos serveurs de manière accessible à d'autres, sauf si vous créez explicitement un lien de rapport partageable.",
+          "Pour rechercher la géolocalisation d'une IP, l'IP interrogée est envoyée à des fournisseurs tiers (tels qu'ipinfo.io, ip-api.com et similaires). Ces recherches sont régies par la politique de confidentialité propre à chaque fournisseur."
+        ]
+      },
+      "pulse": {
+        "title": "La Terre en ligne",
+        "paragraphs": [
+          "Lors de votre visite, nous comptons une visite anonyme accompagnée de votre pays ou région, déduits de votre adresse IP sur notre réseau edge. L'IP elle-même n'est utilisée que de façon transitoire, l'adresse complète n'est jamais stockée.",
+          "Si vous choisissez de partager un statut prédéfini, nous enregistrons l'identifiant du statut, votre pays ou région et le préfixe IP masqué ; ces données sont supprimées automatiquement en quelques jours. Les statuts proviennent d'une liste fixe — aucune saisie libre."
+        ]
+      },
+      "sharedReports": {
+        "title": "Rapports de diagnostic partagés",
+        "paragraphs": [
+          "Vous pouvez regrouper vos résultats de test dans un rapport de diagnostic et le partager. La création d'un lien de partage est toujours une action explicite — rien n'est envoyé automatiquement. Vous choisissez les tests à inclure et pouvez masquer la fin des adresses IP avant la création du lien.",
+          "Lorsque vous créez un lien, les résultats sélectionnés sont stockés sur notre infrastructure serveur (Cloudflare Workers KV) afin que les personnes avec qui vous partagez le lien puissent l'ouvrir. Le rapport est supprimé automatiquement à la fin de la période de conservation choisie (1, 3 ou 7 jours). Les liens utilisent des identifiants aléatoires impossibles à deviner, nous ne tenons aucun répertoire des rapports existants, et toute personne disposant du lien peut consulter le rapport jusqu'à son expiration.",
+          "Copier un rapport pour un assistant IA ou le télécharger en JSON se fait entièrement dans votre navigateur et ne stocke rien sur nos serveurs."
+        ]
+      },
+      "personaCheck": {
+        "title": "Vérification de persona approfondie",
+        "paragraphs": [
+          "La Vérification de persona approfondie envoie vos données à notre service de notation, qui les évalue par rapport au pays que vous avez choisi et vous renvoie le rapport noté. Ni ce que vous envoyez ni le rapport reçu ne sont conservés — sauf si vous choisissez explicitement de regrouper le résultat dans un lien de rapport partageable ; et même alors, seuls la note et le verdict de chaque vérification y figurent, jamais les valeurs qui les sous-tendent.",
+          "Ce qui accompagne une exécution :"
+        ],
+        "bullets": [
+          "Vos réglages de fuseau horaire et de langue, ainsi que la façon dont votre navigateur formate une date et un nombre d'exemple fixes.",
+          "Les systèmes d'écriture couverts par vos polices installées et vos voix de synthèse, ainsi que votre disposition de clavier — les résultats mêmes que le rapport vous montre. Les lire rend votre navigateur légèrement plus identifiable en général, ce qui est inhérent à cette mesure.",
+          "Les résultats déjà présents sur la page pour les tests IP, WebRTC et DNS.",
+          "Uniquement si vous les fournissez : votre position, arrondie à environ un kilomètre avant de quitter votre appareil et utilisée seulement pour en déduire un pays ; et les 6 à 8 premiers chiffres d'une carte de paiement. Ces chiffres identifient la banque émettrice, jamais votre compte, et ne permettent aucun paiement — ils sont vérifiés auprès d'une base tierce d'émetteurs de cartes."
+        ]
+      },
+      "docsAssistant": {
+        "title": "Assistant de documentation",
+        "paragraphs": [
+          "L'assistant de documentation répond aux questions à partir de notre site de documentation. Il ne démarre que lorsque vous l'utilisez : l'assistant est chargé à la demande, et la question que vous saisissez est envoyée à GitBook, qui héberge notre documentation et fournit l'assistant, afin de générer une réponse.",
+          "L'assistant peut aussi lire les résultats de tests actuellement affichés sur votre page — vos adresses IP avec leur localisation et leur réseau, ainsi que les résultats des tests que vous avez lancés. Cela n'arrive jamais en silence : l'assistant doit le demander, et vous l'autorisez via le bouton de confirmation affiché dans la conversation. En cas de refus, il peut toujours répondre à partir de la documentation.",
+          "La conversation se déroule entre votre navigateur et GitBook ; elle ne transite pas par nos serveurs et nous ne la conservons pas. Les conditions de confidentialité de GitBook s'appliquent aux messages que vous envoyez."
+        ]
+      },
+      "analytics": {
+        "title": "Ce que nous collectons via l'analyse",
+        "paragraphs": [
+          "Nous utilisons Google Analytics pour comprendre l'utilisation du site. Par ce biais, les éléments suivants sont collectés :"
+        ],
+        "bullets": [
+          "Une localisation approximative déduite de votre adresse IP (pays / région / ville). Google ne nous communique pas votre adresse IP complète.",
+          "La langue de votre navigateur (par exemple en ou zh).",
+          "Des données d'analyse standard : pages consultées, type d'appareil et de navigateur, site référent, et un identifiant de visiteur généré aléatoirement et stocké dans un cookie."
+        ]
+      },
+      "account": {
+        "title": "Ce que nous collectons lorsque vous vous connectez",
+        "paragraphs": [
+          "La connexion est facultative — vous pouvez utiliser la plupart des outils du site sans compte. La connexion n'est pas un moyen de vous facturer, ni aujourd'hui ni demain : elle nous est nécessaire pour empêcher les abus du service. Nous utilisons Google Firebase Authentication pour gérer votre connexion et synchroniser vos succès. Lorsque vous êtes connecté, les éléments suivants sont collectés :"
+        ],
+        "bullets": [
+          "Votre adresse e-mail de connexion, utilisée pour identifier votre compte afin de fournir les fonctionnalités nécessitant une connexion.",
+          "Votre nombre d'utilisations des fonctionnalités avancées, utilisé pour détecter les abus malveillants.",
+          "À la fin de chaque période de comptabilisation, les journaux d'analyse des abus de chaque utilisateur connecté, le cas échéant, sont effacés automatiquement ; seuls les totaux d'utilisation sont conservés."
+        ]
+      },
+      "telemetry": {
+        "title": "Télémétrie d'erreurs et de performance",
+        "paragraphs": [
+          "Ce site utilise Sentry, un service de surveillance des erreurs, afin que nous puissions détecter les pannes et les corriger. Les données de télémétrie sont transmises à Sentry via notre propre relais serveur et ne sont partagées avec personne d'autre. Elles comprennent :"
+        ],
+        "bullets": [
+          "Des rapports d'erreur techniques : ce qui a échoué dans le code, sur quelle page, ainsi que le type de votre navigateur et de votre système d'exploitation.",
+          "Des mesures de performance, comme le temps de chargement des pages.",
+          "En cas d'erreur, une rediffusion des instants qui l'ont précédée, pour nous aider à reproduire le problème.",
+          "Votre adresse IP, jointe aux rapports d'erreur lors de leur passage par notre relais. Les problèmes liés au réseau sont souvent impossibles à diagnostiquer sans elle, et elle nous permet d'estimer combien de visiteurs sont touchés par une erreur. Elle n'est jamais partagée et est supprimée avec le reste de la télémétrie.",
+          "Toutes les données de télémétrie sont supprimées automatiquement après 30 jours de conservation."
+        ]
+      },
+      "why": {
+        "title": "Pourquoi nous les collectons",
+        "analytics": "Nous utilisons les données d'analyse pour comprendre l'utilisation du site et améliorer l'expérience utilisateur. Ces données ne servent pas à vous identifier personnellement et ne sont jamais vendues.",
+        "account": "Les données de votre compte (e-mail et nombre d'utilisations des fonctionnalités avancées) servent uniquement à identifier votre compte, à fournir les fonctionnalités nécessitant une connexion. Nous ne les utilisons pas à des fins publicitaires et ne les vendons jamais.",
+        "telemetry": "La télémétrie d'erreurs et de performance sert uniquement à détecter et corriger les défauts. Elle n'est jamais utilisée à des fins publicitaires ni pour vous suivre sur d'autres sites, et elle est supprimée automatiquement après une courte période de conservation."
+      },
+      "cookies": {
+        "title": "Cookies et stockage local",
+        "analytics": "Google Analytics stocke un cookie pour reconnaître les visiteurs récurrents.",
+        "local": "Vos propres réglages (thème, langue, préférences des outils) sont conservés dans le stockage local de votre navigateur et ne quittent jamais votre appareil."
+      },
+      "eu": {
+        "title": "Si vous êtes dans l'UE/EEE ou au Royaume-Uni",
+        "paragraphs": [
+          "Nous n'affichons pas actuellement de bannière de consentement aux cookies. Si vous préférez ne pas être mesuré par les outils d'analyse, vous pouvez vous y opposer à tout moment via les méthodes ci-dessous — bloquer le cookie d'analyse n'affecte aucun outil du site.",
+          "Pour vous désinscrire : utilisez un bloqueur de contenu (tel qu'uBlock Origin) ou le module complémentaire officiel de désactivation de Google, bloquez les cookies tiers, ou effacez les cookies de ce site. Les copies auto-hébergées d'IPCheck.ing n'exécutent l'analyse que si leur exploitant la configure."
+        ]
+      },
+      "retention": {
+        "title": "Conservation des données",
+        "paragraphs": [
+          "Les données d'analyse sont conservées selon les paramètres de conservation de Google Analytics (jusqu'à 14 mois), puis supprimées automatiquement. Les données de compte sont conservées tant que votre compte existe."
+        ]
+      }
+    }
+  }
+}

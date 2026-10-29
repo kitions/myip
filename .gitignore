@@ -1,0 +1,68 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.claude
+tmp
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.env
+.env.forker
+.vscode/extensions.json
+
+package-lock.json
+localtest
+
+.VSCodeCounter
+
+# Offline datasets (server/datasets/datasets.js): every common/<name>-db/ directory
+# holds only downloaded data, its state and lock — created at runtime, never
+# committed (CAIDA's data is under a non-commercial license).
+common/*-db/
+.learnings/
+docs/
+.plan/
+.skills/
+
+# Local Scripts (the listed exceptions are public — contributors need
+# fetch-favicons.js for the Connectivity favicon pipeline, and the i18n pair
+# to scaffold a locale pack and see how far along it is)
+scripts/*
+!scripts/fetch-favicons.js
+!scripts/i18n-status.js
+!scripts/i18n-scaffold.js
+!scripts/check-dns-resolvers.js
+
+# Section banners — deploy-time data (ads and campaign promos stay out of git)
+frontend/data/banners/*
+
+# Site configuration
+public/sitemap.xml
+public/robots.txt
+public/llms.txt
+public/llms-full.txt
+public/tools/
+public/robots.txt
+public/ads.txt
+public/funding.json
+
+# Private AI context (per-machine, not for the public repo)
+local-context.md

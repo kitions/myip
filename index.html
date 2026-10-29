@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="keywords"
+    content="MyIP, IP tool, IP check, IP Leak Check, IP quality check, IP lookup, DNS leak test, WebRTC leak test, browser fingerprint check, speed test, global latency test, MTR test, DNS lookup, Whois search" />
+  <meta name="description"
+    content="A better and open-source IP toolbox: check your IP address & geolocation, test IP for WebRTC and DNS IP leaks, run an IP quality check, browser fingerprint check, plus speed test, global latency test, MTR test, Whois search, and more.">
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Jason Ng" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <!-- No apple-mobile-web-app-status-bar-style: the default keeps the iOS
+       status bar opaque system chrome. A translucent one lets the page run
+       under it, and since iOS 26 its scroll-edge blur then covers the Nav. -->
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0e0e0e" media="(prefers-color-scheme: dark)" />
+  <meta name="background-color" content="#ffffff" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <!-- Avoid auto-linking phone numbers -->
+  <meta name="format-detection" content="telephone=no" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="/logos/ios-logo-512.png" />
+  <title>My IP</title>
+  <link rel="icon" href="/logos/logo.svg">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- @site-url:open -->
+  <link rel="canonical" href="__SITE_URL__/" />
+  <meta property="og:url" content="__SITE_URL__/" />
+  <!-- @site-url:close -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="My IP" />
+  <meta property="og:title" content="My IP" />
+  <meta property="og:description"
+    content="IP lookup, ASN info, connectivity tests, WebRTC and DNS leak detection, speed test, MTR, Whois, and browser fingerprint — in one open-source web app." />
+  <!-- @site-url:open -->
+  <meta property="og:image" content="__SITE_URL__/logos/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="My IP" />
+  <!-- @site-url:close -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="My IP" />
+  <meta name="twitter:description"
+    content="IP lookup, ASN info, connectivity tests, WebRTC and DNS leak detection, speed test, MTR, Whois, and browser fingerprint — in one open-source web app." />
+  <!-- @site-url:open -->
+  <meta name="twitter:image" content="__SITE_URL__/logos/og.png" />
+  <!-- @site-url:close -->
+
+  <!-- WebSite JSON-LD: helps Google and AI engines recognize the site as a single entity instead of a loose collection of pages. -->
+  <!-- @site-url:open -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "__SITE_URL__/#website",
+    "name": "My IP",
+    "url": "__SITE_URL__/",
+    "description": "Open-source IP toolbox: lookup, connectivity tests, WebRTC and DNS leak detection, speed test, MTR, Whois, and browser fingerprint.",
+    "inLanguage": ["en", "zh-CN", "zh-TW", "fr", "ru", "pt-BR"],
+    "publisher": { "@type": "Person", "name": "Jason Ng" }
+  }
+  </script>
+  <!-- @site-url:close -->
+
+  <!-- Seed the `.dark` class on <html> BEFORE first paint.
+      Reads the stored theme preference (field `theme`, values:
+      "auto" / "light" / "dark") via `jnReadPrefs`, falling back to the OS
+      `prefers-color-scheme` when on "auto" or when there's no stored
+      preference yet. Runs synchronously — must come before the inline
+      <style> block below and before the Vue bundle loads, so the boot
+      screen and the eventually-mounted app agree on the theme from
+      frame 1. Preferences.vue owns the class after mount via
+      `store.setDarkMode`. -->
+  <script>
+    (function () {
+      // Gates the initial-hidden `#app` rule; App.vue clears it for the
+      // scale/fade-in. If this script never runs, #app renders normally.
+      document.documentElement.setAttribute('data-booting', '');
+      // Stored preferences. The key mirrors PREFS_STORAGE_KEY in
+      // frontend/data/default-preferences.js — keep them in sync. Also used
+      // by the boot-quips script in <body> to pick the copy language.
+      window.jnReadPrefs = function () {
+        try {
+          return JSON.parse(localStorage.getItem('userPreferences_v8') || '{}') || {};
+        } catch (e) {
+          /* malformed entry or storage disabled — fall back to defaults */
+          return {};
+        }
+      };
+      var theme = window.jnReadPrefs().theme || 'auto';
+      var isDark =
+        theme === 'dark' ||
+        (theme === 'auto' &&
+          window.matchMedia &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches);
+      if (isDark) document.documentElement.classList.add('dark');
+    })();
+  </script>
+
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Room for the safe-area inset and the fixed Nav (3.5rem = h-14 in
+       Nav.vue), which takes no flow height so it stays put while the body
+       rubber-bands on iOS. */
+    body {
+      padding-top: calc(env(safe-area-inset-top) + 3.5rem);
+    }
+
+    html {
+      line-height: 1.5;
+      -webkit-text-size-adjust: 100%;
+      -webkit-tap-highlight-color: transparent;
+      tab-size: 4;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji";
+      scrollbar-gutter: stable;
+      background: #ffffff;
+      color: #0e0e0e;
+    }
+
+    /* Dark mode is gated strictly on the `.dark` class — *never* on
+       `prefers-color-scheme` alone — so this inline CSS never fights with
+       Tailwind's dark variant or with Preferences.vue's explicit light/dark
+       selection. The `.dark` class is seeded by the script block below
+       before first paint, so boot-screen rendering already reflects the
+       right theme without a flash. */
+    html.dark {
+      background: #0e0e0e;
+      color: #fafafa;
+    }
+
+    /* Boot screen — shown until App.vue runs the hand-off sequence.
+       Fixed overlay (not an in-flow 100vh block) so mobile chrome doesn't
+       push it into a scroll, and so Vue can mount into `#app` underneath
+       while the overlay is still visible.
+       25vh top padding anchors the logo to the upper third so phone
+       notches / status bars don't visually push it low. */
+    .jn-loading {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 16px;
+      padding: 25vh 24px 24px;
+      text-align: center;
+      background: #ffffff;
+    }
+
+    html.dark .jn-loading {
+      background: #0e0e0e;
+    }
+
+    /* Hand-off, driven from App.vue:
+        stage-1 — non-logo children (progress bar, quips) fade out, logo stays put.
+        stage-2 — the logo scales down to 0 and fades.
+        stage-3 — overlay removed, `#app` runs `.jn-app-enter` below. */
+    .jn-loading>svg,
+    .jn-loading>div,
+    .jn-loading>p {
+      transition: opacity 180ms ease-out,
+        transform 200ms cubic-bezier(0.55, 0, 0.7, 0);
+      transform-origin: center center;
+    }
+
+    .jn-loading.jn-loading-stage-1> :not(svg) {
+      opacity: 0;
+    }
+
+    .jn-loading.jn-loading-stage-2>svg {
+      opacity: 0;
+      transform: scale(0);
+    }
+
+    .jn-loading svg {
+      width: 56px;
+      height: 56px;
+    }
+
+    .jn-loading .jn-mark {
+      fill: #111;
+    }
+
+    .jn-loading text {
+      fill: #fff;
+    }
+
+    html.dark .jn-loading .jn-mark {
+      fill: #f4f4f4;
+    }
+
+    html.dark .jn-loading text {
+      fill: #111;
+    }
+
+    .jn-loading p {
+      margin: 0;
+      font-size: 14px;
+      color: #6b7280;
+      line-height: 1.5;
+    }
+
+    .jn-loading a {
+      color: inherit;
+      text-decoration: underline;
+    }
+
+    /* Fake progress bar — width is driven by the boot-quips script below,
+       easing toward a 92% cap; the real hand-off never waits for it. */
+    .jn-progress {
+      width: 220px;
+      max-width: 70vw;
+      height: 6px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      overflow: hidden;
+    }
+
+    html.dark .jn-progress {
+      background: #27272a;
+    }
+
+    /* blue-500 — the brand action color, same value in light and dark. */
+    .jn-progress-fill {
+      display: block;
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: #3b82f6;
+      transition: width 600ms ease-out;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .jn-progress-fill {
+        transition: none;
+      }
+    }
+
+    /* Screen-reader-only text — the rotating quips are aria-hidden so they
+       don't spam the live region every second; this line is announced once
+       instead. */
+    .jn-visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+
+    /* `#app` starts hidden; App.vue reveals it immediately at mount and it
+       fades in UNDER the opaque boot overlay */
+    html[data-booting] #app {
+      opacity: 0;
+    }
+
+    #app {
+      transition: opacity 320ms ease-out;
+    }
+
+    #app.jn-app-enter {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+
+  <!-- Pre-Vue runtime:
+      1. Stash the PWA install-prompt event so the app can reuse it later
+        (the event fires exactly once, well before Vue mounts).
+      2. After 12s, reveal the slow-network fallback hint. -->
+  <script>
+    window.ipcheckInstallPromptEvent = null;
+    window.addEventListener('beforeinstallprompt', (event) => {
+      event.preventDefault();
+      window.ipcheckInstallPromptEvent = event;
+    });
+    setTimeout(() => {
+      const hint = document.getElementById('jn-loading-slow-hint');
+      if (hint) hint.hidden = false;
+    }, 12000);
+  </script>
+</head>
+
+<body>
+  <!-- Pre-Vue boot screen. App.vue drives the hand-off via `#jn-loading` —
+      the id is a load-bearing contract, keep it in sync. -->
+  <div id="jn-loading" class="jn-loading" role="status" aria-live="polite">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="jn-mark" width="32" height="32" rx="8" />
+      <text x="16" y="21.5" text-anchor="middle" font-size="14" font-weight="700"
+        font-family="ui-sans-serif, system-ui, sans-serif" letter-spacing="-0.04em">IP</text>
+    </svg>
+
+    <p class="jn-visually-hidden">Loading, it may take a while for the first time. Please wait&hellip;</p>
+
+    <div class="jn-progress" aria-hidden="true">
+      <span class="jn-progress-fill" id="jn-loading-progress"></span>
+    </div>
+
+    <p id="jn-loading-quip" aria-hidden="true"></p>
+
+    <p id="jn-loading-slow-hint" hidden>
+      Waiting too long? Try <a href="https://lite.ipcheck.ing/">IPCheck.ing Lite</a>, or refresh the page.
+    </p>
+  </div>
+
+  <!-- Boot quips + fake progress. The copy lives inline (not in vue-i18n)
+      because it runs before Vue loads; every full locale ships here (beta ones
+      are welcome but not required) and the language pick mirrors
+      frontend/locales/i18n.js (stored prefs → ?hl= → browser language → en).
+      tests/index-html-i18n.test.js holds both to common/locale-registry.js.
+      The progress is time-driven make-believe: one
+      quip every 1.5s, width easing toward a 92% cap. App.vue's hand-off
+      removes the overlay the moment Vue mounts and is never delayed by the
+      script — returning visitors with a warm cache may only glimpse quip #1. -->
+  <script>
+    (() => {
+      const QUIPS = {
+        en: [
+          'Installing network card drivers…',
+          'Lining up the RJ45 connector…',
+          'Plugging the fiber into the router…',
+          'Blowing the dust out of the Ethernet port…',
+          'Rebooting the modem (attempt #1)…',
+          'Three-way handshaking with your ISP…',
+          'Asking the DNS where you actually are…',
+          'Almost there, promise…',
+        ],
+        zh: [
+          '正在安装网卡驱动…',
+          '正在把水晶头对准 RJ45 接口…',
+          '正在把光纤插进路由器…',
+          '正在吹掉网线接头上的灰…',
+          '正在重启光猫（第 1 次）…',
+          '正在与运营商三次握手…',
+          '正在问 DNS 你到底在哪…',
+          '马上就好，真的…',
+        ],
+        'zh-TW': [
+          '正在安裝網路卡驅動程式…',
+          '正在把水晶頭對準 RJ45 接頭…',
+          '正在把光纖插進路由器…',
+          '正在吹掉網路線接頭上的灰塵…',
+          '正在重新啟動數據機（第 1 次）…',
+          '正在與電信業者三次握手…',
+          '正在問 DNS 你到底在哪…',
+          '馬上就好，真的…',
+        ],
+        fr: [
+          'Installation du pilote de la carte réseau…',
+          'Alignement de la fiche RJ45…',
+          'Branchement de la fibre sur le routeur…',
+          'Dépoussiérage du port Ethernet…',
+          'Redémarrage de la box (essai n° 1)…',
+          'Triple poignée de main avec le FAI…',
+          'On demande au DNS où vous êtes…',
+          "C'est presque prêt, promis…",
+        ],
+        ru: [
+          'Устанавливаем драйвер сетевой карты…',
+          'Целимся коннектором в порт RJ45…',
+          'Подключаем оптоволокно к роутеру…',
+          'Выдуваем пыль из Ethernet-порта…',
+          'Перезагружаем модем (попытка №1)…',
+          'Тройное рукопожатие с провайдером…',
+          'Спрашиваем у DNS, где вы на самом деле…',
+          'Почти готово, честно…',
+        ],
+        'pt-BR': [
+          'Instalando os drivers da placa de rede…',
+          'Alinhando o conector RJ45…',
+          'Conectando a fibra ao roteador…',
+          'Soprando a poeira da porta Ethernet…',
+          'Reiniciando o modem (tentativa nº 1)…',
+          'Triplo aperto de mão com seu provedor…',
+          'Perguntando ao DNS onde você realmente está…',
+          'Quase lá, prometemos…',
+        ],
+      };
+
+      // Slow-network hint (revealed after 12s by the head script). Stored as
+      // whole sentences because the link position differs per language; the
+      // markup's English text stays as the no-script fallback.
+      const SLOW_HINTS = {
+        en: 'Waiting too long? Try <a href="https://lite.ipcheck.ing/">IPCheck.ing Lite</a>, or refresh the page.',
+        zh: '等得太久？试试 <a href="https://lite.ipcheck.ing/">IPCheck.ing Lite</a>，或刷新页面。',
+        'zh-TW': '等太久了？試試 <a href="https://lite.ipcheck.ing/">IPCheck.ing Lite</a>，或重新整理頁面。',
+        fr: 'C’est un peu long ? Essayez <a href="https://lite.ipcheck.ing/">IPCheck.ing Lite</a>, ou actualisez la page.',
+        ru: 'Слишком долго? Попробуйте <a href="https://lite.ipcheck.ing/">IPCheck.ing Lite</a> или обновите страницу.',
+        'pt-BR': 'Esperando demais? Experimente o <a href="https://lite.ipcheck.ing/">IPCheck.ing Lite</a> ou atualize a página.',
+      };
+
+      // Hand-copy of matchLocale() in common/locale-registry.js — index.html
+      // ships outside the bundle and can't import it. Resolves a BCP-47 tag in
+      // three steps: exact, then the base language, then any locale of the same
+      // family, `codes` order deciding between siblings.
+      // tests/index-html-i18n.test.js runs both implementations side by side;
+      // change one and change the other.
+      const matchLang = (tag, codes) => {
+        if (!tag) return null;
+        const wanted = String(tag).toLowerCase();
+        const base = wanted.split('-')[0];
+        return codes.find((code) => code.toLowerCase() === wanted)
+          ?? codes.find((code) => code.toLowerCase() === base)
+          ?? codes.find((code) => code.toLowerCase().split('-')[0] === base)
+          ?? null;
+      };
+
+      // Which languages the inline copy above covers — beta locales may not be
+      // among them and then resolve to a neighbour or to English.
+      const QUIP_LANGS = Object.keys(QUIPS);
+
+      const pickLang = () => {
+        const prefs = window.jnReadPrefs ? window.jnReadPrefs() : {};
+        const hl = new URLSearchParams(window.location.search).get('hl');
+        return matchLang(prefs.lang, QUIP_LANGS)
+          ?? matchLang(hl, QUIP_LANGS)
+          ?? matchLang(navigator.language, QUIP_LANGS)
+          ?? 'en';
+      };
+
+      const lang = pickLang();
+      const quips = QUIPS[lang];
+
+      const hintEl = document.getElementById('jn-loading-slow-hint');
+      if (hintEl) hintEl.innerHTML = SLOW_HINTS[lang];
+
+      const quipEl = document.getElementById('jn-loading-quip');
+      const fillEl = document.getElementById('jn-loading-progress');
+      if (!quipEl || !fillEl) return;
+
+      let timer;
+      let step = 0;
+      const tick = () => {
+        // Overlay already removed by App.vue — stop ticking.
+        if (!document.getElementById('jn-loading')) {
+          clearInterval(timer);
+          return;
+        }
+        step += 1;
+        // Past the last quip the copy holds while the bar keeps creeping.
+        quipEl.textContent = quips[Math.min(step, quips.length) - 1];
+        fillEl.style.width = (92 * (1 - Math.pow(0.78, step))).toFixed(1) + '%';
+      };
+      tick();
+      timer = setInterval(tick, 1500);
+    })();
+  </script>
+
+  <noscript>
+    <p style="padding: 40px; text-align: center;">
+      IPCheck.ing requires JavaScript. Please enable it and refresh.
+    </p>
+  </noscript>
+
+  <!-- Vue mounts here. `vaul-drawer-wrapper` is the marker vaul-vue uses to scale
+      the page background when a bottom drawer is open (the expanded ASN
+      connectivity graph, ip-infos/ASNConnectivity.vue). -->
+  <div id="app" vaul-drawer-wrapper></div>
+  <script type="module" src="/frontend/main.js"></script>
+</body>
+
+</html>
