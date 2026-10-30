@@ -67,7 +67,7 @@ const toolComponent = computed(() => (tool.value ? asyncToolFor(tool.value) : nu
 useDocumentMeta(() => {
   if (!tool.value) return {};
   return {
-    title: `${t(tool.value.titleKey)} · IPCheck.ing`,
+    title: `${t(tool.value.titleKey)} · ${t('page.brand')}`,
     description: t(tool.value.noteKey),
     canonical: `${window.location.origin}/tools/${tool.value.slug}`,
   };

@@ -173,7 +173,7 @@ const onCopyForAI = async () => {
     }
 };
 
-useDocumentMeta(() => ({ title: `${t('report.Title')} · IPCheck.ing` }));
+useDocumentMeta(() => ({ title: `${t('report.Title')} · ${t('page.brand')}` }));
 
 // Shared reports must not be indexed; the tag is page-scoped, so drop it on
 // SPA-navigation away.

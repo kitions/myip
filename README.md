@@ -1,8 +1,8 @@
-# 🧰 MyIP - A Better IP Toolbox
+# 我的 IP
 
 <div align="center">
 
-![IPCheck.ing Banner](https://raw.githubusercontent.com/jason5ng32/MyIP/main/public/github/gh_banner.png)
+![我的 IP](public/github/gh_banner.png)
 
 <a href="https://trendshift.io/repositories/5332" target="_blank"><img src="https://trendshift.io/api/badge/repositories/5332" alt="jason5ng32%2FMyIP | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 
@@ -19,105 +19,105 @@
 ![Docker Build and Push](https://github.com/jason5ng32/MyIP/actions/workflows/docker-image.yml/badge.svg?branch=main)
 [![CI](https://github.com/jason5ng32/MyIP/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/jason5ng32/MyIP/actions/workflows/ci.yml)
 
-[English](README.md) | [简体中文](README_ZH.md) | [繁體中文](README_ZH-TW.md) | [Русский](README_RU.md) | [Français](README_FR.md) | [Português (BR)](README_PT-BR.md) | [Shqip](README_SQ.md) | [ไทย](README_TH.md) | [हिन्दी](README_HI.md)
+[English](README_EN.md) | [简体中文](README.md) | [繁體中文](README_ZH-TW.md) | [Русский](README_RU.md) | [Français](README_FR.md) | [Português (BR)](README_PT-BR.md) | [Shqip](README_SQ.md) | [ไทย](README_TH.md) | [हिन्दी](README_HI.md)
 
-An open-source, all-in-one IP toolbox: IP lookup from multiple sources, connectivity tests, WebRTC & DNS-leak detection, speed test, MTR, censorship checks, Whois, and more — self-hostable with one Docker command.
+一个开源的一站式 IP 工具箱，基于 [jason5ng32/MyIP](https://github.com/jason5ng32/MyIP)。本仓库补了首页的多个出口 IP 来源，以及网站分流、CDN 节点、目的地出口。上游在线演示仍是 [https://ipcheck.ing](https://ipcheck.ing)，文档也还在那边。
 
-👉 Demo: [https://ipcheck.ing](https://ipcheck.ing)
+英文说明见 [README_EN.md](README_EN.md)。
 
-Feel free to bookmark the demo or deploy your own.
+欢迎收藏在线版本，也可以自行部署。
 
 [![Deploy with Docker](https://raw.githubusercontent.com/jason5ng32/MyIP/main/public/github/Docker.svg)](https://hub.docker.com/r/jason5ng32/myip)
 
 </div>
 
-## 👀 Features
+## 👀 主要功能
 
-### 🪪 Your IP & Identity
+### 🪪 你的 IP 与身份
 
-* 🛜 **IP Cards**: Detects your IPv4 and IPv6 from multiple independent sources side by side — country, region, city, ASN, organization, and the IP's local time zone.
-* 🔍 **Query IP**: Looks up the same detailed information for any IP address you're curious about.
-* 🧾 **IP History**: Keeps a local record of the IPs you've been seen with, filterable by type and country — stored in your browser only.
-* 🖥️ **Browser Fingerprint**: Calculates your browser fingerprint in multiple ways and shows what makes you identifiable.
+* 🛜 **IP 卡片**：从多个相互独立的来源并列检测你的 IPv4 和 IPv6 —— 国家、地区、城市、ASN、组织，以及该 IP 所在地的时区。
+* 🔍 **IP 查询**：查询任意一个你感兴趣的 IP 地址的同样详细的信息。
+* 🧾 **IP 历史记录**：在本地记录你使用过的 IP，可按类型和国家筛选 —— 数据只存在你的浏览器里。
+* 🖥️ **浏览器指纹**：用多种方式计算你的浏览器指纹，并展示是什么让你变得可被识别。
 
-### 🕵️ Leaks & Privacy
+### 🕵️ 泄露与隐私
 
-* 🚥 **WebRTC Detection**: Reveals the IP address exposed during WebRTC connections — including whether your browser's privacy hardening is on.
-* 🛑 **DNS Leak Test**: Shows which DNS endpoints resolve your queries, to evaluate the risk of DNS leaks when using VPNs or proxies.
-* 🛡️ **Ad & Tracker Blocking Test**: Checks what your ad blocker, browser, DNS filter, VPN or router actually blocks — ad networks, analytics, social trackers, error monitoring, device-maker telemetry, tracking scripts and element hiding.
-* 📋 **Security Checklist**: A 258-item personal cybersecurity checklist across 12 areas, with progress saved in your browser.
+* 🚥 **WebRTC 检测**：揭示 WebRTC 连接过程中暴露的 IP 地址 —— 包括你的浏览器是否开启了隐私强化。
+* 🛑 **DNS 泄露测试**：展示是哪些 DNS 出口在解析你的请求，以便评估使用 VPN 或代理时 DNS 泄露的风险。
+* 🛡️ **广告与跟踪屏蔽检测**：检查你的广告拦截器、浏览器、DNS 过滤、VPN 或路由器实际拦住了什么——涵盖广告网络、统计分析、社交平台跟踪、错误监控、设备厂商遥测、跟踪脚本与元素隐藏。
+* 📋 **安全检查清单**：一份覆盖 12 个领域、共 258 项的个人网络安全检查清单，进度保存在你的浏览器里。
 
-### 📡 Network Tests
+### 📡 网络测试
 
-* 🚦 **Connectivity Check**: Tests the reachability of up to 60 sites of your choice, with multi-round minimum-latency results — plus curated import lists, from country packs to AI, social, streaming, gaming, developer, and more. Based on the results, it signals whether global internet access is currently feasible for you.
-* 🚀 **Speed Test**: Measures your download, upload, and latency against edge networks.
-* ⏱️ **Global Latency Test**: Pings your target from probes all over the world — pick countries from all available Globalping probes, grouped by continent.
-* 🚉 **MTR Test**: Runs MTR from globally distributed probes to see the route packets actually take.
-* 🚧 **Censorship Check**: Shows where a website is blocked worldwide — and by what means.
-* 🚏 **Proxy Rule Test**: Verifies that your proxy software's rule configuration works the way you intended.
+* 🚦 **网络连通性**：检测最多 60 个你自选网站的可达性，多轮测试取最低延迟 —— 还提供精选导入列表，从国家套装到 AI、社交、流媒体、游戏、开发者等应有尽有。并根据检测结果，提示你当前能否访问全球互联网。
+* 🚀 **网速测试**：基于边缘网络测量你的下载、上传速度与延迟。
+* ⏱️ **全球延迟测试**：从遍布全球的探针 ping 你的目标 —— 可从所有可用的 Globalping 探针中按大洲分组选择国家。
+* 🚉 **MTR 测试**：从分布在全球的探针发起 MTR，查看数据包实际经过的路由。
+* 🚧 **封锁测试**：展示一个网站在全球哪些地方被封锁 —— 以及是通过什么手段封锁的。
+* 🚏 **分流测试**：验证你的代理软件的规则配置是否按你的预期工作。
 
-### 🔦 Lookup & Infrastructure
+### 🔦 查询与基础设施
 
-* 📟 **DNS Resolver**: Resolves a domain through multiple resolvers at once, grouped by country — an easy way to spot hijacking or contamination.
-* 📓 **Whois Search**: Performs Whois lookups for domain names, IP addresses, and AS numbers.
-* 🗄️ **MAC Lookup**: Identifies the vendor and details behind a physical address.
-* 🧮 **IP Calculator**: Subnet math, notation conversions and IPv6 interface details for any IP, prefix, range or list, computed locally.
-* 🛰️ **ASN Info & Upstream Topology**: Right on each IP card — AS details, historical announcements for the IP's prefix, and the upstream paths from its ASN to the Tier 1 backbone.
-* 🛂 **ASN Profile**: The full picture of any AS — registration with the raw Whois record, global rank and size, traffic and connection quality, where its IPv4 space is used, every announced prefix with its RPKI status, its upstreams, peers and customers, and the internet exchanges and data centers where it is present.
-* 📶 **Service Status**: Live availability of well-known services — Claude, OpenAI, GitHub, Cloudflare, and more — from their official status pages, with recent incidents.
+* 📟 **DNS 解析**：同时通过多个解析器解析一个域名，并按国家分组 —— 轻松发现劫持或污染。
+* 📓 **Whois 查询**：对域名、IP 地址和 AS 号进行 Whois 查询。
+* 🗄️ **MAC 地址查询**：识别一个物理地址背后的厂商与详细信息。
+* 🧮 **IP 计算器**：对任意 IP、前缀、范围或列表做子网计算、进制转换与 IPv6 接口解读，全部本地完成。
+* 🛰️ **ASN 信息与上游拓扑**：在每张 IP 卡片里直接展示 AS 详情、该 IP 前缀的历史宣告记录，以及其 ASN 到 Tier 1 骨干网的上游路径。
+* 🛂 **ASN 档案**：任意 AS 的完整档案 —— 注册信息与原始 Whois 记录、全球排名与规模、流量构成与连接质量、IPv4 地址分布在哪些国家、全部宣告前缀及其 RPKI 状态、上游 / 对等 / 客户网络，以及它接入的互联网交换中心和数据中心。
+* 📶 **服务可用性**：知名服务的实时可用状态 —— Claude、OpenAI、GitHub、Cloudflare 等 —— 数据来自它们的官方状态页，并附最近的事故。
 
-### ✨ Platform
+### ✨ 平台能力
 
-* 📤 **Shareable Reports**: Turn your test results into a diagnostic report — a read-only link with auto-expiry, AI-ready Markdown, or JSON.
-* ⌨️ **Curl API**: Get your IP from the terminal with a single `curl` command.
-* 🌍 **Earth Online**: A panel broadcasting global internet outage events as they happen.
-* 🌗 **Dark Mode**: Follows your system automatically, with a manual toggle.
-* 📲 **PWA**: Installable as an app on your phone and as a Chrome app on your desktop.
-* ⚡ **Keyboard Shortcuts**: Every function has one — press `?` to see the list.
-* 🔤 **Multiple Languages**: The UI ships in 6 languages, and adding yours takes one locale pack.
+* 📤 **诊断报告分享**：把你的测试结果生成一份诊断报告 —— 可选自动过期的只读链接、适合喂给 AI 的 Markdown，或 JSON。
+* ⌨️ **命令行 API**：在终端里用一条 `curl` 命令获取你的 IP。
+* 🌍 **地球在线**：一个实时播报全球断网事件的面板。
+* 🌗 **暗黑模式**：自动跟随系统，也可以手动切换。
+* 📲 **PWA**：可以安装为手机应用，也可以安装为桌面上的 Chrome 应用。
+* ⚡ **快捷键**：每个功能都有对应的快捷键 —— 按 `?` 查看列表。
+* 🔤 **多语言**：界面内置 6 种语言，添加你的语言只需一个语言包。
 
-## 📕 How to Use
+## 📕 如何使用
 
-### Using Docker
+### 使用 Docker
 
-One command and you're up:
+一条命令即可运行：
 
 ```bash
 docker run -d -p 18966:18966 --name myip --restart always jason5ng32/myip:latest
 ```
 
-Or click the "Deploy with Docker" button at the top of this page.
+或者点击本页顶部的「Deploy with Docker」按钮。
 
-### Deploying in a Node Environment
+### 在 Node 环境部署
 
-Make sure you have Node.js installed, then clone the code:
+确保你已经安装了 Node.js，然后克隆代码：
 
 ```bash
 git clone https://github.com/jason5ng32/MyIP.git
 ```
 
-Install and build. This project uses pnpm — if you don't have it, install it first (npm ships with Node, so this command always works):
+安装与构建。本项目使用 pnpm —— 如果你还没有，请先安装（npm 随 Node 一起提供，这条命令一定能用）：
 
 ```bash
 npm install -g pnpm
 pnpm install && pnpm run build
 ```
 
-Run:
+运行：
 
 ```bash
 pnpm start
 ```
 
-The program will run on port 18966.
+程序会运行在 18966 端口。
 
-## ⚙️ Configuration
+## ⚙️ 配置
 
 > [!IMPORTANT]
-> **MaxMind GeoLite2 credentials are required.** They power IP geolocation and ASN lookups — without them, the MaxMind source returns 503. They're free: → [MaxMind Setup](https://docs.ipcheck.ing/developer/getting-started/maxmind-setup)
+> **MaxMind GeoLite2 凭证是必需的。** 它为 IP 地理位置与 ASN 查询提供数据 —— 不配置时，MaxMind 数据源会返回 503。凭证是免费的：→ [MaxMind Setup](https://docs.ipcheck.ing/developer/getting-started/maxmind-setup)
 
 > [!WARNING]
-> **`ALLOWED_DOMAINS` is required on a real domain.** It's the hostname allowlist for the backend API — without it, every request from a non-localhost domain gets 403. → [Reverse Proxy & Domains](https://docs.ipcheck.ing/developer/getting-started/reverse-proxy-and-domains)
+> **在真实域名上部署时，`ALLOWED_DOMAINS` 是必需的。** 它是后端 API 的主机名白名单 —— 不配置时，来自非 localhost 域名的每个请求都会收到 403。→ [Reverse Proxy & Domains](https://docs.ipcheck.ing/developer/getting-started/reverse-proxy-and-domains)
 
 ```bash
 docker run -d -p 18966:18966 \
@@ -129,29 +129,29 @@ docker run -d -p 18966:18966 \
   jason5ng32/myip:latest
 ```
 
-Everything else — optional API keys, security & rate limiting, logging, Sentry, the curl API domains — is documented in the [Environment Variables reference](https://docs.ipcheck.ing/developer/reference/environment-variables).
+其余全部是可选配置 —— 第三方 API Key、安全与限流、日志、Sentry、curl API 域名等，详见[环境变量参考](https://docs.ipcheck.ing/developer/reference/environment-variables)。
 
-## 📖 Documentation
+## 📖 官方文档
 
-Full guides live in the MyIP Docs Center: **[docs.ipcheck.ing](https://docs.ipcheck.ing)**
+完整指南在 MyIP 文档中心：**[docs.ipcheck.ing](https://docs.ipcheck.ing)**
 
-* [Developer Guide](https://docs.ipcheck.ing/developer) — deployment, configuration, architecture, and contributing
-* [Knowledge Base](https://docs.ipcheck.ing/knowledge-base) — how to use every tool, step-by-step network diagnosis, and networking concepts
+* [开发者指南](https://docs.ipcheck.ing/developer) —— 部署、配置、架构说明与参与贡献
+* [知识库](https://docs.ipcheck.ing/knowledge-base) —— 每个工具的使用说明、网络问题排查步骤、网络概念科普
 
-## 🤝 Contributing
+## 🤝 参与贡献
 
-Contributions are welcome! We keep a curated set of beginner-friendly tasks — each with exact file paths, acceptance criteria, and tests that guide you to a green build:
+欢迎参与贡献！我们维护着一批对新手友好的任务，每条都写明了具体文件路径、验收标准，并有测试引导你完成一次绿色构建：
 
-* 🏷️ [Good first issues](https://github.com/jason5ng32/MyIP/labels/good%20first%20issue) — add a DNS resolver from your country, add curated site lists, translate the README into your language, polish translations, and more
-* 🌐 [TRANSLATING.md](TRANSLATING.md) — bring the UI to your language: a locale pack plus one registry line, and a **partial translation is a welcome first PR**
-* 📄 [CONTRIBUTING.md](CONTRIBUTING.md) — setup, conventions, and how PRs flow (target the `dev` branch)
+* 🏷️ [Good first issues](https://github.com/jason5ng32/MyIP/labels/good%20first%20issue) —— 添加你所在国家的 DNS 解析服务、添加精选网站列表、把 README 翻译成你的语言、润色翻译等
+* 🌐 [TRANSLATING.md](TRANSLATING.md) —— 把 UI 带到你的语言：一个语言包加上一行注册表，而且**部分翻译也是欢迎的首次 PR**
+* 📄 [CONTRIBUTING.md](CONTRIBUTING.md) —— 环境搭建、开发约定与 PR 流程（请将 PR 提交到 `dev` 分支）
 
-## 👩🏻‍💻 Advanced Usage
+## 👩🏻‍💻 高级用法
 
 <details>
-<summary>Proxy rules for checking your real IP and your proxy IP at the same time</summary>
+<summary>同时查询真实 IP 与代理 IP 的代理规则</summary>
 
-If you're using a proxy for internet access, consider adding this rule to your proxy configuration (modify it according to your client). This setup lets you check both your real IP and the IP when using the proxy:
+如果你在通过代理上网，可以考虑在你的代理配置里增加下面的规则（请根据你使用的客户端进行修改）。这样就可以同时查询你的真实 IP 和使用代理时的 IP：
 
 ```ini
 # IP Testing
@@ -176,26 +176,26 @@ DOMAIN,ptest-12.ipcheck.ing,Proxy12
 
 </details>
 
-## 💖 Sponsors & Supporters
+## 💖 赞助商与支持者
 
-As an open source project, I'm very grateful to the following sponsors for their support:
+作为一个开源项目，我非常感谢以下赞助者对我的支持：
 
-**Sponsors**
+**赞助商**
 
 <a href="https://www.swiftproxy.net/?ref=myip"><img src="https://res.ipcheck.ing/img/swiftproxy_logo.png" alt="SwiftProxy" height="48" /></a><br />
-<sub>↳ **<a href="https://www.swiftproxy.net/?ref=myip">SwiftProxy</a>** — High-quality rotating and static residential proxies, with 90M+ residential IPs across 220+ locations worldwide. It supports HTTP(S), SOCKS5, rotating and sticky sessions, with residential proxy plans starting at just $0.7/GB. Use code `PROXY90` for an additional 10% off.
+<sub>↳ **<a href="https://www.swiftproxy.net/?ref=myip">SwiftProxy</a>** — 提供高质量动态和静态住宅代理，拥有 9000 万+住宅 IP，覆盖全球 220+ 个地区，支持 HTTP(S)、SOCKS5 协议及动态轮换和粘性会话。动态住宅代理低至 $0.7/GB，使用优惠码 `PROXY90` 再享九折优惠。
 </sub>
 
 <a href="https://proxy-seller.com/?partner=4FEC1644D12240F4"><img src="https://res.ipcheck.ing/img/proxyseller_logo.png" alt="Proxy-Seller" height="48" /></a><br />
-<sub>↳ **<a href="https://proxy-seller.com/?partner=4FEC1644D12240F4">Proxy-Seller</a>** — offers private residential, mobile (4G/5G/LTE), ISP, and datacenter IPv4/IPv6 proxies with HTTP(S) and SOCKS5 support, 47M+ residential IPs in 220+ locations, precise country/city/ISP targeting, 99.7% uptime, and 24/7 support. MyIP users can use promo code `CHECKINGIP15` to get 15% off.
+<sub>↳ **<a href="https://proxy-seller.com/?partner=4FEC1644D12240F4">Proxy-Seller</a>** — 提供私有住宅、移动（4G/5G/LTE）、静态 ISP 以及数据中心 IPv4/IPv6 代理，支持 HTTP(S) 与 SOCKS5 协议，拥有 4700 万+ 住宅 IP，覆盖全球 220+ 地区，可精准定位国家、城市及运营商，具备 99.7% 可用性与 24/7 技术支持。MyIP 用户使用优惠码 `CHECKINGIP15` 可享 15% 折扣。
 </sub>
 
-<a href="https://v.ps/?utm_source=ipcheck.ing&utm_medium=referral&utm_campaign=github_readme&utm_content=en"><img src="https://res.ipcheck.ing/img/vps_logo.png" alt="V.PS" height="48" /></a><br />
-<sub>↳ **<a href="https://v.ps/?utm_source=ipcheck.ing&utm_medium=referral&utm_campaign=github_readme&utm_content=en">V.PS</a>** — High-performance KVM VPS with global locations, fast connectivity, and IPv4 & IPv6 included.</sub>
+<a href="https://v.ps/?utm_source=ipcheck.ing&utm_medium=referral&utm_campaign=github_readme&utm_content=zh"><img src="https://res.ipcheck.ing/img/vps_logo.png" alt="V.PS" height="48" /></a><br />
+<sub>↳ **<a href="https://v.ps/?utm_source=ipcheck.ing&utm_medium=referral&utm_campaign=github_readme&utm_content=zh">V.PS</a>** — 高性能 KVM VPS，覆盖全球多个地区。日本与新加坡线路更有三网优化，提供极高速网络连接。支持 IPv4 与 IPv6。</sub>
 
 ----
 
-**Supporters**
+**支持者**
 
 <p><a href="https://www.cloudflare.com/lp/project-alexandria/"><img src="https://res.ipcheck.ing/img/cloudflare_logo.png" alt="Cloudflare Project Alexandria" height="32" /></a></p>
 <p><a href="https://www.1password.com"><img src="https://res.ipcheck.ing/img/1password_logo.png" alt="1Password" height="32" /></a></p>
@@ -203,8 +203,8 @@ As an open source project, I'm very grateful to the following sponsors for their
 <p><a href="https://www.sentry.io"><img src="https://res.ipcheck.ing/img/sentry_logo.png" alt="Sentry" height="32" /></a></p>
 <p><a href="https://www.gitbook.com"><img src="https://res.ipcheck.ing/img/gitbook_logo.png" alt="GitBook" height="32" /></a></p>
 
-Interested in sponsoring MyIP? [Become a sponsor](https://github.com/sponsors/jason5ng32)
+有意赞助 MyIP？[成为赞助者](https://github.com/sponsors/jason5ng32)
 
-## 📄 License
+## 📄 开源协议
 
 [AGPL-3.0](LICENSE) © Jason Ng

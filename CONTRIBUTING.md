@@ -83,9 +83,8 @@ the PNGs with your change — CI stays offline and only checks they exist.
 
 **README translations** — beyond the READMEs we maintain (`en` / `zh` / `zh-TW` / `fr` /
 `ru`) and the community-maintained `pt-BR` one, translations in any language are welcome. Create
-`README_<LANG>.md` from the English [README.md](README.md) (the canonical source),
-open it with a one-line "community-maintained translation — English is canonical"
-note in your language, and add your language to the switcher row near the top of the
+`README_<LANG>.md` from the Chinese [README.md](README.md) or the English [README_EN.md](README_EN.md).
+This fork's default README is Chinese. Add your language to the switcher row near the top of the
 existing READMEs. Keep code blocks, URLs, and badges unchanged. Check open issues
 for requested languages before starting.
 

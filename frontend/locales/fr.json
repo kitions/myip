@@ -36,7 +36,7 @@
     "Benefits": {
       "Title": "Avantages et utilisation",
       "Benefit": "Avantages",
-      "Note1": "En tant que produit open source, IPCheck.ing est gratuit. Sa maintenance demande des efforts et des coûts considérables.",
+      "Note1": "En tant que produit open source, Mon IP est gratuit. Sa maintenance demande des efforts et des coûts considérables.",
       "Note2": "Pour assurer la pérennité du projet et éviter les abus, certaines fonctionnalités avancées nécessitent une connexion. Chaque utilisateur connecté dispose d'un quota mensuel largement suffisant — s'il ne vous suffit pas, envisagez de nous sponsoriser pour obtenir des limites plus élevées.",
       "Current": "Actuel",
       "Tiers": {
@@ -69,7 +69,7 @@
     },
     "Achievements": {
       "Title": "Succès",
-      "Note": "En utilisant IPCheck.ing, vous pouvez déclencher certains succès. Ici, vous pouvez voir tous vos succès.",
+      "Note": "En utilisant Mon IP, vous pouvez déclencher certains succès. Ici, vous pouvez voir tous vos succès.",
       "Get": "obtenus",
       "GetCount": "Succès obtenus:",
       "NotGet": "non obtenus",
@@ -81,7 +81,7 @@
       "Type": {
         "IAmHuman": {
           "Title": "Je suis humain",
-          "Meet": "Utiliser IPCheck.ing après s'être connecté"
+          "Meet": "Utiliser Mon IP après s'être connecté"
         },
         "BarelyEnough": {
           "Title": "Tout juste suffisant",
@@ -2041,7 +2041,7 @@
     "id": "pingtest",
     "Title": "Test de latence mondiale",
     "Note": "Le test de ping est un outil réseau utilisé pour mesurer le temps aller-retour des paquets de données entre deux cibles (serveurs). Il s'agit d'une mesure clé pour évaluer les performances du réseau.",
-    "Note2": "Au cours du test ci-dessous, IPCheck.ing s'appuie sur les sondes mondiales de Globalping pour envoyer de petits paquets de données depuis des serveurs du monde entier vers votre adresse IP et mesurer le temps qu'il faut à ces paquets pour voyager du serveur à votre appareil et vice versa. Grâce à ces tests de ping depuis différentes localisations géographiques, vous pouvez obtenir une vue complète de la vitesse et de la stabilité de la connexion de votre appareil au réseau mondial.",
+    "Note2": "Au cours du test ci-dessous, Mon IP s'appuie sur les sondes mondiales de Globalping pour envoyer de petits paquets de données depuis des serveurs du monde entier vers votre adresse IP et mesurer le temps qu'il faut à ces paquets pour voyager du serveur à votre appareil et vice versa. Grâce à ces tests de ping depuis différentes localisations géographiques, vous pouvez obtenir une vue complète de la vitesse et de la stabilité de la connexion de votre appareil au réseau mondial.",
     "Note3": "Veuillez sélectionner votre adresse IP pour le test.",
     "SelectIP": "Choisissez un IP",
     "Region": "Région",
@@ -2174,7 +2174,7 @@
   "about": {
     "Title": "À propos",
     "project": [
-      "IPCheck.ing est une boîte à outils IP tout-en-un et gratuite : elle vous aide à consulter vos informations IP, à tester la disponibilité des sites web, à examiner les informations de sortie DNS, à mesurer votre débit, à tester la latence mondiale, à lancer des tests MTR, et bien plus encore.",
+      "Mon IP est une boîte à outils IP tout-en-un et gratuite : elle vous aide à consulter vos informations IP, à tester la disponibilité des sites web, à examiner les informations de sortie DNS, à mesurer votre débit, à tester la latence mondiale, à lancer des tests MTR, et bien plus encore.",
       "Il s'agit d'un projet open source : cliquez sur l'icône GitHub en bas de la page pour consulter le code source.",
       "Si vous ne comprenez pas comment utiliser une fonctionnalité, ouvrez le « Centre d'aide » en bas de la page. Notre documentation est très détaillée : en plus de présenter chaque fonctionnalité, elle vous aide à comprendre les différents concepts réseau et à diagnostiquer vos problèmes de connexion.",
       "Si vous souhaitez participer au projet open source, ouvrez le lien « Documentation développeur » en bas de la page pour découvrir comment faire."
@@ -2187,7 +2187,7 @@
     ],
     "contactTitle": "Nous contacter",
     "contact": [
-      "Si vous rencontrez un problème en utilisant IPCheck.ing ou en déployant le projet MyIP, commencez par chercher la réponse dans le « Centre d'aide ». Si vous ne la trouvez pas et que vous restez bloqué, ouvrez une issue sur GitHub ou écrivez-nous par email.",
+      "Si vous rencontrez un problème en utilisant Mon IP ou en déployant le projet MyIP, commencez par chercher la réponse dans le « Centre d'aide ». Si vous ne la trouvez pas et que vous restez bloqué, ouvrez une issue sur GitHub ou écrivez-nous par email.",
       "Et si vous tombez sur un bug et que vous aimez coder (ou coder avec l'IA), n'hésitez surtout pas à nous envoyer directement une PR avec votre correctif.",
       "Notre email : i[AT]ipcheck.ing."
     ],
@@ -2212,6 +2212,6 @@
   },
   "pwa": {
     "appDescription": "La boîte à outils IP tout-en-un",
-    "installDescription": "Vous avez déjà utilisé IPCheck.ing {count} fois — installez-le comme application pour une expérience plus fluide et un accès plus rapide."
+    "installDescription": "Vous avez déjà utilisé Mon IP {count} fois — installez-le comme application pour une expérience plus fluide et un accès plus rapide."
   }
 }

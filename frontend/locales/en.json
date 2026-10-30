@@ -36,7 +36,7 @@
     "Benefits": {
       "Title": "Benefits & Usage",
       "Benefit": "Benefits",
-      "Note1": "As an open-source product, IPCheck.ing is free to use. Maintaining it takes considerable effort and cost.",
+      "Note1": "As an open-source product, My IP is free to use. Maintaining it takes considerable effort and cost.",
       "Note2": "To keep the project running sustainably and prevent abuse, some advanced features require signing in. Every signed-in user gets a generous monthly quota — if it's not enough for you, consider sponsoring us to unlock higher limits.",
       "Current": "Current",
       "Tiers": {
@@ -69,7 +69,7 @@
     },
     "Achievements": {
       "Title": "Achievements",
-      "Note": "While using IPCheck.ing, you may trigger some achievements. Here you can see all your achievements.",
+      "Note": "While using My IP, you may trigger some achievements. Here you can see all your achievements.",
       "Get": "Obtained",
       "GetCount": "Obtained Achievements",
       "NotGet": "Not Yet",
@@ -81,7 +81,7 @@
       "Type": {
         "IAmHuman": {
           "Title": "I Am Human",
-          "Meet": "Use IPCheck.ing after logging in"
+          "Meet": "Use My IP after logging in"
         },
         "BarelyEnough": {
           "Title": "Barely Enough",
@@ -2041,7 +2041,7 @@
     "id": "pingtest",
     "Title": "Global Latency Test",
     "Note": "Ping test is a network tool used to measure the round-trip time of data packets between two endpoints (servers). It is a key metric for evaluating network performance.",
-    "Note2": "In the test below, IPCheck.ing uses Globalping's worldwide probes to send small packets of data from servers around the world to your IP address, measuring the time it takes for these packets to travel from the server to your device and back. Through these Ping tests from different geographical locations, you can gain a comprehensive view of the speed and stability of your device's connection to the global network.",
+    "Note2": "In the test below, My IP uses Globalping's worldwide probes to send small packets of data from servers around the world to your IP address, measuring the time it takes for these packets to travel from the server to your device and back. Through these Ping tests from different geographical locations, you can gain a comprehensive view of the speed and stability of your device's connection to the global network.",
     "Note3": "Please select your IP address for testing.",
     "SelectIP": "Select an IP Address",
     "Region": "Region",
@@ -2174,7 +2174,7 @@
   "about": {
     "Title": "About",
     "project": [
-      "IPCheck.ing is a free all-in-one IP toolbox that helps you check your own IP information, test website availability, examine DNS exit information, and run speed tests, global latency tests, MTR tests and more.",
+      "My IP is a free all-in-one IP toolbox that helps you check your own IP information, test website availability, examine DNS exit information, and run speed tests, global latency tests, MTR tests and more.",
       "This is an open-source project — click the GitHub icon at the bottom of the page to browse the source code.",
       "If you are unsure how a feature works, open the \"Help Center\" link at the bottom of the page. The documentation is thorough: beyond describing each feature, it also explains networking concepts and how to troubleshoot network problems.",
       "If you would like to take part in the open-source project, open the \"Developer Docs\" link at the bottom of the page to see how."
@@ -2187,7 +2187,7 @@
     ],
     "contactTitle": "Contact Us",
     "contact": [
-      "If you run into trouble using IPCheck.ing or deploying the MyIP project, head to the \"Help Center\" first. If you cannot find the answer there and are stuck, open an issue on GitHub or reach us by email.",
+      "If you run into trouble using My IP or deploying the MyIP project, head to the \"Help Center\" first. If you cannot find the answer there and are stuck, open an issue on GitHub or reach us by email.",
       "And if you hit a bug and enjoy coding (or coding with AI), you are very welcome to send us a PR with your fix.",
       "Our email: i[AT]ipcheck.ing."
     ],
@@ -2212,6 +2212,6 @@
   },
   "pwa": {
     "appDescription": "All in one IP Toolbox",
-    "installDescription": "You've already used IPCheck.ing {count} times — install it as an app for a smoother experience and quicker access."
+    "installDescription": "You've already used My IP {count} times — install it as an app for a smoother experience and quicker access."
   }
 }
